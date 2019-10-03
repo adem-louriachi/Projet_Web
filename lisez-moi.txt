@@ -1,1 +1,13 @@
 # Projet_Web
+
+Nom de l'équipe : Les 4Randoms
+Paul Chabas paul-chabas@etu.univ-amu.fr
+Vincent Ferrer vincent.ferrer@etu.univ-amu.fr
+Adem Louriachi adem.louriachi@etu.univ-amu.fr
+Guillaume Piccina guillaume.piccina@etu.univ-amu.fr
+
+URL de l'index du site
+
+Présentation du projet
+
+Choix techniques
