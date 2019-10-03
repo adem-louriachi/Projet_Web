@@ -16,35 +16,23 @@
 
     <body>
 
-        <div id="index"> <!-- debut du div de la page -->
-
-            <header> <!-- en-tête -->
-
-                <div id="header">
+        <header> <!-- en-tête -->
 
 
 
-                </div>
+        </header>
 
-            </header>
-
-            <div id="main">
+        <div id="main">
 
 
-
-            </div>
-
-            <footer>
-
-                <div id="footer">
-
-
-
-                </div>
-
-            </footer>
 
         </div>
+
+        <footer>
+
+
+        </footer>
+
 
     </body>
 
