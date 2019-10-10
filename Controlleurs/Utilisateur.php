@@ -1,5 +1,4 @@
 <?php
-require('../Modèles/UtilisateursMod.php');
 
 class Utilisateur
 {
