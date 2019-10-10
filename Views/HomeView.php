@@ -2,7 +2,7 @@
     ob_start();
     $style = 'Views/HomeView.css';
 ?>
-<div class="container blue-grey darken-1">
+<div class="container black">
     <form id="register" method="post" action="Controllers/Register.php"> <!-- visibility: visible -->
         <label name="nick">Nom</label>
         <input name="nick" type="text" placeholder="Jean" required autofocus>
