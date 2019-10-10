@@ -1,9 +1,9 @@
 <?php
     ob_start();
-    $style = 'Vues/AccueilVue.css';
+    $style = 'View/HomeView.css';
 ?>
 <div class="container">
-    <form id="inscription" method="post" action="Vues/AccueilVue.php"> <!-- visibility: visible -->
+    <form id="register" method="post" action="Controllers/register.php"> <!-- visibility: visible -->
         <label name="nom">Nom</label>
         <input name="nom" type="text" placeholder="Jean" required autofocus>
         <label name="email">Adresse e-mail</label>
@@ -14,7 +14,7 @@
         <input name="mdpconf" type="password" required>
         <input type="submit" value="Inscription">
     </form>
-    <form id="connexion" method="post" action="Controlleurs/connexion.php"> <!-- visibility: hidden; -->
+    <form id="signin" method="post" action="Controllers/signin.php"> <!-- visibility: hidden; -->
         <label name="email">Adresse e-mail</label>
         <input name="email" type="email">
         <label name="mdp">Mot de passe</label>
@@ -26,5 +26,5 @@
 </div>
 <?php
     $content = ob_get_clean();
-    require 'GabaritVue.php';
+    require 'TemplateView.php';
 ?>
