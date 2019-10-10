@@ -1,7 +1,7 @@
 <?php
 require('../Modèles/UtilisateursMod.php');
 
-class Membre
+class Utilisateur
 {
     private $mail;
     private $mdp;
