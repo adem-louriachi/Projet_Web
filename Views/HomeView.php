@@ -1,6 +1,6 @@
 <?php
     ob_start();
-    $style = 'View/HomeView.css';
+    $style = 'Views/HomeView.css';
 ?>
 <div class="container">
     <form id="register" method="post" action="Controllers/register.php"> <!-- visibility: visible -->
