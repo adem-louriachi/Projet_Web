@@ -1,4 +1,4 @@
 <?php
-    $nom = $_POST['nom'];
+    $name = $_POST['name'];
     $email = $_POST['email'];
-    $mdp = $_POST['mdp'];
+    $pwd = $_POST['pwd'];
