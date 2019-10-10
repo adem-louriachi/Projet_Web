@@ -3,7 +3,7 @@
     $style = 'Views/HomeView.css';
 ?>
 <div class="container">
-    <form id="register" method="post" action="Controllers/register.php"> <!-- visibility: visible -->
+    <form id="register" method="post" action="Controllers/Register.php"> <!-- visibility: visible -->
         <label name="nick">Nom</label>
         <input name="nick" type="text" placeholder="Jean" required autofocus>
         <label name="email">Adresse e-mail</label>
@@ -14,7 +14,7 @@
         <input name="pwdconf" type="password" required>
         <input type="submit" value="Inscription">
     </form>
-    <form id="signin" method="post" action="Controllers/signin.php"> <!-- visibility: hidden; -->
+    <form id="signin" method="post" action="Controllers/Signin.php"> <!-- visibility: hidden; -->
         <label name="email">Adresse e-mail</label>
         <input name="email" type="email">
         <label name="pwd">Mot de passe</label>
