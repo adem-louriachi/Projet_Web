@@ -32,25 +32,32 @@
         </header>
 
         <main>
-            <form id="inscription" method="post" action="Controlleurs/inscription.php">
-                <label name="nom">Nom</label>
-                <input name="nom" type="text" placeholder="Jean">
-                <label name="email">Adresse e-mail</label>
-                <input name="email" type="email" placeholder="jean@jean.fr">
-                <label name="mdp">Mot de passe</label>
-                <input name="mdp" type="password">
-                <label name="mdpconf">Confirmation du mot de passe</label>
-                <input name="mdpconf" type="password">
-                <input type="submit" value="Inscription">
-            </form>
-            <form id="connexion" method="post" action="Controlleurs/connexion.php">
-                <label name="email">Adresse e-mail</label>
-                <input name="email" type="email">
-                <label name="mdp">Mot de passe</label>
-                <input name="mdp" type="password">
-                <input type="submit" value="Connexion">
-            </form>
-            <a>Déjà inscrit ?</a> <!-- Javascript à écrire pour passer la visibilité d'inscription à connexion -->
+
+            <div class="formulaire">
+                <form id="inscription" method="post" action="Controlleurs/inscription.php">
+                    <label name="nom">Nom</label>
+                    <input name="nom" type="text" placeholder="Jean">
+                    <label name="email">Adresse e-mail</label>
+                    <input name="email" type="email" placeholder="jean@jean.fr">
+                    <label name="mdp">Mot de passe</label>
+                    <input name="mdp" type="password">
+                    <label name="mdpconf">Confirmation du mot de passe</label>
+                    <input name="mdpconf" type="password">
+                    <input type="submit" value="Inscription">
+                </form>
+                <form id="connexion" method="post" action="Controlleurs/connexion.php">
+                    <label name="email">Adresse e-mail</label>
+                    <input name="email" type="email">
+                    <label name="mdp">Mot de passe</label>
+                    <input name="mdp" type="password">
+                    <input type="submit" value="Connexion">
+                </form>
+                <a>Déjà inscrit ?</a> <!-- Javascript à écrire pour passer la visibilité d'inscription à connexion -->
+            </div>
+            <section>
+                <h1>Description du site</h1>
+                <p>Bienvenue sur FreeNote ! <br> Un réseau social où les messages privés n'existent pas. <br> Vous pouvez lancer une discussion sur un sujet (La mort de Jacques Chirac, Pourquoi il ne faut pas boire de Munster, L'utilité d'un BDE, Greta Thunberg, etc.). Puis, vous, cher.ère.s membres, pouvez participer à chaque discussion</p>
+            </section>
         </main>
 
         <footer>
