@@ -1,25 +1,25 @@
 <?php
 
 class Discussion{
-    private $nom;
-    private $proprio;
-    private $statut;
+    private $name;
+    private $owner;
+    private $status;
 
-    public function __construct($name, $proprie){
-        $this->nom = $name;
-        $this->proprio = $proprie;
+    public function __construct($c_name, $c_owner){
+        $this->name = $c_name;
+        $this->owner = $c_owner;
         $this->statut = False;
     }
 
-    public function recupStatus(){
-        return $this->statut;
+    public function GetStatus(){
+        return $this->status;
     }
 
-    public function recupNom(){
-        return $this->nom;
+    public function GetName(){
+        return $this->name;
     }
 
-    public function recupProprio(){
-        return $this->proprio;
+    public function GetOwner(){
+        return $this->owner;
     }
 }
