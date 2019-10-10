@@ -3,38 +3,40 @@ require('../Models/MessagesMod.php');
 
 class Messages
 {
-    private $msgdate;
+    private $msgDate;
     private $authors;
-    private $status;
+    private $state;
 
-    public function getMsgdate()
+    public function __construct()
     {
-        return $this->msgdate; //requete pour recup dans la BD
+        $this->state = false;
+    }
+
+    public function getMsgDate()
+    {
+        return $this->msgDate;
     }
 
 
     public function getAuthors()
     {
-        return $this->authors; //requete pour recup dans la BD
+        return $this->authors;
     }
 
     public function setAuthors(User $authors)
     {
-        $this->authors = $authors; //requete pour insert dans la BD
+        $this->authors = $authors;
     }
 
-    public function getStatus()
+    public function getState()
     {
-        return $this->status; //requete pour recup dans la BD
+        return $this->state;
     }
 
-    public function setStatus($status)
+    public function setState($state)
     {
-        $this->status = $status; //requete pour update dans la BD
+        $this->state = $state;
     }
 
-    public function __construct()
-    {
 
-    }
 }
