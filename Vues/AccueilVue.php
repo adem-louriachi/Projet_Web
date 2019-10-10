@@ -1,4 +1,4 @@
-<!doctype html>
+ <!doctype html>
 
 <html lang="fr">
 
@@ -9,6 +9,15 @@
         <meta name="description" content="Site FreeNote Projet Web - 3eme semestre - DUT Informatique, professeur : Olivier Gérard"/>
     <!-- Stylesheet -->
         <link rel="stylesheet" href="Vues/AccueilVue.css"/>
+
+    <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <title>FreeNote by 4randoms</title>
 
