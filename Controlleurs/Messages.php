@@ -1,26 +1,26 @@
 <?php
-require('../Modèles/MessagesMod.php');
+require('../Models/MessagesMod.php');
 
 class Messages
 {
-    private $datemsg;
-    private $auteurs;
+    private $msgdate;
+    private $authors;
     private $status;
 
-    public function getDatemsg()
+    public function getMsgdate()
     {
-        return $this->datemsg; //requete pour recup dans la BD
+        return $this->msgdate; //requete pour recup dans la BD
     }
 
 
-    public function getAuteurs()
+    public function getAuthors()
     {
-        return $this->auteurs; //requete pour recup dans la BD
+        return $this->authors; //requete pour recup dans la BD
     }
 
-    public function setAuteurs(Utilisateur $auteurs)
+    public function setAuthors(User $authors)
     {
-        $this->auteurs = $auteurs; //requete pour insert dans la BD
+        $this->authors = $authors; //requete pour insert dans la BD
     }
 
     public function getStatus()
