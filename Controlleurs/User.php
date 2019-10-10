@@ -5,7 +5,7 @@ class User
 {
     private $mail;
     private $pwd;
-    private $name;
+    private $nick;
     private $admin;
 
     public function getMail()
@@ -28,14 +28,14 @@ class User
         $this->pwd = $pwd; //requete pour update dans la BD
     }
 
-    public function getName()
+    public function getNick()
     {
-        return $this->name; //requete pour recup dans la BD
+        return $this->nick; //requete pour recup dans la BD
     }
 
-    public function setName($name)
+    public function setNick($nick)
     {
-        $this->name = $name; //requete pour update dans la BD
+        $this->nick = $nick; //requete pour update dans la BD
     }
 
     public function getAdmin()
@@ -48,10 +48,10 @@ class User
         $this->admin = $admin; //requete pour update dans la BD
     }
 
-    public function __construct($_mail,$_pwd, $_name) {
+    public function __construct($_mail,$_pwd, $_nick) {
         $this->setMail($_mail); //requete pour insérer dans la BD
         $this->setPwd($_pwd); //requete pour insérer dans la BD
-        $this->setName($_name); //requete pour insérer dans la BD
+        $this->setName($_nick); //requete pour insérer dans la BD
     }
 
     public function __destruct()
