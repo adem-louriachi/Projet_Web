@@ -28,7 +28,7 @@
 
 <header> <!-- en-tête -->
 
-    <img src="https://imagizer.imageshack.com/img923/196/79WmYc.png">
+    <img alt="Logo de FreeNote" src="https://imagizer.imageshack.com/img923/196/79WmYc.png">
 
 </header>
 
