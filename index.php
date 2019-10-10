@@ -1,2 +1,2 @@
 <?php
-    require 'Vues/AccueilVue.php';
+    require 'Views/HomeView.php';
