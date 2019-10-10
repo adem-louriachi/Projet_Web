@@ -4,3 +4,8 @@ body {
 header {
     background-color: #546e7a;
 }
+#logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
