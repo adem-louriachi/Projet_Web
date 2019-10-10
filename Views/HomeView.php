@@ -3,7 +3,7 @@
     $style = 'Views/HomeView.css';
 ?>
 <div class="container">
-    <form id="register" method="post" action="Controllers/Register.php"> <!-- visibility: visible -->
+    <form id="register" class="grey" method="post" action="Controllers/Register.php"> <!-- visibility: visible -->
         <label name="nick">Nom</label>
         <input name="nick" type="text" placeholder="Jean" required autofocus>
         <label name="email">Adresse e-mail</label>
