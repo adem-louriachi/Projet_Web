@@ -1,4 +1,11 @@
 body {
     background-color: #44d9e6;
 }
-
+header {
+    background-color: black;
+}
+#logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
