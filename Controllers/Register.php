@@ -1,10 +1,10 @@
 <?php
     session_start();
     $_SESSION['errors'] = array();
-    $nick = $_POST['nick'];
-    $email = $_POST['email'];
-    $pwd = $_POST['pwd'];
-    $pwdconf = $_POST['pwdconf'];
+    $nick = htmlspecialchars($_POST['nick']);
+    $email = htmlspecialchars($_POST['email']);
+    $pwd = htmlspecialchars($_POST['pwd']);
+    $pwdconf = htmlspecialchars($_POST['pwdconf']);
 
     if ($pwd != $pwdconf) {
         $_SESSION['errors'][] = 'Les mots de passe ne sont pas les mêmes';
