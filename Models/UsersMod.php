@@ -2,7 +2,13 @@
     require 'LinkBD.php';
 
     function createUser($nick, $email, $pwd) {
-        $createUser = ConnectBD()->query("insert into Utilisateurs(nom, mail, MotDePasse, SuperUtilisateur) values ('$nick','$email','$pwd')");
+        $createUser = ConnectBD()->query("insert into Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur) values ($nick,$email,$pwd)");
         return $createUser;
     }
 
+    function connectUser($nick) {
+        $pwdBD = ConnectBD()->query("select MotDePasse from Utilisateurs where Nom = $nick");
+        return $pwdBD;
+    }
+
+    function
