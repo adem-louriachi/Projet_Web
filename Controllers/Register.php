@@ -10,5 +10,5 @@
         $_SESSION['errors'][] = 'Les mots de passe ne sont pas les mêmes';
         $_SESSION['email'] = $email; // Dans une $_SESSION pour que RegisterView puisse y accéder
         $_SESSION['nick'] = $nick;
-        header('Location: /Views/RegisterView.php'); // Redirige l'utilisateur vers la page RegisterView.php
+        header('Location: ../Views/RegisterView.php'); // Redirige l'utilisateur vers la page RegisterView.php
     }

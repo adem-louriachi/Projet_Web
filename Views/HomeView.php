@@ -68,5 +68,5 @@ foreach ($discussions as $discussion): ?>
 <?php endforeach; ?>
 <?php
     $content = ob_get_clean();
-    require '/Views/TemplateView.php';
+    require 'TemplateView.php';
 ?>

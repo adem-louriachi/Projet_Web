@@ -14,5 +14,5 @@
 </div>
 <?php
     $content = ob_get_clean();
-    require '/Views/TemplateView.php'
+    require '../Views/TemplateView.php'
 ?>
