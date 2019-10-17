@@ -49,13 +49,20 @@
     </p>
 
 </section>
-<?php foreach ($messages as $message): ?>
+<?php
+$discussion1 = array('user' => 'Paul', 'contenu' => 'Wow');
+$discussion2 = array('user' => 'Adem', 'contenu' => 'Materialize vie');
+$discussion3 = array('user' => 'Guillaume', 'contenu' => 'Le PHP');
+$discussion4 = array('user' => 'Vincent', 'contenu' => 'La BD');
+$discussion5 = array('user' => 'Toto', 'contenu' => 'wow');
+$discussion6 = array('user' => 'Paul', 'contenu' => 'Autoload magie');
+$discussions = array($discussion1, $discussion2,$discussion3,$discussion4,$discussion5,$discussion6);
+foreach ($discussions as $discussion): ?>
     <article>
-        <header>
-            <h1 class="titreMessage"><?= $message['titre'] ?></h1>
-            <time><?= $message['date'] ?></time>
-        </header>
-        <p><?= $message['contenu'] ?></p>
+        <a class="discussion">
+            <h1 class="userdiscussion"><?= $discussion['user'] ?></h1>
+            <p><?= $discussion['contenu'] ?></p>
+        </a>
     </article>
     <hr />
 <?php endforeach; ?>
