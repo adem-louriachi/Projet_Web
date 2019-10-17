@@ -6,9 +6,8 @@
         return $createUser;
     }
 
-    function connectUser($nick) {
+    function getPwdBD($nick) {
         $pwdBD = ConnectBD()->query("select MotDePasse from Utilisateurs where Nom = $nick");
         return $pwdBD;
     }
 
-    function
