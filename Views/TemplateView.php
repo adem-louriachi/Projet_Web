@@ -10,6 +10,8 @@
     <meta name="description" content="Site FreeNote Projet Web - 3eme semestre - DUT Informatique, professeur : Olivier Gérard"/>
     <!-- Stylesheet -->
     <link rel="stylesheet" href="<?=$style?>"/>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <title>FreeNote by 4randoms</title>
 
 </head>
