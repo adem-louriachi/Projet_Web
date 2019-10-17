@@ -16,6 +16,14 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('.sidenav').sidenav();
+            });
+        </script>
+
     <title>FreeNote by 4randoms</title>
 
 </head>
@@ -32,6 +40,9 @@
                 </ul>
             </div>
         </nav>
+
+
+
     <ul class="sidenav" id="mobile-demo">
         <?php include 'Controllers/AuthenticationCheck.php';?>
     </ul>
