@@ -9,7 +9,7 @@
             <input name="email" type="email">
         <label name="pwd">Mot de passe</label>
             <input name="pwd" type="password">
-        <input class="submit" type="submit" value="Connexion">
+        <input id="submit" type="submit" value="Connexion">
     </form>
 </div>
 <?php
