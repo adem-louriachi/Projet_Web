@@ -19,14 +19,16 @@
 <body>
 
 <header> <!-- en-tête -->
-    <nav>
-        <div class="nav-wrapper black">
-    <a href="../index.php"><img id="logo" class="brand-logo center" alt="Logo de FreeNote" src="https://image.noelshack.com/fichiers/2019/41/4/1570720588-free-2.png"></a>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <?php include 'Controllers/AuthenticationCheck.php';?>
-            </ul>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper black">
+        <a href="../index.php"><img id="logo" class="brand-logo" alt="Logo de FreeNote" src="https://image.noelshack.com/fichiers/2019/41/4/1570720588-free-2.png"></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <?php include 'Controllers/AuthenticationCheck.php';?>
+                </ul>
+        </div>
+        </nav>
     </div>
-    </nav>
 </header>
 
 <main>
