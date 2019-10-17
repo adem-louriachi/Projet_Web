@@ -2,12 +2,35 @@
     require 'LinkBD.php';
 
     function createUser($nick, $email, $pwd) {
-        $createUser = ConnectBD()->query("insert into Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur) values ($nick,$email,$pwd)");
-        return $createUser;
+
+        $pdo = ConnectBD();
+        $sql = "INSERT INTO Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur) VALUES ($nick,$email,$pwd, '0')";
+
+
     }
 
     function getPwdBD($nick) {
-        $pwdBD = ConnectBD()->query("select MotDePasse from Utilisateurs where Nom = $nick");
-        return $pwdBD;
+
+        $pdo = ConnectBD();
+        $sql = "SELECT MotDePasse FROM Utilisateurs WHERE Nom = $nick";
+
+
     }
+
+    function setPwdBd($nick, $newPwd) {
+
+        $pdo = ConnectBD();
+        $sql = "UPDATE Utilisateurs SET MotDePasse = $newPwd WHERE Nom = $nick";
+
+
+    }
+
+    function forgetPwd($nick) {
+
+        $newPwd = uniqid();
+        setPwdBd($nick, $newPwd);
+        return $newPwd;
+    }
+
+
 
