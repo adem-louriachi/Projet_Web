@@ -13,6 +13,16 @@
         Choisissez avec soin...
         </p>
 </section>
+<?php foreach ($messages as $message): ?>
+    <article>
+        <header>
+            <h1 class="titreMessage"><?= $message['titre'] ?></h1>
+            <time><?= $message['date'] ?></time>
+        </header>
+        <p><?= $message['contenu'] ?></p>
+    </article>
+    <hr />
+<?php endforeach; ?>
 <?php
     $content = ob_get_clean();
     require 'TemplateView.php';

@@ -4,7 +4,7 @@
     $style = 'HomeView.css';
 ?>
 <div class="container black">
-    <form id="signin" method="post" action="Controllers/Signin.php">
+    <form id="signin" method="post" action="../Controllers/Signin.php">
         <label name="email">Adresse e-mail</label>
             <input name="email" type="email">
         <label name="pwd">Mot de passe</label>
