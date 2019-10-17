@@ -22,7 +22,7 @@
     <nav>
         <div class="nav-wrapper black">
     <a href="../index.php"><img class="brand-logo center" alt="Logo de FreeNote" src="https://image.noelshack.com/fichiers/2019/41/4/1570720588-free-2.png"></a>
-            <ul class="left hide-on-med-and-down">
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
         <?php include 'Controllers/AuthenticationCheck.php';?>
             </ul>
     </div>
