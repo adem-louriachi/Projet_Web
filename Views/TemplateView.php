@@ -23,7 +23,7 @@
 <body>
 
 <header> <!-- en-tête -->
-        <nav style="padding:0px 10px; position: fixed;">
+        <nav>
             <div class="nav-wrapper black">
                 <a href="../index.php"><img class="brand-logo nav-wrapper" alt="Logo de FreeNote" src="https://image.noelshack.com/fichiers/2019/41/4/1570720588-free-2.png"></a>
                 <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
