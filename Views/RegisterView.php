@@ -3,7 +3,8 @@
     ob_start();
     $style = 'HomeView.css';
 ?>
-    <form id="register" method="post" action="../Controllers/Register.php"> <!-- visibility: visible -->
+<div class="container black">
+    <form id="register" method="post" action="../Controllers/Register.php">
         <label name="nick">Nom</label>
         <input name="nick" type="text" placeholder="Jean" value="<?php if (isset($_SESSION['nick'])) echo $_SESSION['nick']; ?>" required autofocus>
         <label name="email">Adresse e-mail</label>
@@ -14,6 +15,7 @@
         <input name="pwdconf" type="password" required>
         <input type="submit" value="Inscription">
     </form>
+</div>
 <?php
     $content = ob_get_clean();
     require '../Views/TemplateView.php';
