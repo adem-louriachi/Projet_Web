@@ -21,11 +21,13 @@ input {
     margin-bottom: 50px;
 
     border: 20px;
-    border-radius: 45px;
-    border-style: solid;
+    border-top-left-radius: 45px;
+    border-top-right-radius: 45px;
+    border-bottom-left-radius: 45px;
+    border-bottom-right-radius: 45px;
 }
 #signin {
-    bakcground-color: black;
+    background-color: black;
 
     margin-left: 40px;
     margin-right: 40px;
@@ -33,8 +35,10 @@ input {
     margin-bottom: 50px;
 
     border: 20px;
-    border-radius: 45px;
-    border-style: solid;
+    border-top-left-radius: 45px;
+    border-top-right-radius: 45px;
+    border-bottom-left-radius: 45px;
+    border-bottom-right-radius: 45px;
 }
 #submit {
     color : black;
