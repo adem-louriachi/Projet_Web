@@ -1,5 +1,5 @@
 body {
-    background-color: #44d9e6;
+    background: linear-gradient(#30cfd0, #330867);
 }
 header {
     background-color: black;
@@ -8,4 +8,34 @@ header {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+input {
+    color : white;
+}
+#register {
+    background-color: black;
+
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    border: 20px;
+    border-radius: 45px;
+    border-style: solid;
+}
+#signin {
+    bakcground-color: black;
+
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    border: 20px;
+    border-radius: 45px;
+    border-style: solid;
+}
+#submit {
+    color : black;
 }
