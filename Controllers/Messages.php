@@ -6,6 +6,7 @@ class Messages
     private $msgDate;
     private $authors;
     private $state;
+    private $msgText;
 
     public function __construct()
     {
@@ -36,6 +37,16 @@ class Messages
     public function setState($state)
     {
         $this->state = $state;
+    }
+
+    public function getMsgText()
+    {
+        return $this->msgText;
+    }
+
+    public function setMsgText($msgText)
+    {
+        $this->state = $msgText;
     }
 
 
