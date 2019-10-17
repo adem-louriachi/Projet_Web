@@ -5,8 +5,7 @@ header {
     background-color: black;
 }
 #logo {
-    max-height: 30%;
-    max-width: 30%;
+    width: 10%;
 
 }
 input {
