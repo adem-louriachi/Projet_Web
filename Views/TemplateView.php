@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="<?=$style?>"/>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>FreeNote by 4randoms</title>
 
 </head>
@@ -22,10 +24,12 @@
     <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper black">
-        <a href="../index.php"><img id="logo" class="brand-logo" alt="Logo de FreeNote" src="https://image.noelshack.com/fichiers/2019/41/4/1570720588-free-2.png"></a>
+        <a href="../index.php"><img class="brand-logo nav-wrapper" alt="Logo de FreeNote" src="https://image.noelshack.com/fichiers/2019/41/4/1570720588-free-2.png"></a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
             <?php include 'Controllers/AuthenticationCheck.php';?>
                 </ul>
+                </a>
         </div>
         </nav>
     </div>
