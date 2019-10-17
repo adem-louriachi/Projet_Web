@@ -4,7 +4,7 @@
     $style = 'HomeView.css';
 ?>
 <div class="container black">
-    <form id="register" method="post" action="../Controllers/Register.php">
+    <form id="register" method="post" action="/Controllers/Register.php">
         <label name="nick">Nom</label>
         <input name="nick" type="text" placeholder="Jean" value="<?php if (isset($_SESSION['nick'])) echo $_SESSION['nick']; ?>" required autofocus>
         <label name="email">Adresse e-mail</label>
@@ -18,5 +18,5 @@
 </div>
 <?php
     $content = ob_get_clean();
-    require '../Views/TemplateView.php';
+    require '/Views/TemplateView.php';
 ?>

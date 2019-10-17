@@ -1,2 +1,2 @@
 <?php
-    require 'Views/HomeView.php';
+    require '/Views/HomeView.php';
