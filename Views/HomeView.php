@@ -58,8 +58,8 @@ $discussion5 = array('user' => 'Toto', 'contenu' => 'wow');
 $discussion6 = array('user' => 'Paul', 'contenu' => 'Autoload magie');
 $discussions = array($discussion1, $discussion2,$discussion3,$discussion4,$discussion5,$discussion6);
 foreach ($discussions as $discussion): ?>
-    <article class="discussion">
-        <a>
+    <article>
+        <a class="discussion">
             <h1 class="userdiscussion"><?= $discussion['user'] ?></h1>
             <p><?= $discussion['contenu'] ?></p>
         </a>
