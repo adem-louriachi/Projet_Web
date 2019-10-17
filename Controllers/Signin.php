@@ -12,14 +12,16 @@
             session_start();
             $_SESSION['login'] = $_POST['login'];
             $_SESSION['pwd'] = md5($_POST['login']);
-            //afficher page utilisateur
+            header('Location: ../Views/UsersView.php');
         }
         else if ($nick == $_POST['login'] && $pwd != md5($_POST['pwd']))
         {
-            //erreur de mdp
+            //message erreur
+            header('Location: ../Views/SigninView.php');
         }
         else
         {
-            //erreur ce pseudo n'existe pas
+            //message erreur
+            header('Location: ../Views/SigninView.php');
         }
     }

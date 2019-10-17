@@ -25,7 +25,7 @@
 
     function forgetPwd($nick) {
 
-        $newPwd = uniqid();
+        $newPwd = uniqid(); //mot de passe aléatoire
         setPwdBd($nick, $newPwd);
         return $newPwd;
     }
