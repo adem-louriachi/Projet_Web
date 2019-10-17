@@ -20,7 +20,7 @@
 
 <header> <!-- en-tête -->
 
-    <img id="logo" alt="Logo de FreeNote" src="https://image.noelshack.com/fichiers/2019/41/4/1570720588-free-2.png">
+    <a href="../index.php"><img id="logo" alt="Logo de FreeNote" src="https://image.noelshack.com/fichiers/2019/41/4/1570720588-free-2.png"></a>
     <?php include 'Controllers/AuthenticationCheck.php';?>
 </header>
 
