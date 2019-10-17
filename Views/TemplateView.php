@@ -19,9 +19,14 @@
 <body>
 
 <header> <!-- en-tête -->
-
-    <a href="../index.php"><img id="logo" alt="Logo de FreeNote" src="https://image.noelshack.com/fichiers/2019/41/4/1570720588-free-2.png"></a>
-    <?php include 'Controllers/AuthenticationCheck.php';?>
+    <nav>
+        <div class="nav-wrapper">
+    <a href="../index.php"><img class="brand-logo center" alt="Logo de FreeNote" src="https://image.noelshack.com/fichiers/2019/41/4/1570720588-free-2.png">FreeNote by 4randoms</a>
+            <ul class="left hide-on-med-and-down">
+        <?php include 'Controllers/AuthenticationCheck.php';?>
+            </ul>
+    </div>
+    </nav>
 </header>
 
 <main>
