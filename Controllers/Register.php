@@ -10,5 +10,5 @@
         $_SESSION['errors'][] = 'Les mots de passe ne sont pas les mêmes';
         $_SESSION['email'] = $email;
         $_SESSION['nick'] = $nick;
-        header('Location: ../index.php');
+        header('Location: ../Register.php');
     }
