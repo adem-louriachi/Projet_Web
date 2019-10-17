@@ -24,15 +24,18 @@
     <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper black">
-        <a href="../index.php"><img class="brand-logo nav-wrapper" alt="Logo de FreeNote" src="https://image.noelshack.com/fichiers/2019/41/4/1570720588-free-2.png"></a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i>
+                <a href="../index.php"><img class="brand-logo nav-wrapper" alt="Logo de FreeNote" src="https://image.noelshack.com/fichiers/2019/41/4/1570720588-free-2.png"></a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <?php include 'Controllers/AuthenticationCheck.php';?>
                 </ul>
-                </a>
-        </div>
+            </div>
         </nav>
     </div>
+    <ul class="sidenav" id="mobile-demo">
+        <?php include 'Controllers/AuthenticationCheck.php';?>
+    </ul>
+
 </header>
 
 <main>
