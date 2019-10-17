@@ -49,12 +49,12 @@
     </p>
 
 </section>
-<?php foreach ($messages as $message): ?>
-    <article>
-        <header>
-            <h1 class="titreMessage"><?= $message['titre'] ?></h1>
-            <time><?= $message['date'] ?></time>
-        </header>
+<?php
+$message = array('user' => 'Toto', 'contenu' => 'wow');
+$messages = array($message);
+foreach ($messages as $message): ?>
+    <article class="message">
+        <h1 class="userMessage"><?= $message['user'] ?></h1>
         <p><?= $message['contenu'] ?></p>
     </article>
     <hr />
