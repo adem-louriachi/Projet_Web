@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    require 'AuthenticationCheck.php';
     ob_start();
     $style = 'Views/HomeView.css';
 ?>
@@ -50,17 +50,17 @@
 
 </section>
 <?php
-$discussion1 = array('user' => 'Paul', 'contenu' => 'Wow');
-$discussion2 = array('user' => 'Adem', 'contenu' => 'Materialize vie');
-$discussion3 = array('user' => 'Guillaume', 'contenu' => 'Le PHP');
-$discussion4 = array('user' => 'Vincent', 'contenu' => 'La BD');
-$discussion5 = array('user' => 'Toto', 'contenu' => 'wow');
-$discussion6 = array('user' => 'Paul', 'contenu' => 'Autoload magie');
+$discussion1 = array('nick' => 'Paul', 'contenu' => 'Wow');
+$discussion2 = array('nick' => 'Adem', 'contenu' => 'Materialize vie');
+$discussion3 = array('nick' => 'Guillaume', 'contenu' => 'Le PHP');
+$discussion4 = array('nick' => 'Vincent', 'contenu' => 'La BD');
+$discussion5 = array('nick' => 'Toto', 'contenu' => 'wow');
+$discussion6 = array('nick' => 'Paul', 'contenu' => 'Autoload magie');
 $discussions = array($discussion1, $discussion2,$discussion3,$discussion4,$discussion5,$discussion6);
 foreach ($discussions as $discussion): ?>
     <article>
         <a class="discussion">
-            <h1 class="userdiscussion"><?= $discussion['user'] ?></h1>
+            <h1><?= $discussion['nick'] ?></h1>
             <p><?= $discussion['contenu'] ?></p>
         </a>
     </article>
@@ -68,5 +68,5 @@ foreach ($discussions as $discussion): ?>
 <?php endforeach; ?>
 <?php
     $content = ob_get_clean();
-    require 'TemplateView.php';
+    require 'Views/TemplateView.php';
 ?>

@@ -1,5 +1,5 @@
 <?php
-require('../Models/UsersMod.php');
+require('Models/UsersMod.php');
 
 class User
 {
