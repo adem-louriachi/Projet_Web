@@ -1,13 +1,5 @@
 Strict-Transport-Security: max-age=86400  # force le navigateur à passer par le HTTPS pour toutes ses requêtes
 
-RewriteEngine on # active la reecriture d'URL
-
-RewriteCond %{REQUEST_FILENAME} !-d # Est-ce qu'il y a un dossier qui le même nom que le fichier demandé
-RewriteCond %{REQUEST_FILENAME}\.php -f # Est-ce qu'il y a un fichier en .php qui a le nom qui est demandé
-RewriteRule ^index/([a-zA-Z]+)/([a-zA-Z]+)/([0-9a-zA-Z]+) index.php?ctrl=$1&action=$2&id=$3 [NC,L] # NC = pas de sensibilité à la casse du nom de fichier L = les règles au dessus sont spécifiques à cette réécriture
-
 <Files ".htaccess">  # empêche d'accéder au fichier htaccess
   Require all denied
 </Files>
-
-RewriteRule ^.git/?$ - [F,L] # donne une erreur 403 forbidden en accédant au dossier .git
