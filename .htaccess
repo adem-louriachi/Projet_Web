@@ -12,13 +12,17 @@
     ExpiresByType image/x-icon "access plus 1 year"
     ExpiresDefault "access plus 2 days"
     Header set X-Content-Type-Options nosniff
-    ## https://kb.sucuri.net/warnings/hardening/headers-x-content-type ##
+    # https://kb.sucuri.net/warnings/hardening/headers-x-content-type
     Header set X-XSS-Protection "1; mode=block"
-    ## https://kb.sucuri.net/warnings/hardening/headers-x-xss-protection ##
+    # https://kb.sucuri.net/warnings/hardening/headers-x-xss-protection
     Header always set Strict-Transport-Security "max-age=300; includeSubDomains; preload"
-    ## https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security ##
+    # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security
 </IfModule>
 ## EXPIRES CACHING ##
+
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 <Files ".htaccess">  # empêche d'accéder au fichier htaccess
   Require all denied
