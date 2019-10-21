@@ -1,5 +1,5 @@
     <?php
-    require 'Model.php.php';
+    require 'Model.php';
     require 'Controllers/Messages.php';
 
     class MessagesMod extends Model{
