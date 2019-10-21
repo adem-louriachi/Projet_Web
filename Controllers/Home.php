@@ -28,7 +28,7 @@ foreach ($discussions as $discussion): ?>
             <p><?= $discussion['contenu'] ?></p>
         </a>
     </article>
-    <hr />
+    <hr/>
 <?php endforeach; ?>
 <?php
     $content = ob_get_clean();

@@ -28,6 +28,8 @@ RewriteRule ^(.*)$ https://freenote-4randoms.alwaysdata.net/$1 [R,L]
     Require all denied
 </Files>
 
+# Manque la Réécriture d'URL
+
 #<DirectoryMatch ".git"> # empêche d'accéder au dossier .git
 #    Require all denied
 #</DirectoryMatch>

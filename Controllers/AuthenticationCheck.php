@@ -6,7 +6,7 @@
     else{
         echo
             '<li><a href="/?ctrl=User&action=signin" class="waves-effect waves-light btn">Se connecter</a></li>
-            <li><a href="/index.php?ctrl=User&action=register" class="waves-effect waves-light btn">S\'inscrire</a></li><li><a href="/index.php?ctrl=User&action=forget">Mot de passe oublié</a></li>';
+            <li><a href="/?ctrl=User&action=register" class="waves-effect waves-light btn">S\'inscrire</a></li><li><a href="/?ctrl=User&action=forget">Mot de passe oublié</a></li>';
     }
     /*
      *     if (isset($_SESSION['user'])){

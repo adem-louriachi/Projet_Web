@@ -2,7 +2,7 @@
     session_start();
     require 'Controllers/Controller.php';
 
-    $routeur = new Controller;
+    $routeur = new Controller();
     $routeur->routeRequest();
 
 /**
