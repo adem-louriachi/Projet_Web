@@ -20,9 +20,9 @@
 </IfModule>
 ## EXPIRES CACHING ##
 
-RewriteCond %{HTTP_HOST} https://freenote-4randoms.alwaysdata\.net [NC]
+RewriteCond %{HTTP_HOST} freenote-4randoms.alwaysdata\.net [NC]
 RewriteCond %{SERVER_PORT} 80
-RewriteRule ^(.*)$ https://https://freenote-4randoms.alwaysdata.net/$1 [R,L]
+RewriteRule ^(.*)$ https://freenote-4randoms.alwaysdata.net/$1 [R,L]
 
 <Files ".htaccess">  # empêche d'accéder au fichier htaccess
     Require all denied

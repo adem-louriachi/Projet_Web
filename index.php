@@ -1,11 +1,10 @@
 <?php
     session_start();
-    if(isset($_GET['ctrl'])){
-        require 'Controllers/'.$_GET['ctrl'].'.php';
-    }
-    else{
-        require 'Controllers/Home.php';
-    }
+    require 'Controllers/Controller.php';
+
+    $routeur = new Controller;
+    $routeur->routeRequest();
+
 /**
 routage
 Appel controlleur

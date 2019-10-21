@@ -1,5 +1,5 @@
 <?php
-require('../Models/MessagesMod.php');
+require '../Models/MessagesMod.php';
 
 class Messages
 {
