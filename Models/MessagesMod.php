@@ -9,10 +9,16 @@
         private $textMsg;
         private $stateMsg; // bool
 
-        public function InsertMsg($idDis, $textMsg, $stateMsg){ // Inection SQL possible ???
+        public function insertMsg($idDis, $textMsg, $stateMsg){ // Inection SQL possible ???
                 $pdo = Model::connectBD();
                 $sql = 'INSERT INTO Message (IdDiscussion, TextMessage, Date, EstOuvert) VALUES (\''.$idDis.'\', \''.$textMsg.'\', \''.$stateMsg.'\')';
                 Model::executeQuery($pdo,$sql);
+        }
+
+        public function closeMsg(){
+            $pdo = Model::connectBD();
+            $sql = 'UPDATE Message SET EstOuvert = 0 WHERE IdMessage = \''.$this->idMsg.'\'';
+            Model::executeQuery($pdo,$sql);
         }
 
 
