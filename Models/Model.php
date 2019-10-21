@@ -20,13 +20,20 @@ abstract class Model
 
 
     public function executeQuery($pdo, $sql, $cond = null) {
-        if ($cond == null) {
-            $resultat = $pdo->query($sql);   // exécution directe
-        }
-        else {
-            $resultat = $pdo->prepare($sql); // requête préparée
-            $resultat->execute($cond);
+        try {
+            if ($cond == null) {
+                $resultat = $pdo->query($sql);   // exécution directe
+            }
+            else {
+                $resultat = $pdo->prepare($sql); // requête préparée
+                $resultat->execute($cond);
+            }
+        } catch (PDOException $e) {
+            // Affichage de l'erreur
+            echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+            echo 'Requete en faute : ', $sql, PHP_EOL;
         }
         return $resultat;
     }
+
 }

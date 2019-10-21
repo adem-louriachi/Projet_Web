@@ -1,4 +1,5 @@
 <?php
+//A supprimer
 
 function ConnectBD()
 {
