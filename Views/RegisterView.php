@@ -13,7 +13,7 @@
         <input name="pwd" type="password" required>
         <label name="pwdconf">Confirmation du mot de passe</label>
         <input name="pwdconf" type="password" required>
-        <input id="submit" type="submit" value="Inscription">
+        <button class="submit btn waves-effect waves-light" type="submit" value="Inscription">Soumettre<i class="material-icons right">send</i></button>
     </form>
 </div>
 <?php
