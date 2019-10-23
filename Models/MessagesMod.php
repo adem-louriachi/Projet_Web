@@ -12,7 +12,7 @@
 
         public function __construct($idDis, $textMsg){ //insertMsg() SansAuthor
             $stateMsg = true;
-            
+
             $pdo = Model::connectBD();
             $sql = 'INSERT INTO Message (IdDiscussion, TextMessage, EstOuvert) VALUES (\''.$idDis.'\', \''.$textMsg.'\', \''.$stateMsg.'\')';
             Model::executeQuery($pdo,$sql);
