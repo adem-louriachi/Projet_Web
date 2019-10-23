@@ -1,6 +1,6 @@
     <?php
     require 'Model.php';
-    require 'Controllers/Messages.php';
+//    require 'Controllers/Messages.php';
 
     class MessagesMod extends Model{
         private $idMsg;    // autoincremente lors de l'ajout dans la BD
