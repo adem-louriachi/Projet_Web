@@ -75,7 +75,7 @@
         {
             $pdo = Model::connectBD();
             $sql = 'SELECT Date FROM Message WHERE IdMessage = \''.$this->idMsg.'\'';
-            $this->dateMsg = Model::executeQuery($pdo,$sql);
+            Model::executeQuery($pdo,$sql);
             return $this->dateMsg;
         }
 
