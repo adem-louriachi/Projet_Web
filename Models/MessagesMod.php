@@ -14,6 +14,9 @@
             $stateMsg = true;
 
             $pdo = Model::connectBD();
+
+            echo 'connection constructeur <br/>';
+
             $sql = 'INSERT INTO Message (IdDiscussion, TextMessage, EstOuvert) VALUES (\''.$idDis.'\', \''.$textMsg.'\', \''.$stateMsg.'\')';
             Model::executeQuery($pdo,$sql);
 
