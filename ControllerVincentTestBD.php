@@ -9,7 +9,7 @@ require 'Models/MessagesMod.php';
         $textMsg = $_POST['Message'];
 
         $message = new MessagesMod($idDis,$textMsg);
-        echo $message;
+        echo $message;  // objet class MessagesMod could not converted to string  Faire fonction Show()
     }
     else{
         echo 'erreur';
