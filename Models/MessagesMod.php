@@ -47,7 +47,8 @@
         {
             $pdo = Model::connectBD();
             $sql = 'SELECT IdMessage FROM Message WHERE IdMessage = \''.$this->idMsg.'\'';
-            $this->idMsg = Model::executeQuery($pdo,$sql);
+            $idMsgBD = Model::executeQuery($pdo,$sql);
+            $this->idMsg = $idMsgBD['IdMessage'];
 
             return $this->idMsg;
         }
@@ -55,9 +56,9 @@
 
         public function getIdDisMsg(){
             $pdo = Model::connectBD();
-            $sql = 'SELECT IdDiscussion FROM Message WHERE IdMessage = \''.$this->idMsg.'\'';
-            $this->idDis = Model::executeQuery($pdo,$sql);
-
+            $sql = 'SELECT IdDisDuMsg FROM Message WHERE IdMessage = \''.$this->idMsg.'\'';
+            $idDisMsgBD = Model::executeQuery($pdo,$sql);
+            $this->idDis = $idDisMsgBD['IdDisDuMsg'];
             return $this->idDis;
         }
 
@@ -65,8 +66,8 @@
         public function getTextMsg(){
             $pdo = Model::connectBD();
             $sql = 'SELECT TextMessage FROM Message WHERE IdMessage = \''.$this->idMsg.'\'';
-            $this->textMsg = Model::executeQuery($pdo,$sql);
-
+            $textMsgBD = Model::executeQuery($pdo,$sql);
+            $this->textMsg = $textMsgBD['TextMessage'];
             return $this->textMsg;
         }
 
@@ -91,24 +92,11 @@
         {
             $pdo = Model::connectBD();
             $sql = 'SELECT Date FROM Message WHERE IdMessage = \''.$this->idMsg.'\'';
-            Model::executeQuery($pdo,$sql);
+            $dateMsgBD = Model::executeQuery($pdo,$sql);
+            $this->dateMsg = $dateMsgBD['Date'];
             return $this->dateMsg;
         }
 
-
-
-        public function insertMsg($author, $idDis, $textMsg, $stateMsg){ // Inection SQL possible ???
-            $pdo = Model::connectBD();
-            $sql = 'INSERT INTO Message (IdDiscussion, TextMessage, EstOuvert) VALUES (\''.$idDis.'\', \''.$textMsg.'\', \''.$stateMsg.'\')';
-            Model::executeQuery($pdo,$sql);
-
-
-            $this->idMsg = $this->getIdMsg();
-            $this->idDis = $idDis;
-            $this->dateMsg = $this->getDateMsg();
-            $this->$stateMsg = true;
-            $this->addAuthor($author);
-        }
 
         public function updateMsg($author, $idDis, $textMsg, $stateMsg){ // Verifier que date se mets a jour
             if($author == $this->getAuthors()){
@@ -116,7 +104,7 @@
             } else {
                 $pdo = Model::connectBD();
                 $textMsg =$this->getTextMsg() . ' ' . $textMsg;
-                $sql = 'UPDATE Message SET IdDiscussion = \'' . $idDis . '\', TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\' WHERE IdMessage = \'' . $this->idMsg . '\'';
+                $sql = 'UPDATE Message SET IdDisDuMsg = \'' . $idDis . '\', TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\' WHERE IdMessage = \'' . $this->idMsg . '\'';
                 Model::executeQuery($pdo, $sql);
 
                 $this->addAuthor($author);
