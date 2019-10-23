@@ -17,7 +17,7 @@
 
             echo 'connection constructeur <br/>';
 
-            $sql = 'INSERT INTO Message (IdDiscussion, TextMessage, EstOuvert) VALUES (\''.$idDis.'\', \''.$textMsg.'\', \''.$stateMsg.'\')';
+            $sql = 'INSERT INTO Message (IdDiscussion, TextMessage, EstOuvert) VALUES (\''.$idDis.'\', \''.$textMsg.'\', 1)';
             Model::executeQuery($pdo,$sql);
 
 

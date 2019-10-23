@@ -35,6 +35,7 @@ abstract class Model
             $resultat = $pdo->prepare($sql);
             $resultat->execute();
             $row = $resultat->fetch(PDO::FETCH_ASSOC);
+            echo $sql;
             return $row;
         } catch (PDOException $e) {
             // Affichage de l'erreur
