@@ -10,6 +10,20 @@
         private $stateMsg; // bool
         private $authors;
 
+        public function __construct($idDis, $textMsg){ //insertMsg() SansAuthor
+            $stateMsg = true;
+            
+            $pdo = Model::connectBD();
+            $sql = 'INSERT INTO Message (IdDiscussion, TextMessage, EstOuvert) VALUES (\''.$idDis.'\', \''.$textMsg.'\', \''.$stateMsg.'\')';
+            Model::executeQuery($pdo,$sql);
+
+
+            $this->idMsg = $this->getIdMsg();
+            $this->idDis = $idDis;
+            $this->dateMsg = $this->getDateMsg();
+            $this->stateMsg = true;
+        }
+
         public function getIdMsg()
         {
             $pdo = Model::connectBD();
