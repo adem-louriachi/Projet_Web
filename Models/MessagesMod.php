@@ -20,11 +20,23 @@
             $sql = 'INSERT INTO Message (IdDisDuMsg, TextMessage, EstOuvert) VALUES (\''.$idDis.'\', \''.$textMsg.'\', 1)';
             Model::executeQuery($pdo,$sql);
 
+            echo 'insert reussi <br/>';
 
             $this->idMsg = $this->getIdMsg();
+
+            echo $this->idMsg .'<br/>';
+
             $this->idDis = $idDis;
+
+            echo $this->idDis .'<br/>';
+
             $this->dateMsg = $this->getDateMsg();
+
+            echo $this->dateMsg .'<br/>';
+
             $this->stateMsg = true;
+
+            echo $this->stateMsg .'<br/>';
         }
 
         public function getIdMsg()
