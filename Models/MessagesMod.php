@@ -24,7 +24,9 @@
 
 
             $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
-            $this->idMsg = Model::executeQuery($pdo,$sqlRecupIdMessage);
+            $idMsgBD = Model::executeQuery($pdo,$sqlRecupIdMessage);
+
+            $this->idMsg = $idMsgBD['IdMessage'];
 
             echo $this->idMsg .'<br/>';
 
