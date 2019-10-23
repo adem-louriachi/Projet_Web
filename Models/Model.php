@@ -30,12 +30,13 @@ abstract class Model
                 $resultat = $pdo->prepare($sql); // requête préparée
                 $resultat->execute($cond);
             }
+            $result = $resultat->fetch();
         } catch (PDOException $e) {
             // Affichage de l'erreur
             echo 'Erreur : ', $e->getMessage(), PHP_EOL;
             echo 'Requete en faute : ', $sql, PHP_EOL;
         }
-        return $resultat;
+        return $result;
     }
 
 }
