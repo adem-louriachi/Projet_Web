@@ -34,11 +34,8 @@ abstract class Model
             */
             $resultat = $pdo->prepare($sql);
             $resultat->execute();
-
-            while($row = $resultat->fetch(PDO::FETCH_ASSOC)){
-                $result[] = $row;
-            }
-            return $result;
+            $row = $resultat->fetch(PDO::FETCH_ASSOC);
+            return $row;
         } catch (PDOException $e) {
             // Affichage de l'erreur
             echo 'Erreur : ', $e->getMessage(), PHP_EOL;
