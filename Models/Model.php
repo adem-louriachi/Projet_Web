@@ -32,7 +32,8 @@ abstract class Model
                 $resultat->execute($cond);
             }
             */
-            $resultat = $pdo->query($sql);
+            $resultat = $pdo->prepare($sql);
+            $resultat->execute();
             $result = $resultat->fetch();
         } catch (PDOException $e) {
             // Affichage de l'erreur
