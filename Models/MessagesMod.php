@@ -22,7 +22,9 @@
 
             echo 'insert reussi <br/>';
 
-            $this->idMsg = $this->getIdMsg();
+
+            $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
+            $this->idMsg = Model::executeQuery($pdo,$sqlRecupIdMessage);
 
             echo $this->idMsg .'<br/>';
 
