@@ -1,6 +1,5 @@
 <?php
 
-require 'Models/Model.php';
 require 'Models/MessagesMod.php';
 
 echo '<div class="container black">
