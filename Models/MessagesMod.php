@@ -12,13 +12,12 @@
 
         public function __construct($idDis, $textMsg){ //insertMsg() SansAuthor
             $stateMsg = true;
-            $date = time();
 
             $pdo = Model::connectBD();
 
             echo 'connection constructeur <br/>';
 
-            $sql = 'INSERT INTO Message (IdMessage, IdDiscussion, TextMessage, Date, EstOuvert) VALUES (1, \''.$idDis.'\', \''.$textMsg.'\', \''.$date.'\', 1)';
+            $sql = 'INSERT INTO Message (IdDisDuMsg, TextMessage, EstOuvert) VALUES (\''.$idDis.'\', \''.$textMsg.'\', 1)';
             Model::executeQuery($pdo,$sql);
 
 
