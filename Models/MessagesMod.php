@@ -98,7 +98,7 @@
         }
 
 
-        public function updateMsg($idMsg, $author, $textMsg, $stateMsg){ // date ne se mets pas a jour
+        public function updateMsg($idMsg, $author, $textMsg, $stateMsg){
            /* if($author == $this->getAuthors()){
                 throw new Exception('Vous avez deja ecrit dans ce message, impossible de réecrire dans ce dernier');
             } else */
