@@ -65,7 +65,7 @@
         }
 
 
-        public function getAuthors(){
+        public function getIdAuthors(){
             $pdo = Model::connectBD();
             $sql = 'SELECT IdUtilisateur FROM Auteur WHERE IdMessage = \''.$this->idMsg.'\'';
             $this->authors = Model::executeQuery($pdo,$sql);
@@ -73,10 +73,10 @@
             return $this->authors;
         }
 
-        public function addAuthor($author)
+        public function addAuthor($idAuthor)
         {
             $pdo = Model::connectBD();
-            $sqlAuthors = 'INSERT INTO Auteur (IdUtilisateur, IdMessage) VALUES (\''.$author.'\', \''.$this->getIdMsg().'\')';
+            $sqlAuthors = 'INSERT INTO Auteur (IdUtilisateur, IdMessage) VALUES (\''.$idAuthor.'\', \''.$this->getIdMsg().'\')';
             Model::executeQuery($pdo,$sqlAuthors);
         }
 
