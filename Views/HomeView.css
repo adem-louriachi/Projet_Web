@@ -13,13 +13,23 @@ input {
 }
 
 .discussion {
-    color: black;
+    border-left-style: solid;
+
+    border-left-width: 7px;
+
+    border-right-style: solid;
+
+    padding-right: 20px;
+
+    padding-left: 20px;
+
+    border-radius: 12px;
+
+    border-right-width: 7px;
+
+    color: white;
+
 }
 .msg {
-    border-radius: 8px;
-}
-
-.discu {
-    border-radius: 16px;
-    border: 20px;
+    border-radius: 6px;
 }
