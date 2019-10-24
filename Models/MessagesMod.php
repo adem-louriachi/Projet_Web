@@ -19,10 +19,10 @@
             $this->stateMsg = true;
         }
 
-        public function getAll($idMsg){
+        public function getTxt($idMsg){
             $pdo = Model::connectBD();
 
-            $sqlmsgBD = 'SELECT * FROM Message WHERE IdMessage = \''.$idMsg.'\'';
+            $sqlmsgBD = 'SELECT TextMessage FROM Message WHERE IdMessage = \''.$idMsg.'\'';
             $msgBD =Model::executeQuery($pdo, $sqlmsgBD);
 
             return $msgBD;
@@ -98,7 +98,7 @@
         }
 
 
-        public function updateMsg($idMsg, $author, $textMsg, $stateMsg){ // Verifier que date se mets a jour
+        public function updateMsg($idMsg, $author, $textMsg, $stateMsg){ // date ne se mets pas a jour
            /* if($author == $this->getAuthors()){
                 throw new Exception('Vous avez deja ecrit dans ce message, impossible de réecrire dans ce dernier');
             } else */
@@ -107,13 +107,13 @@
             } else {
                 $pdo = Model::connectBD();
 
-                $msgBD = self::getAll($idMsg);
+                $msgBD = self::getTxt($idMsg);
 
 
 
                 $textMsg =$msgBD['TextMessage'] . ' ' . $textMsg;
 
-                $sql = 'UPDATE Message SET TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\' WHERE IdMessage = \'' . $msgBD['IdMessage']. '\'';
+                $sql = 'UPDATE Message SET TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\', Date = \'' . date('Y-m-j h:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
                 Model::executeQuery($pdo, $sql);
 
 
