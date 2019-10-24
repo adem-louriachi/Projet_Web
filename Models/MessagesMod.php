@@ -11,16 +11,25 @@
         private $authors;
 
         public function __construct($idDis, $textMsg, $authors){
+
+            $this->idDis = $idDis;
+
+            $this->textMsg = $textMsg;
+            $this->authors = $authors;
+            $this->stateMsg = true;
+        }
+
+        public function InsertMsg(){
             $pdo = Model::connectBD();
-            $sql = 'INSERT INTO Message (IdDisDuMsg, TextMessage, EstOuvert) VALUES (\''.$idDis.'\', \''.$textMsg.'\', 1)';
+            $sql = 'INSERT INTO Message (IdDisDuMsg, TextMessage, EstOuvert) VALUES (\''.$this->idDis.'\', \''.$this->textMessage.'\', 1)';
             Model::executeQuery($pdo,$sql);
 
             $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
             $idMsgBD = Model::executeQuery($pdo,$sqlRecupIdMessage);
+            $this->addAuthor($this->authors);
+
 
             $this->idMsg = $idMsgBD['IdMessage'];
-            $this->addAuthor($authors);
-            $this->idDis = $idDis;
             $this->dateMsg = $this->getDateMsg();
             $this->stateMsg = true;
         }
@@ -91,9 +100,12 @@
 
                 $sqlmsgBD = 'SELECT * FROM Message WHERE IdMessage = \''.$idMsg.'\'';
                 $msgBD =Model::executeQuery($pdo, $sqlmsgBD);
-                //Changer constructeur en simple constructeur de classe et fonction inserer dans la BD separée
                 $textMsg =$msgBD->getTextMsg() . ' ' . $textMsg;
-                $sql = 'UPDATE Message SET TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\' WHERE IdMessage = \'' . $idMsg. '\'';
+
+                $message = new MessagesMod($sqlmsgBD['IdDisDuMsg'], $sqlmsgBD['TextMessage'], $sqlmsgBD['author']);
+                $message->InsertMsg();
+
+                $sql = 'UPDATE Message SET TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\' WHERE IdMessage = \'' . $message->idMsg. '\'';
                 Model::executeQuery($pdo, $sql);
 
 
