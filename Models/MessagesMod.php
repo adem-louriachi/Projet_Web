@@ -88,7 +88,10 @@
                 throw new Exception('Impossible d\'ecrire dans un message cloturé');
             } else {
                 $pdo = Model::connectBD();
-                $textMsg =$idMsg->getTextMsg() . ' ' . $textMsg;
+
+                $sqlmsgBD = 'SELECT * FROM Message WHERE IdMessage = \''.$idMsg.'\'';
+                $msgBD =Model::executeQuery($pdo, $sqlmsgBD);
+                $textMsg =$msgBD->getTextMsg() . ' ' . $textMsg;
                 $sql = 'UPDATE Message SET TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\' WHERE IdMessage = \'' . $idMsg. '\'';
                 Model::executeQuery($pdo, $sql);
 
