@@ -35,7 +35,7 @@
 
             $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
             $idMsgBD = Model::executeQuery($pdo,$sqlRecupIdMessage);
-            $this->addAuthor($this->authors);
+            $this->addAuthor($this->authors, $this->idMsg);
 
 
             $this->idMsg = $idMsgBD['IdMessage'];
@@ -80,10 +80,10 @@
             return $this->authors;
         }
 */
-        public function addAuthor($idAuthor)
+        public function addAuthor($idAuthor, $idMsg)
         {
             $pdo = Model::connectBD();
-            $sqlAuthors = 'INSERT INTO Auteur (IdUtilisateur, IdMessage) VALUES (\''.$idAuthor.'\', \''.$this->getIdMsg().'\')';
+            $sqlAuthors = 'INSERT INTO Auteur (IdUtilisateur, IdMessage) VALUES (\''.$idAuthor.'\', \''.$idMsg.'\')';
             Model::executeQuery($pdo,$sqlAuthors);
         }
 
@@ -113,11 +113,11 @@
 
                 $textMsg =$msgBD['TextMessage'] . ' ' . $textMsg;
 
-                $sql = 'UPDATE Message SET TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\', Date = \'' . date('Y-m-j h:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
+                $sql = 'UPDATE Message SET TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\', Date = \'' . date('Y-m-j H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
                 Model::executeQuery($pdo, $sql);
 
 
-                self::addAuthor($author);
+                self::addAuthor($author, $idMsg);
             }
         }
 
