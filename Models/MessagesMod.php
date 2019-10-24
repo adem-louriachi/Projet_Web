@@ -102,7 +102,7 @@
                 $msgBD =Model::executeQuery($pdo, $sqlmsgBD);
 
 
-                $message = new MessagesMod($sqlmsgBD['IdDisDuMsg'], $sqlmsgBD['TextMessage'], $sqlmsgBD['author']);
+                $message = new MessagesMod($msgBD['IdDisDuMsg'], $msgBD['TextMessage'], $msgBD['author']);
                 $textMsg =$msgBD->getTextMsg() . ' ' . $textMsg;
 
                 $sql = 'UPDATE Message SET TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\' WHERE IdMessage = \'' . $message->idMsg. '\'';
