@@ -81,9 +81,10 @@
 
 
         public function updateMsg($idMsg, $author, $textMsg, $stateMsg){ // Verifier que date se mets a jour
-            if($author == $this->getAuthors()){
+           /* if($author == $this->getAuthors()){
                 throw new Exception('Vous avez deja ecrit dans ce message, impossible de réecrire dans ce dernier');
-            } elseif (!$stateMsg){
+            } else */
+            if (!$stateMsg){
                 throw new Exception('Impossible d\'ecrire dans un message cloturé');
             } else {
                 $pdo = Model::connectBD();
