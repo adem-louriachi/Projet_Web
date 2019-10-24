@@ -12,6 +12,14 @@ input {
     color : black;
 }
 
-.discussion{
+.discussion {
     color: black;
+}
+.msg {
+    border-radius: 8px;
+}
+
+.discu {
+    border-radius: 16px;
+    border: 20px;
 }
