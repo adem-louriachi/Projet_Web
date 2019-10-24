@@ -88,11 +88,11 @@
                 throw new Exception('Impossible d\'ecrire dans un message cloturé');
             } else {
                 $pdo = Model::connectBD();
-                $textMsg =$this->getTextMsg() . ' ' . $textMsg;
+                $textMsg =$idMsg->getTextMsg() . ' ' . $textMsg;
                 $sql = 'UPDATE Message SET TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\' WHERE IdMessage = \'' . $idMsg. '\'';
                 Model::executeQuery($pdo, $sql);
 
-                
+
                 self::addAuthor($author);
             }
         }
