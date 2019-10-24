@@ -15,25 +15,14 @@
             $sql = 'INSERT INTO Message (IdDisDuMsg, TextMessage, EstOuvert) VALUES (\''.$idDis.'\', \''.$textMsg.'\', 1)';
             Model::executeQuery($pdo,$sql);
 
-
             $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
             $idMsgBD = Model::executeQuery($pdo,$sqlRecupIdMessage);
+
             $this->idMsg = $idMsgBD['IdMessage'];
-
             $this->addAuthor($authors);
-            echo $this->idMsg .'<br/>';
-
             $this->idDis = $idDis;
-
-            echo $this->idDis .'<br/>';
-
             $this->dateMsg = $this->getDateMsg();
-
-            echo $this->dateMsg .'<br/>';
-
             $this->stateMsg = true;
-
-            echo $this->stateMsg .'<br/>';
         }
 
         public function getIdMsg()
