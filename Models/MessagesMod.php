@@ -113,7 +113,7 @@
 
                 $textMsg =$msgBD['TextMessage'] . ' ' . $textMsg;
 
-                $sql = 'UPDATE Message SET TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\', Date = \'' . date('Y-m-j H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
+                $sql = 'UPDATE Message SET TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\', Date = \'' . date('Y-m-d H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
                 Model::executeQuery($pdo, $sql);
 
 
