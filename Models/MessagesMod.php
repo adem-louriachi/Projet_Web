@@ -10,24 +10,17 @@
         private $stateMsg; // bool
         private $authors;
 
-        public function __construct($idDis, $textMsg){ //insertMsg() SansAuthor
-            $stateMsg = true;
-
+        public function __construct($idDis, $textMsg, $authors){
             $pdo = Model::connectBD();
-
-            echo 'connection constructeur <br/>';
-
             $sql = 'INSERT INTO Message (IdDisDuMsg, TextMessage, EstOuvert) VALUES (\''.$idDis.'\', \''.$textMsg.'\', 1)';
             Model::executeQuery($pdo,$sql);
-
-            echo 'insert reussi <br/>';
 
 
             $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
             $idMsgBD = Model::executeQuery($pdo,$sqlRecupIdMessage);
-
             $this->idMsg = $idMsgBD['IdMessage'];
 
+            $this->addAuthor($authors);
             echo $this->idMsg .'<br/>';
 
             $this->idDis = $idDis;
