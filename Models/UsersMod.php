@@ -1,8 +1,8 @@
 <?php
 
-require 'Modele.php';
+require 'Model.php';
 
-class UsersMod
+class UsersMod extends Model
 {
     private $nick;
     private $mail;
