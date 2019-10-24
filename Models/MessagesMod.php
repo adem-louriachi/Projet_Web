@@ -80,13 +80,15 @@
         }
 
 
-        public function updateMsg($author, $idDis, $textMsg, $stateMsg){ // Verifier que date se mets a jour
+        public function updateMsg($idMsg, $author, $textMsg, $stateMsg){ // Verifier que date se mets a jour
             if($author == $this->getAuthors()){
                 throw new Exception('Vous avez deja ecrit dans ce message, impossible de réecrire dans ce dernier');
+            } elseif (!$stateMsg){
+                throw new Exception('Impossible d\'ecrire dans un message cloturé');
             } else {
                 $pdo = Model::connectBD();
                 $textMsg =$this->getTextMsg() . ' ' . $textMsg;
-                $sql = 'UPDATE Message SET IdDisDuMsg = \'' . $idDis . '\', TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\' WHERE IdMessage = \'' . $this->idMsg . '\'';
+                $sql = 'UPDATE Message SET TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\' WHERE IdMessage = \'' . $idMsg. '\'';
                 Model::executeQuery($pdo, $sql);
 
                 $this->addAuthor($author);
