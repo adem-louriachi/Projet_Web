@@ -71,15 +71,15 @@
             return $this->textMsg;
         }
 
-
-        public function getIdAuthors(){
+/*
+        public function getIdAuthors($idMsg){
             $pdo = Model::connectBD();
-            $sql = 'SELECT IdUtilisateur FROM Auteur WHERE IdMessage = \''.$this->idMsg.'\'';
+            $sql = 'SELECT IdUtilisateur FROM Auteur WHERE IdMessage = \''.$idMsg.'\'';
             $this->authors = Model::executeQuery($pdo,$sql);
 
             return $this->authors;
         }
-
+*/
         public function addAuthor($idAuthor)
         {
             $pdo = Model::connectBD();
