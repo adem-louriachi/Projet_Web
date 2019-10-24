@@ -92,7 +92,8 @@
                 $sql = 'UPDATE Message SET TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\' WHERE IdMessage = \'' . $idMsg. '\'';
                 Model::executeQuery($pdo, $sql);
 
-                $this->addAuthor($author);
+                
+                self::addAuthor($author);
             }
         }
 
