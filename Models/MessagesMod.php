@@ -19,6 +19,15 @@
             $this->stateMsg = true;
         }
 
+        public function getAll($idMsg){
+            $pdo = Model::connectBD();
+
+            $sqlmsgBD = 'SELECT * FROM Message WHERE IdMessage = \''.$idMsg.'\'';
+            $msgBD =Model::executeQuery($pdo, $sqlmsgBD);
+
+            return $msgBD;
+        }
+
         public function InsertMsg(){
             $pdo = Model::connectBD();
             $sql = 'INSERT INTO Message (IdDisDuMsg, TextMessage, EstOuvert) VALUES (\''.$this->idDis.'\', \''.$this->textMessage.'\', 1)';
@@ -98,12 +107,11 @@
             } else {
                 $pdo = Model::connectBD();
 
-                $sqlmsgBD = 'SELECT * FROM Message WHERE IdMessage = \''.$idMsg.'\'';
-                $msgBD =Model::executeQuery($pdo, $sqlmsgBD);
+                $msgBD = self::getAll($idMsg);
 
 
 
-                $textMsg =$msgBD['IdMessage'] . ' ' . $textMsg;
+                $textMsg =$msgBD['TextMessage'] . ' ' . $textMsg;
 
                 $sql = 'UPDATE Message SET TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\' WHERE IdMessage = \'' . $msgBD['IdMessage']. '\'';
                 Model::executeQuery($pdo, $sql);
