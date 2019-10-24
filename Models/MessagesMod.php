@@ -91,6 +91,7 @@
 
                 $sqlmsgBD = 'SELECT * FROM Message WHERE IdMessage = \''.$idMsg.'\'';
                 $msgBD =Model::executeQuery($pdo, $sqlmsgBD);
+                //Changer constructeur en simple constructeur de classe et fonction inserer dans la BD separée
                 $textMsg =$msgBD->getTextMsg() . ' ' . $textMsg;
                 $sql = 'UPDATE Message SET TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\' WHERE IdMessage = \'' . $idMsg. '\'';
                 Model::executeQuery($pdo, $sql);
