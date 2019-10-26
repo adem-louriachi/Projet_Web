@@ -114,7 +114,7 @@
             if(self::getIdAuthorsForMsg($author, $idMsg)){
                 throw new Exception('Vous avez deja ecrit dans ce message, impossible de réecrire dans ce dernier');
             } else
-            if (!self::getState($idMsg)){
+            if (!boolval(self::getState($idMsg))){
                 throw new Exception('Impossible d\'ecrire dans un message cloturé');
             } else {
                 $msgBD = self::getTxt($idMsg);
