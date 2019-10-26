@@ -29,7 +29,7 @@
         $idMsg   = $_POST['idMsgS'];
         MessagesMod::deleteMsg($idMsg);
     } elseif (isset($_POST['GameTestDB'])) {
-        loadGameTest();
+        GameTest::loadGameTest();
     } else{
         echo 'erreur';
     }
