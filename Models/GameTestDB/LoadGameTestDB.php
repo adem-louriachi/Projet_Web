@@ -4,7 +4,7 @@
         public function loadGameTest() {
             $pdo = Model::connectBD();
             //$sql = 'DELETE FROM Auteur; DELETE FROM Message; DELETE FROM Discussion; DELETE FROM Utilisateurs;';
-            $sql = 'DELETE FROM Utilisateurs;';
+            $sql = 'DELETE FROM \'Utilisateurs\';';
             try {
                 $resultat = $pdo->prepare($sql); // requête préparée
                 $resultat->execute();
