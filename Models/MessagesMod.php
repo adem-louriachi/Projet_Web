@@ -10,83 +10,32 @@
         private $stateMsg; // bool
         private $authors;
 
-        public function __construct($idDis, $textMsg){ //insertMsg() SansAuthor
-            $stateMsg = true;
-
-            $pdo = Model::connectBD();
-
-            echo 'connection constructeur <br/>';
-
-            $sql = 'INSERT INTO Message (IdDisDuMsg, TextMessage, EstOuvert) VALUES (\''.$idDis.'\', \''.$textMsg.'\', 1)';
-            Model::executeQuery($pdo,$sql);
-
-            echo 'insert reussi <br/>';
-
-
-            $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
-            $idMsgBD = Model::executeQuery($pdo,$sqlRecupIdMessage);
-
-            $this->idMsg = $idMsgBD['IdMessage'];
-
-            echo $this->idMsg .'<br/>';
+        public function __construct($idDis, $textMsg, $authors){
 
             $this->idDis = $idDis;
 
-            echo $this->idDis .'<br/>';
-
-            $this->dateMsg = $this->getDateMsg();
-
-            echo $this->dateMsg .'<br/>';
-
+            $this->textMsg = $textMsg;
+            $this->authors = $authors;
             $this->stateMsg = true;
-
-            echo $this->stateMsg .'<br/>';
         }
 
-        public function getIdMsg()
-        {
+        public function getState($idMsg){
             $pdo = Model::connectBD();
-            $sql = 'SELECT IdMessage FROM Message WHERE IdMessage = \''.$this->idMsg.'\'';
-            $idMsgBD = Model::executeQuery($pdo,$sql);
-            $this->idMsg = $idMsgBD['IdMessage'];
 
-            return $this->idMsg;
+            $sqlmsgBD = 'SELECT EstOuvert FROM Message WHERE IdMessage = \''.$idMsg.'\'';
+            $msgBD =Model::executeQuery($pdo, $sqlmsgBD);
+
+            return $msgBD['EstOuvert'];
         }
 
-
-        public function getIdDisMsg(){
+        public function getTxt($idMsg){
             $pdo = Model::connectBD();
-            $sql = 'SELECT IdDisDuMsg FROM Message WHERE IdMessage = \''.$this->idMsg.'\'';
-            $idDisMsgBD = Model::executeQuery($pdo,$sql);
-            $this->idDis = $idDisMsgBD['IdDisDuMsg'];
-            return $this->idDis;
+
+            $sqlmsgBD = 'SELECT TextMessage FROM Message WHERE IdMessage = \''.$idMsg.'\'';
+            $msgBD =Model::executeQuery($pdo, $sqlmsgBD);
+
+            return $msgBD;
         }
-
-
-        public function getTextMsg(){
-            $pdo = Model::connectBD();
-            $sql = 'SELECT TextMessage FROM Message WHERE IdMessage = \''.$this->idMsg.'\'';
-            $textMsgBD = Model::executeQuery($pdo,$sql);
-            $this->textMsg = $textMsgBD['TextMessage'];
-            return $this->textMsg;
-        }
-
-
-        public function getAuthors(){
-            $pdo = Model::connectBD();
-            $sql = 'SELECT IdUtilisateur FROM Auteur WHERE IdMessage = \''.$this->idMsg.'\'';
-            $this->authors = Model::executeQuery($pdo,$sql);
-
-            return $this->authors;
-        }
-
-        public function addAuthor($author)
-        {
-            $pdo = Model::connectBD();
-            $sqlAuthors = 'INSERT INTO Auteur (IdUtilisateur, IdMessage) VALUES (\''.$author.'\', \''.$this->getIdMsg().'\')';
-            Model::executeQuery($pdo,$sqlAuthors);
-        }
-
 
         public function getDateMsg()
         {
@@ -98,33 +47,68 @@
         }
 
 
-        public function updateMsg($author, $idDis, $textMsg, $stateMsg){ // Verifier que date se mets a jour
-            if($author == $this->getAuthors()){
+        public function getIdAuthorsForMsg($author, $idMsg){
+            $pdo = Model::connectBD();
+            $sql = 'SELECT IdUtilisateur FROM Auteur WHERE IdMessage = \''.$idMsg.'\' AND IdUtilisateur = \''.$author.'\'';
+            $authors = Model::executeQuery($pdo,$sql);
+
+            return $authors;
+        }
+
+        public function addAuthor($idAuthor, $idMsg)
+        {
+            $pdo = Model::connectBD();
+            $sqlAuthors = 'INSERT INTO Auteur (IdUtilisateur, IdMessage) VALUES (\''.$idAuthor.'\', \''.$idMsg.'\')';
+            Model::executeQuery($pdo,$sqlAuthors);
+        }
+
+        public function InsertMsg(){
+            $pdo = Model::connectBD();
+            $sql = 'INSERT INTO Message (IdDisDuMsg, TextMessage, EstOuvert) VALUES (\''.$this->idDis.'\', \''.$this->textMessage.'\', 1)';
+            Model::executeQuery($pdo,$sql);
+
+            $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
+            $idMsgBD = Model::executeQuery($pdo,$sqlRecupIdMessage);
+            $this->addAuthor($this->authors, $this->idMsg);
+
+
+            $this->idMsg = $idMsgBD['IdMessage'];
+            $this->dateMsg = $this->getDateMsg();
+            $this->stateMsg = true;
+        }
+
+        public function updateMsg($idMsg, $author, $textMsg, $stateMsg){
+            $pdo = Model::connectBD();
+            $sqlSearchAuthor = 'SELECT IdUtilisateur FROM Auteur WHERE IdMessage = \''.$idMsg.'\' AND IdUtilisateur = \''.$idMsg.'\'';
+            Model::executeQuery($pdo, $sqlSearchAuthor);
+
+            if(self::getIdAuthorsForMsg($author, $idMsg)){
                 throw new Exception('Vous avez deja ecrit dans ce message, impossible de réecrire dans ce dernier');
+            } elseif (!self::getState($idMsg)){
+                throw new Exception('Impossible d\'ecrire dans un message cloturé');
             } else {
-                $pdo = Model::connectBD();
-                $textMsg =$this->getTextMsg() . ' ' . $textMsg;
-                $sql = 'UPDATE Message SET IdDisDuMsg = \'' . $idDis . '\', TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\' WHERE IdMessage = \'' . $this->idMsg . '\'';
+                $msgBD = self::getTxt($idMsg);
+                $textMsg =$msgBD['TextMessage'] . ' ' . $textMsg;
+
+                $sql = 'UPDATE Message SET TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\', Date = \'' . date('Y-m-d H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
                 Model::executeQuery($pdo, $sql);
 
-                $this->addAuthor($author);
+                self::addAuthor($author, $idMsg);
             }
         }
 
-        public function supprMsg(){
+        public function closeMsg($idMsg){
             $pdo = Model::connectBD();
-            $sql = 'DELETE FROM Message WHERE IdMessage = \''.$this->idMsg.'\'';
+            $sql = 'UPDATE Message SET EstOuvert = 0 WHERE IdMessage = \''.$idMsg.'\'';
             Model::executeQuery($pdo,$sql);
         }
 
-
-        public function closeMsg(){
+        public function deleteMsg($idMsg){
             $pdo = Model::connectBD();
-            $sql = 'UPDATE Message SET EstOuvert = 0 WHERE IdMessage = \''.$this->idMsg.'\'';
+            $sqlAuthor = 'DELETE FROM Auteur WHERE IdMessage = \''.$idMsg.'\'';
+            Model::executeQuery($pdo,$sqlAuthor);
+
+            $sql = 'DELETE FROM Message WHERE IdMessage = \''.$idMsg.'\'';
             Model::executeQuery($pdo,$sql);
-            $this->stateMsg = false;
         }
-
-
-
     }
