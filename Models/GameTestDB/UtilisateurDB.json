@@ -1,172 +1,162 @@
-{
-  "cols": [
-    "Nom",
-    "Mail",
-    "MotDePasse",
-    "SuperUtilisateur",
-    "IdUtilisateur",
-    "DateInscription"
-  ],
-  "data": [
-    [
-      "Admin",
-      "admin@freenote-4randoms.net",
-      "MotDePasse",
-      "1",
-      1,
-      "2019-10-26"
-    ],
-    [
-      "Atkins",
-      "ridiculus@Maurisquis.ca",
-      "MotDePasse",
-      "0",
-      2,
-      "2019-03-03"
-    ],
-    [
-      "Meyers",
-      "Aliquam.nec.enim@Donecnibh.com",
-      "MotDePasse",
-      "0",
-      3,
-      "2019-09-05"
-    ],
-    [
-      "Walter",
-      "eu@duisemper.edu",
-      "MotDePasse",
-      "0",
-      4,
-      "2019-03-08"
-    ],
-    [
-      "Finch",
-      "risus.In@fermentum.edu",
-      "MotDePasse",
-      "0",
-      5,
-      "2020-07-13"
-    ],
-    [
-      "Stephens",
-      "ipsum@metusAliquamerat.com",
-      "MotDePasse",
-      "0",
-      6,
-      "2020-10-19"
-    ],
-    [
-      "Huff",
-      "mi.Duis.risus@Integersemelit.ca",
-      "MotDePasse",
-      "0",
-      7,
-      "2020-09-10"
-    ],
-    [
-      "Justice",
-      "Duis.at@Donec.co.uk",
-      "MotDePasse",
-      "0",
-      8,
-      "2019-01-22"
-    ],
-    [
-      "Hayes",
-      "magna.Duis@id.co.uk",
-      "MotDePasse",
-      "0",
-      9,
-      "2020-02-17"
-    ],
-    [
-      "Hodges",
-      "sit@dictum.org",
-      "MotDePasse",
-      "0",
-      10,
-      "2019-06-23"
-    ],
-    [
-      "Levy",
-      "a.ultricies.adipiscing@felisullamcorperviverra.org",
-      "MotDePasse",
-      "0",
-      11,
-      "2020-01-14"
-    ],
-    [
-      "Webster",
-      "Nunc.quis@dui.ca",
-      "MotDePasse",
-      "0",
-      12,
-      "2020-06-04"
-    ],
-    [
-      "Randall",
-      "iaculis@justo.org",
-      "MotDePasse",
-      "0",
-      13,
-      "2020-09-11"
-    ],
-    [
-      "Hendrix",
-      "in.cursus@Phasellusfermentum.ca",
-      "MotDePasse",
-      "0",
-      14,
-      "2019-02-08"
-    ],
-    [
-      "Webster",
-      "malesuada.vel.venenatis@loremeu.ca",
-      "MotDePasse",
-      "0",
-      15,
-      "2019-08-03"
-    ],
-    [
-      "Vance",
-      "sem@pulvinararcuet.net",
-      "MotDePasse",
-      "0",
-      16,
-      "2020-09-22"
-    ],
-    [
-      "Cohen",
-      "volutpat@seddolor.com",
-      "MotDePasse",
-      "0",
-      17,
-      "2020-03-13"
-    ],
-    [
-      "Case",
-      "Sed.neque.Sed@lectus.co.uk",
-      "MotDePasse",
-      "0",
-      18,
-      "2020-02-03"
-    ],
-    [
-      "Galloway",
-      "eget.massa.Suspendisse@tacitisociosqu.ca",
-      "MotDePasse",
-      "0",
-      19,
-      "2019-01-28"
-    ],
-    [
-      "Calderon",
-      "felis@Aeneanegestas.ca",
-      "MotDePasse",
-      "0",
-      20,
-      "2020-09-18"
-    ]
-  ]
-}
+[
+    {
+      "Nom":"Admin",
+      "Mail":"admin@freenote-4randoms.net",
+      "MotDePasse":"MotDePasse",
+      "SuperUtilisateur":"1",
+      "IdUtilisateur":1,
+      "DateInscription":"2019-10-26"
+    },
+    {
+      "Nom": "Cole",
+      "Mail": "ac.feugiat.non@Quisque.com",
+      "MotDePasse": "MotDePasse",
+      "SuperUtilisateur": "0",
+      "IdUtilisateur": 2,
+      "DateInscription": "2018-12-06"
+    },
+    {
+      "Nom": "Hodges",
+      "Mail": "In.nec@elit.com",
+      "MotDePasse": "MotDePasse",
+      "SuperUtilisateur": "0",
+      "IdUtilisateur": 3,
+      "DateInscription": "2019-12-04"
+    },
+    {
+      "Nom": "Lopez",
+      "Mail": "Maecenas.mi@aliquet.net",
+      "MotDePasse": "MotDePasse",
+      "SuperUtilisateur": "0",
+      "IdUtilisateur": 4,
+      "DateInscription": "2019-01-11"
+    },
+    {
+      "Nom": "Gibson",
+      "Mail": "et.ultrices.posuere@lobortismauris.co.uk",
+      "MotDePasse": "MotDePasse",
+      "SuperUtilisateur": "0",
+      "IdUtilisateur": 5,
+      "DateInscription": "2020-02-03"
+    },
+    {
+      "Nom": "Carlson",
+      "Mail": "dui.nec@erat.org",
+      "MotDePasse": "MotDePasse",
+      "SuperUtilisateur": "0",
+      "IdUtilisateur": 6,
+      "DateInscription": "2020-04-17"
+    },
+    {
+      "Nom": "Guthrie",
+      "Mail": "libero@Maecenas.org",
+      "MotDePasse": "MotDePasse",
+      "SuperUtilisateur": "0",
+      "IdUtilisateur": 7,
+      "DateInscription": "2020-04-13"
+    },
+    {
+      "Nom": "Matthews",
+      "Mail": "aliquet.Proin@porttitortellusnon.edu",
+      "MotDePasse": "MotDePasse",
+      "SuperUtilisateur": "0",
+      "IdUtilisateur": 8,
+      "DateInscription": "2018-12-01"
+    },
+    {
+      "Nom": "Hutchinson",
+      "Mail": "imperdiet.non.vestibulum@tempusscelerisque.edu",
+      "MotDePasse": "MotDePasse",
+      "SuperUtilisateur": "0",
+      "IdUtilisateur": 9,
+      "DateInscription": "2020-01-12"
+    },
+    {
+      "Nom": "Burns",
+      "Mail": "nec.metus@actellus.co.uk",
+      "MotDePasse": "MotDePasse",
+      "SuperUtilisateur": "0",
+      "IdUtilisateur": 10,
+      "DateInscription": "2019-02-15"
+    },
+    {
+      "Nom": "Potter",
+      "Mail": "blandit.Nam@mitemporlorem.ca",
+      "MotDePasse": "MotDePasse",
+      "SuperUtilisateur": "0",
+      "IdUtilisateur": 11,
+      "DateInscription": "2019-05-06"
+    },
+    {
+      "Nom": "Wynn",
+      "Mail": "amet.diam.eu@fringillapurusmauris.edu",
+      "MotDePasse": "MotDePasse",
+      "SuperUtilisateur": "0",
+      "IdUtilisateur": 12,
+      "DateInscription": "2019-11-17"
+    },
+    {
+      "Nom": "Mckenzie",
+      "Mail": "dui@risusMorbimetus.co.uk",
+      "MotDePasse": "MotDePasse",
+      "SuperUtilisateur": "0",
+      "IdUtilisateur": 13,
+      "DateInscription": "2019-03-13"
+    },
+    {
+      "Nom": "Benton",
+      "Mail": "neque.Nullam.ut@faucibusMorbivehicula.ca",
+      "MotDePasse": "MotDePasse",
+      "SuperUtilisateur": "0",
+      "IdUtilisateur": 14,
+      "DateInscription": "2019-01-16"
+    },
+    {
+      "Nom": "Love",
+      "Mail": "Mauris.eu.turpis@ipsumprimis.org",
+      "MotDePasse": "MotDePasse",
+      "SuperUtilisateur": "0",
+      "IdUtilisateur": 15,
+      "DateInscription": "2018-12-05"
+    },
+    {
+      "Nom": "Joseph",
+      "Mail": "consequat@Suspendissenonleo.edu",
+      "MotDePasse": "MotDePasse",
+      "SuperUtilisateur": "0",
+      "IdUtilisateur": 16,
+      "DateInscription": "2019-08-05"
+    },
+    {
+      "Nom": "Burke",
+      "Mail": "Praesent.interdum.ligula@Donec.net",
+      "MotDePasse": "MotDePasse",
+      "SuperUtilisateur": "0",
+      "IdUtilisateur": 17,
+      "DateInscription": "2018-11-05"
+    },
+    {
+      "Nom": "Gray",
+      "Mail": "eu.eleifend.nec@risus.net",
+      "MotDePasse": "MotDePasse",
+      "SuperUtilisateur": "0",
+      "IdUtilisateur": 18,
+      "DateInscription": "2020-08-03"
+    },
+    {
+      "Nom": "Peterson",
+      "Mail": "eu.turpis.Nulla@magnisdisparturient.com",
+      "MotDePasse": "MotDePasse",
+      "SuperUtilisateur": "0",
+      "IdUtilisateur": 19,
+      "DateInscription": "2020-10-03"
+    },
+    {
+      "Nom": "Andrews",
+      "Mail": "Phasellus.at@venenatislacus.edu",
+      "MotDePasse": "MotDePasse",
+      "SuperUtilisateur": "0",
+      "IdUtilisateur": 20,
+      "DateInscription": "2020-01-17"
+    }
+]
