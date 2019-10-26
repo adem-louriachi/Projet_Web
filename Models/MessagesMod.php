@@ -111,7 +111,7 @@
             $pdo = Model::connectBD();
             $sqlSearchAuthor = 'SELECT IdUtilisateur FROM Auteur WHERE IdMessage = \''.$idMsg.'\' AND IdUtilisateur = \''.$idMsg.'\'';
             Model::executeQuery($pdo, $sqlSearchAuthor);
-            if(!self::getIdAuthorsForMsg($author, $idMsg)){
+            if(self::getIdAuthorsForMsg($author, $idMsg) == NULL){
                 throw new Exception('Vous avez deja ecrit dans ce message, impossible de réecrire dans ce dernier');
             } else
             if (!self::getState($idMsg)){
