@@ -15,10 +15,8 @@
                 echo 'Requete en faute : ', $sql, PHP_EOL;
             }
 
-            $utilisateurDataFile = './UtilisateurDB.json';
-            echo $utilisateurDataFile. '<br/>';
+            $utilisateurDataFile = __DIR__.'/UtilisateurDB.json';
             $utilisateurData = file_get_contents($utilisateurDataFile);
-            echo $utilisateurData. '<br/>';
             $utilisateurArray = json_decode($utilisateurData, true);
             foreach ($utilisateurArray as $row) {
                 $sql = 'INSERT INTO Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur, IdUtilisateur, DateInscription) 
