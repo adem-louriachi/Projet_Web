@@ -1,5 +1,5 @@
 <?php
-    require '../Model.php';
+//    require '../Model.php';
 
     class GameTest extends Model {
         public function loadGameTest() {
