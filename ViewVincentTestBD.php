@@ -37,4 +37,27 @@
                 
                 <button type="submit" value="Envoyer">MISE A JOUR</button><br/>
             </form>
+            
+            
+            <form id="register" method="post" action="ControllerVincentTestBD.php">
+                <label>CLORE UN MESSAGE</label><br/>
+            
+                
+                <label name="idMsgC">Id Msg </label>
+                <input name="idMsgC" type="text" required><br/>
+                <button type="submit" value="Envoyer">Clore</button><br/>
+            </form>
+            
+            
+            
+            
+            <form id="register" method="post" action="ControllerVincentTestBD.php">
+                <label>SUPPRIMER UN MESSAGE</label><br/>
+            
+                
+                <label name="idMsgS">Id Msg </label>
+                <input name="idMsgS" type="text" required><br/>
+                <button type="submit" value="Envoyer">Supprimer</button><br/>
+            </form>
+            
         </div>';

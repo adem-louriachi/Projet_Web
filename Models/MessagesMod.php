@@ -131,16 +131,19 @@
             }
         }
 
-        public function supprMsg(){
+        public function deleteMsg($idMsg){
             $pdo = Model::connectBD();
-            $sql = 'DELETE FROM Message WHERE IdMessage = \''.$this->idMsg.'\'';
+            $sqlAuthor = 'DELETE FROM Auteur WHERE IdMessage = \''.$idMsg.'\'';
+            Model::executeQuery($pdo,$sqlAuthor);
+
+            $sql = 'DELETE FROM Message WHERE IdMessage = \''.$idMsg.'\'';
             Model::executeQuery($pdo,$sql);
         }
 
 
-        public function closeMsg(){
+        public function closeMsg($idMsg){
             $pdo = Model::connectBD();
-            $sql = 'UPDATE Message SET EstOuvert = 0 WHERE IdMessage = \''.$this->idMsg.'\'';
+            $sql = 'UPDATE Message SET EstOuvert = 0 WHERE IdMessage = \''.$idMsg.'\'';
             Model::executeQuery($pdo,$sql);
             $this->stateMsg = false;
         }
