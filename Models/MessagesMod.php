@@ -33,9 +33,8 @@
 
             $sqlmsgBD = 'SELECT EstOuvert FROM Message WHERE IdMessage = \''.$idMsg.'\'';
             $msgBD =Model::executeQuery($pdo, $sqlmsgBD);
-            echo $msgBD;
 
-            return $msgBD;
+            return $msgBD['EstOuvert'];
         }
 
         public function InsertMsg(){
@@ -113,13 +112,9 @@
             $sqlSearchAuthor = 'SELECT IdUtilisateur FROM Auteur WHERE IdMessage = \''.$idMsg.'\' AND IdUtilisateur = \''.$idMsg.'\'';
             Model::executeQuery($pdo, $sqlSearchAuthor);
 
-            //test getState()
-            self::getState($idMsg);
-
             if(self::getIdAuthorsForMsg($author, $idMsg)){
                 throw new Exception('Vous avez deja ecrit dans ce message, impossible de réecrire dans ce dernier');
-            } else
-            if (self::getState($idMsg) == 0){
+            } elseif (!self::getState($idMsg)){
                 throw new Exception('Impossible d\'ecrire dans un message cloturé');
             } else {
                 $msgBD = self::getTxt($idMsg);
