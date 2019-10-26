@@ -33,6 +33,7 @@
 
             $sqlmsgBD = 'SELECT EstOuvert FROM Message WHERE IdMessage = \''.$idMsg.'\'';
             $msgBD =Model::executeQuery($pdo, $sqlmsgBD);
+            echo $msgBD;
 
             return $msgBD;
         }
@@ -111,6 +112,10 @@
             $pdo = Model::connectBD();
             $sqlSearchAuthor = 'SELECT IdUtilisateur FROM Auteur WHERE IdMessage = \''.$idMsg.'\' AND IdUtilisateur = \''.$idMsg.'\'';
             Model::executeQuery($pdo, $sqlSearchAuthor);
+
+            //test getState()
+            self::getState($idMsg);
+
             if(self::getIdAuthorsForMsg($author, $idMsg)){
                 throw new Exception('Vous avez deja ecrit dans ce message, impossible de réecrire dans ce dernier');
             } else
