@@ -1,5 +1,4 @@
 <?php
-require 'UtilisateurDB.json';
 
     class GameTest extends Model {
         public function loadGameTest() {
@@ -16,8 +15,10 @@ require 'UtilisateurDB.json';
                 echo 'Requete en faute : ', $sql, PHP_EOL;
             }
 
-            $utilisateurDataFile = 'UtilisateurDB.json';
+            $utilisateurDataFile = './UtilisateurDB.json';
+            echo $utilisateurDataFile. '<br/>';
             $utilisateurData = file_get_contents($utilisateurDataFile);
+            echo $utilisateurData. '<br/>';
             $utilisateurArray = json_decode($utilisateurData, true);
             foreach ($utilisateurArray as $row) {
                 $sql = 'INSERT INTO Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur, IdUtilisateur, DateInscription) 
