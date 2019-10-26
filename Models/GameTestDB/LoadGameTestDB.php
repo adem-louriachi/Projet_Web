@@ -1,4 +1,5 @@
 <?php
+require 'UtilisateurDB.json';
 
     class GameTest extends Model {
         public function loadGameTest() {
