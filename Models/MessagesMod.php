@@ -145,7 +145,6 @@
             $pdo = Model::connectBD();
             $sql = 'UPDATE Message SET EstOuvert = 0 WHERE IdMessage = \''.$idMsg.'\'';
             Model::executeQuery($pdo,$sql);
-            $this->stateMsg = false;
         }
 
 
