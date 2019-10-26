@@ -28,6 +28,15 @@
             return $msgBD;
         }
 
+        public function getState($idMsg){
+            $pdo = Model::connectBD();
+
+            $sqlmsgBD = 'SELECT EstOuvert FROM Message WHERE IdMessage = \''.$idMsg.'\'';
+            $msgBD =Model::executeQuery($pdo, $sqlmsgBD);
+
+            return $msgBD;
+        }
+
         public function InsertMsg(){
             $pdo = Model::connectBD();
             $sql = 'INSERT INTO Message (IdDisDuMsg, TextMessage, EstOuvert) VALUES (\''.$this->idDis.'\', \''.$this->textMessage.'\', 1)';
@@ -71,15 +80,15 @@
             return $this->textMsg;
         }
 
-/*
+
         public function getIdAuthors($idMsg){
             $pdo = Model::connectBD();
             $sql = 'SELECT IdUtilisateur FROM Auteur WHERE IdMessage = \''.$idMsg.'\'';
-            $this->authors = Model::executeQuery($pdo,$sql);
+            $authors = Model::executeQuery($pdo,$sql);
 
             return $this->authors;
         }
-*/
+
         public function addAuthor($idAuthor, $idMsg)
         {
             $pdo = Model::connectBD();
@@ -99,14 +108,16 @@
 
 
         public function updateMsg($idMsg, $author, $textMsg, $stateMsg){
-           /* if($author == $this->getAuthors()){
+            $pdo = Model::connectBD();
+            $sqlSearchAuthor = 'SELECT IdUtilisateur FROM Auteur WHERE IdMessage = \''.$idMsg.'\' AND IdUtilisateur = \''.$this->idMsg.'\'';
+            Model::executeQuery($pdo, $sqlSearchAuthor);
+
+            if($author == $this->getAuthors()){
                 throw new Exception('Vous avez deja ecrit dans ce message, impossible de réecrire dans ce dernier');
-            } else */
-            if (!$stateMsg){
+            } else
+            if (!$this->getState($idMsg)){
                 throw new Exception('Impossible d\'ecrire dans un message cloturé');
             } else {
-                $pdo = Model::connectBD();
-
                 $msgBD = self::getTxt($idMsg);
 
 
