@@ -12,6 +12,14 @@
         foreach ($utilisateurArray as $row){
             $sql = 'INSERT INTO Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur, IdUtilisateur, DateInscription) 
                     VALUES (\''.$row['Nom'].'\', \''.$row['Mail'].'\', \''.$row['MotDePasse'].'\', \''.$row['SuperUtilisateur'].'\', \''.$row['IdUtilisateur'].'\', \''.$row['DateInscription'].'\')';
-            Model::executeQuery($pdo,$sql);
+            try {
+                $resultat = $pdo->prepare($sql); // requête préparée
+                $resultat->execute();
+                echo $sql . '<br/>';
+            } catch (PDOException $e) {
+                // Affichage de l'erreur
+                echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+                echo 'Requete en faute : ', $sql, PHP_EOL;
+            }
         }
     }
