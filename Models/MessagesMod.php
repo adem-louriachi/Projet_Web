@@ -63,9 +63,9 @@
         }
 
 
-        public function getIdDisMsg(){
+        public function getIdDisMsg($idMsg){
             $pdo = Model::connectBD();
-            $sql = 'SELECT IdDisDuMsg FROM Message WHERE IdMessage = \''.$this->idMsg.'\'';
+            $sql = 'SELECT IdDisDuMsg FROM Message WHERE IdMessage = \''.$idMsg.'\'';
             $idDisMsgBD = Model::executeQuery($pdo,$sql);
             $this->idDis = $idDisMsgBD['IdDisDuMsg'];
             return $this->idDis;
@@ -111,11 +111,10 @@
             $pdo = Model::connectBD();
             $sqlSearchAuthor = 'SELECT IdUtilisateur FROM Auteur WHERE IdMessage = \''.$idMsg.'\' AND IdUtilisateur = \''.$idMsg.'\'';
             Model::executeQuery($pdo, $sqlSearchAuthor);
-
-            if(!$this->getIdAuthorsForMsg($author, $idMsg)){
+            if(!self::getIdAuthorsForMsg($author, $idMsg)){
                 throw new Exception('Vous avez deja ecrit dans ce message, impossible de réecrire dans ce dernier');
             } else
-            if (!$this->getState($idMsg)){
+            if (!self::getState($idMsg)){
                 throw new Exception('Impossible d\'ecrire dans un message cloturé');
             } else {
                 $msgBD = self::getTxt($idMsg);
