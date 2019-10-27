@@ -1,10 +1,10 @@
 <?php
-require 'AuthenticationCheck.php';
 class Form
 {
     public function register(){
         ob_start();
-        $style = 'HomeView.css';
+        require 'AuthenticationCheck.php';
+        $style = 'Views/HomeView.css';
         ?>
         <div class="container black">
             <form id="register" method="post" action="/?ctrl=User&action=register">
