@@ -17,7 +17,7 @@
             }
 
             // Insertion des discussions
-            $discussionData = file_get_contents( __DIR__.'/UtilisateurDB.json');
+            $discussionData = file_get_contents( __DIR__.'/DiscussionDB.json');
             $discussionArray = json_decode($discussionData, true);
             foreach ($discussionArray as $row) {
                 $sql = 'INSERT INTO Discussion (IdDiscussion, EstOuvert, Createur, NomDiscussion) 
