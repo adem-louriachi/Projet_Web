@@ -36,6 +36,8 @@
         $pwd   = UsersMod::getPwd($_POST['idUser']);
         $admin = UsersMod::getAdmin($_POST['idUser']);
         $dateI = UsersMod::getDate($_POST['idUser']);
+
+        echo $id .'<br/>'.$nom .'<br/>'.$mail .'<br/>'.$pwd .'<br/>'.$admin .'<br/>'.$dateI .'<br/>';
     } else{
         echo 'erreur';
     }
