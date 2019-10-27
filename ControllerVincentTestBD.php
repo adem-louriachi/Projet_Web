@@ -38,6 +38,25 @@
         $dateI = UsersMod::getDate($_POST['idUser']);
 
         echo $id .'<br/>'.$nom .'<br/>'.$mail .'<br/>'.$pwd .'<br/>'.$admin .'<br/>'.$dateI .'<br/>';
+    } elseif (isset($_POST['Nom']) && isset($_POST['Mail']) && isset($_POST['Mdp']) && isset($_POST['UserAdd'])) {
+        $nom   = $_POST['Nom'];
+        $mail = $_POST['Mail'];
+        $pwd  = $_POST['Mdp'];
+
+        $message = new UsersMod($nom, $mail, $pwd);
+        $message->insertUser();
+
+        $data = $message->getProperties();
+
+        $id    = UsersMod::getId($data['idUser']);
+        $nom   = UsersMod::getNick($data['idUser']);
+        $mail  = UsersMod::getMail($data['idUser']);
+        $pwd   = UsersMod::getPwd($data['idUser']);
+        $admin = UsersMod::getAdmin($data['idUser']);
+        $dateI = UsersMod::getDate($data['idUser']);
+
+        echo $id .'<br/>'.$nom .'<br/>'.$mail .'<br/>'.$pwd .'<br/>'.$admin .'<br/>'.$dateI .'<br/>';
+
     } else{
         echo 'erreur';
     }

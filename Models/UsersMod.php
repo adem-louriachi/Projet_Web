@@ -18,16 +18,16 @@ class UsersMod extends Model
 
     }
 
-    public function insertUser($c_nick, $c_mail, $c_pwd){
-        if(!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/',$c_mail)) {
+    public function insertUser(){
+        if(!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/',$this->mail)) {
             throw new Exception('Format de l\'email entré invalide');
         } else {
             $pdo = Model::connectBD();
             $sql = 'INSERT INTO Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur) 
-                    VALUES (\''.$c_nick.'\',\''.$c_mail.'\',\''.password_hash($c_pwd,PASSWORD_BCRYPT).'\', 0';
+                    VALUES (\''.$this->nick.'\',\''.$this->mail.'\',\''.password_hash($this->pwd,PASSWORD_BCRYPT).'\', 0';
             Model::executeQuery($pdo,$sql);
 
-            $sql = 'SELECT * FROM Utilisateurs WHERE Nom = \''.$c_nick.'\'';
+            $sql = 'SELECT * FROM Utilisateurs WHERE Nom = \''.$this->nick.'\'';
             $dataUser = Model::executeQuery($pdo,$sql);
 
             $this->id    = $dataUser['IdUtilisateur'];
@@ -39,10 +39,10 @@ class UsersMod extends Model
         }
     }
 
-    public function getProperties($idUser)
+    public function getProperties()
     {
         $pdo = Model::connectBD();
-        $sql = 'SELECT * FROM Utilisateurs WHERE IdUtilisateur = \''.$idUser.'\'';
+        $sql = 'SELECT * FROM Utilisateurs WHERE IdUtilisateur = \''.$this->id.'\'';
         $data = Model::executeQuery($pdo,$sql);
         return $data;
 

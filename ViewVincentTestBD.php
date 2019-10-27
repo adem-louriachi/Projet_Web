@@ -10,6 +10,46 @@ echo '<form id="UserBD" method="post" action="ControllerVincentTestBD.php">
             <button name="TestUserBD" type="submit" value="ResultatUserBD">TestUserBD</button><br/>
       </form>';
 
+echo '<div class="container black">
+            <form id="register" method="post" action="ControllerVincentTestBD.php">
+                <label>AJOUT D\'UN USER</label><br/>
+                            
+                <label name="Nom">Nom User</label>
+                <input name="Nom" type="text" required><br/>
+                
+                <label name="Mail">Mail</label>
+                <input name="Mail" type="text" required><br/>
+                
+                <label name="Mdp">Mot de passe</label>
+                <input name="Mdp" type="text"><br/>
+                
+                <button name="UserAdd" type="submit" value="Envoyer">Creer</button><br/>
+            </form>
+    <!--        
+            <form id="register" method="post" action="ControllerVincentTestBD.php">
+                <label>UPDATE UN USER</label><br/>
+            
+                
+                <label name="idMsg">Id Msg de base </label>
+                <input name="idMsg" type="text" required><br/>
+                
+                <label name="MessageU">Message</label>
+                <input name="MessageU" type="text" required><br/>
+                
+                <label name="authorU">Auteur</label>
+                <input name="authorU" type="text"><br/>
+                
+                <label name="etatU">Etat </label>
+                <input name="etatU" type="text"><br/>
+                
+                
+                <button type="submit" value="Envoyer">MISE A JOUR</button><br/>
+            </form>
+    -->
+      </div>';
+
+
+
 
 
 
