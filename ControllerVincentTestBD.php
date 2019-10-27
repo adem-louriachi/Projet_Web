@@ -48,12 +48,12 @@
 
         $data = $message->getProperties();
 
-        $id    = UsersMod::getId($data['idUser']);
-        $nom   = UsersMod::getNick($data['idUser']);
-        $mail  = UsersMod::getMail($data['idUser']);
-        $pwd   = UsersMod::getPwd($data['idUser']);
-        $admin = UsersMod::getAdmin($data['idUser']);
-        $dateI = UsersMod::getDate($data['idUser']);
+        $id    = $message->getId();
+        $nom   = $message->getNick();
+        $mail  = $message->getMail();
+        $pwd   = $message->getPwd();
+        $admin = $message->getAdmin();
+        $dateI = $message->getDate();
 
         echo $id .'<br/>'.$nom .'<br/>'.$mail .'<br/>'.$pwd .'<br/>'.$admin .'<br/>'.$dateI .'<br/>';
 

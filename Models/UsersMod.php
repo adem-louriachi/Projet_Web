@@ -56,7 +56,7 @@ class UsersMod extends Model
 
 
 
-    public function getId($idUser)
+    public function getId()
     {
         $data = $this->getProperties();
         return $data['IdUtilisateur'];
