@@ -25,7 +25,6 @@ class UsersMod extends Model
             $pdo = Model::connectBD();
             $sql = 'INSERT INTO Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur) 
                     VALUES (\''.$this->nick.'\',\''.$this->mail.'\',\''.password_hash($this->pwd,PASSWORD_BCRYPT).'\', 0)';
-            echo $sql;
             Model::executeQuery($pdo,$sql);
 
             $sql = 'SELECT * FROM Utilisateurs WHERE Nom = \''.$this->nick.'\'';
@@ -44,10 +43,14 @@ class UsersMod extends Model
 
     public function getProperties()
     {
-        $pdo = Model::connectBD();
-        $id = $this->id;
-        $sql = 'SELECT * FROM Utilisateurs WHERE IdUtilisateur = \''.$id.'\'';
-        $data = Model::executeQuery($pdo,$sql);
+        $data = [
+            'IdUtilisateur' => $this->id,
+            'Nom' => $this->nick,
+            'Mail' => $this->mail,
+            'MotDePasse' => $this->pwd,
+            'SuperUtilisateur' => $this->admin,
+            'DateInscription' => $this->date,
+        ];
         return $data;
     }
 
@@ -55,14 +58,14 @@ class UsersMod extends Model
 
     public function getId($idUser)
     {
-        $data = self::getProperties($idUser);
+        $data = $this->getProperties();
         return $data['IdUtilisateur'];
     }
 
 
-    public function getMail($idUser)
+    public function getMail()
     {
-        $data =  self::getProperties($idUser);
+        $data =  $this->getProperties();
         return $data['Mail'];
 
     }
@@ -78,9 +81,9 @@ class UsersMod extends Model
         }
     }
 
-    public function getPwd($idUser)
+    public function getPwd()
     {
-        $data = self::getProperties($idUser);
+        $data = $this->getProperties();
         return $data['MotDePasse'];
     }
 
@@ -92,15 +95,15 @@ class UsersMod extends Model
         $this->pwd = $newPwd;
     }
 
-    public function getNick($idUser)
+    public function getNick()
     {
-        $data = self::getProperties($idUser);
+        $data = $this->getProperties();
         return $data['Nom'];
     }
 
-    public function getAdmin($idUser)
+    public function getAdmin()
     {
-        $data = self::getProperties($idUser);
+        $data = $this->getProperties();
         return $data['SuperUtilisateur'];
     }
 
@@ -119,9 +122,9 @@ class UsersMod extends Model
         return $newPwd;
     }
 
-    public function getDate($idUser)
+    public function getDate()
     {
-        $data = self::getProperties($idUser);
+        $data = $this->getProperties();
         return $data['DateInscription'];
     }
 
