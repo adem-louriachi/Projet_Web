@@ -37,13 +37,15 @@ class UsersMod extends Model
             $this->pwd   = $dataUser['MotDePasse'];
             $this->admin = $dataUser['SuperUtilisateur'];
             $this->date  = $dataUser['DateInscription'];
+
+            echo $this->id ;
         }
     }
 
     public function getProperties()
     {
         $pdo = Model::connectBD();
-        $sql = 'SELECT * FROM Utilisateurs WHERE IdUtilisateur := :id';
+        $sql = 'SELECT * FROM Utilisateurs WHERE IdUtilisateur = \''.$this->id.'\'';
         $data = Model::executeQuery($pdo,$sql);
         return $data;
 
