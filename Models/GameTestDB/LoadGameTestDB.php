@@ -33,5 +33,8 @@
                         VALUES (\'' . $row['IdMessage'] . '\', \'' . $row['IdDisDuMsg'] . '\', \'' . $row['TextMessage'] . '\', \'' . $row['Date'] . '\', \'' . $row['EstOuvert'] . '\')';
                 Model::executeQuery($pdo,$sql);
             }
+
+            $sqlTest = 'SELECT MAX(LENGTH(TextMessage)) FROM MESSAGE';
+            Model::executeQuery($pdo,$sqlTest);
         }
     }
