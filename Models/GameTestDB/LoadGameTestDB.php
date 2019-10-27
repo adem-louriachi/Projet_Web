@@ -22,7 +22,6 @@
             foreach ($discussionArray as $row) {
                 $sql = 'INSERT INTO Discussion (IdDiscussion, EstOuvert, Createur, NomDiscussion) 
                         VALUES (\'' . $row['IdDiscussion'] . '\', \'' . $row['EstOuvert'] . '\', \'' . $row['Createur'] . '\', \'' . $row['NomDiscussion'] . '\')';
-                echo $sql;
                 Model::executeQuery($pdo,$sql);
             }
         }
