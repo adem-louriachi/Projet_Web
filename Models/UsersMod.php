@@ -24,7 +24,7 @@ class UsersMod extends Model
         } else {
             $pdo = Model::connectBD();
             $sql = 'INSERT INTO Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur) 
-                    VALUES (\''.$this->nick.'\',\''.$this->mail.'\',\''.password_hash($this->pwd,PASSWORD_BCRYPT).'\', 0';
+                    VALUES (\''.$this->nick.'\',\''.$this->mail.'\',\''.password_hash($this->pwd,PASSWORD_BCRYPT).'\', 0)';
             echo $sql;
             Model::executeQuery($pdo,$sql);
 
