@@ -28,6 +28,12 @@ RewriteRule ^(.*)$ https://freenote-4randoms.alwaysdata.net/$1 [R,L]
     Require all denied
 </Files>
 
+ErrorDocument 401 /?ctrl=ErrorPage&action=error&error=401
+ErrorDocument 403 /?ctrl=ErrorPage&action=error&error=403
+ErrorDocument 404 /?ctrl=ErrorPage&action=error&error=404
+ErrorDocument 500 /?ctrl=ErrorPage&action=error&error=500
+ErrorDocument 503 /?ctrl=ErrorPage&action=error&error=503
+
 # Manque la Réécriture d'URL
 
 #<DirectoryMatch ".git"> # empêche d'accéder au dossier .git

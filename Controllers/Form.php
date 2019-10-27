@@ -8,11 +8,11 @@ class Form
         ?>
         <div class="container black">
             <form id="register" method="post" action="/?ctrl=User&action=register">
-                <label name="nick">Nom</label>
-                <input name="nick" type="text" placeholder="Jean"
+                <label name="nick">Pseudo</label>
+                <input name="nick" type="text" placeholder="Wankil"
                        value="<?php if (isset($_SESSION['nick'])) echo $_SESSION['nick']; ?>" autocomplete="nickname" required autofocus>
                 <label name="email">Adresse e-mail</label>
-                <input name="email" type="email" placeholder="jean@jean.fr"
+                <input name="email" type="email" placeholder="coucou@wankil.fr"
                        value="<?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?>" autocomplete="email" required>
                 <label
                     name="pwd"><?php if (isset($_POST['error'])) echo "<p style=\"color:red;\">" . $_POST['error'] . "</p>"; ?>
@@ -29,27 +29,24 @@ class Form
         require 'Views/TemplateView.php';
     }
 
-/*    public function signin()
-    {
-        if (isset($_POST['login'], $_POST['pwd'])) {
-            $pwd = getPwdBD($_POST['login']);
-
-
-            if ($nick == $_POST['login'] && $pwd == md5($_POST['pwd'])) {
-                session_start();
-                $_SESSION['login'] = $_POST['login'];
-                $_SESSION['pwd'] = md5($_POST['login']);
-                header('Location: ../Views/UsersView.php');
-            } else if ($nick == $_POST['login'] && $pwd != md5($_POST['pwd'])) {
-                //message erreur
-                header('Location: ../Views/SigninView.php');
-            } else {
-                //message erreur
-                header('Location: ../Views/SigninView.php');
-            }
-        }
-    } */
+    public function signin(){
+        ob_start();
+        require 'AuthenticationCheck.php';
+        $style = 'Views/HomeView.css';?>
+            <div class="container black">
+                <form id="signin" method="post" action="/?ctrl=User&action=register">
+                    <label name="nick">Pseudo</label>
+                        <input name="nick" type="text" placeholder="FrenchCookie">
+                </form>
+            </div>
+        <?php
+        $content = ob_get_clean();
+        require 'Views/TemplateView.php';
+    }
     public function forget(){
         echo 'oui';
+    }
+    public function show(){
+        header('Location: /');
     }
 }

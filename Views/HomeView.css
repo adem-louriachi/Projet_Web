@@ -1,4 +1,10 @@
+html {
+    height: 100%;
+}
 body {
+    height: 100%;
+    margin: 0;
+    background: no-repeat fixed;
     background: linear-gradient(#30cfd0, #330867);
 }
 header {
