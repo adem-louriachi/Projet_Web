@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST['nick']) && $_POST['nick'] != "" && isset($_POST['email']) && $_POST['email'] != "" && isset($_POST['pwd']) && $_POST['pwd'] != "") { # si les champs ont été remplis ( pas de modification du HTML de l'utilisateur )
+if (isset($_POST['nick']) && $_POST['nick'] != '' && isset($_POST['email']) && $_POST['email'] != '' && isset($_POST['pwd']) && $_POST['pwd'] != '') { # si les champs ont été remplis ( pas de modification du HTML de l'utilisateur )
     $nick = htmlspecialchars($_POST['nick']); # htmlspecialschars pour ne pas interpreter l'HTML potentiellement inséré dans un champ
     $email = htmlspecialchars($_POST['email']);
     $pwd = htmlspecialchars($_POST['pwd']);

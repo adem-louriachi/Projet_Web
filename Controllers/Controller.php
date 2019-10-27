@@ -2,14 +2,13 @@
 
 class Controller
 {
-    private $request;
-    private $action;
     public function routeRequest()
     {
-        if (isset($_GET['ctrl']) && $_GET['ctrl'] != "") {
-            require $_GET['ctrl'] . '.php';  // require le fichier qui contient la classe souhaitée
+        $file = (string) filter_input(INPUT_GET, 'ctrl') . '.php';
+        if ($file != false && $file != null && file_exists('Controllers/'.$file)) { // vérifie si il ne vaut pas null et si le fichier existe existe
+            require $file;  // require le fichier qui contient la classe souhaitée
             $controller = new $_GET['ctrl'](); // récupère dans une variable l'objet créé de la classe souhaitée
-            if (isset($_GET['action']) && $_GET['action'] != "") { // si une méthode est demandée et qu'elle n'est pas vide
+            if (isset($_GET['action']) && $_GET['action'] != '') { // si une méthode est demandée et qu'elle n'est pas vide
                 $action = $_GET['action'];
                 $controller->$action(); // on appelle la méthode de l'objet créé avant le if
             }
