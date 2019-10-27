@@ -1,6 +1,7 @@
 <?php
 
     require 'Models/MessagesMod.php';
+    require 'Models/UsersMod.php';
     require 'Models/GameTestDB/LoadGameTestDB.php';
 
     // Gestion Auteur pas verifier
@@ -30,6 +31,13 @@
         MessagesMod::deleteMsg($idMsg);
     } elseif (isset($_POST['GameTestDB'])) {
         GameTest::loadGameTest();
+    } elseif (isset($_POST['TestUserBD']) && isset($_POST['idUser'])) {
+        $id    = UsersMod::getId($_POST['idUser']);
+        $nom   = UsersMod::getNick($_POST['idUser']);
+        $mail  = UsersMod::getMail($_POST['idUser']);
+        $pwd   = UsersMod::getPwd($_POST['idUser']);
+        $admin = UsersMod::getAdmin($_POST['idUser']);
+        $dateI = UsersMod::getDate($_POST['idUser']);
     } else{
         echo 'erreur';
     }

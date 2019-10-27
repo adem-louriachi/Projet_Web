@@ -3,6 +3,16 @@
             <button name="GameTestDB" type="submit" value="ChargeGameTest">Charger le jeu de test</button><br/>
           </form>';
 
+
+echo '<form id="UserBD" method="post" action="ControllerVincentTestBD.php">
+            <label name="idUser">Id User</label>
+            <input name="idUser" type="text" required><br/>
+            <button name="TestUserBD" type="submit" value="ResultatUserBD">TestUserBD</button><br/>
+      </form>';
+
+
+
+
     echo '<div class="container black">
             <form id="register" method="post" action="ControllerVincentTestBD.php">
                 <label>AJOUT D\'UN MESSAGE</label><br/>
@@ -59,7 +69,7 @@
                 
                 <label name="idMsgS">Id Msg </label>
                 <input name="idMsgS" type="text" required><br/>
-                <button type="submit" value="Envoyer">Supprimer</button><br/>
+                <button type="submit" value="Envoyer">Supprimer</button><br/><br/><br/><br/>
             </form>
             
         </div>';

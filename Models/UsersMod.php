@@ -4,70 +4,122 @@ require 'Model.php';
 
 class UsersMod extends Model
 {
+    private $id;
     private $nick;
     private $mail;
     private $pwd;
     private $admin;
     private $date;
 
-    public function __construct($c_mail, $c_pwd, $c_nick)
-    {
+    public function __construct($c_nick, $c_mail, $c_pwd) {
+        $this->nick = $c_nick;
         $this->mail = $c_mail;
         $this->pwd = $c_pwd;
-        $this->nick = $c_nick;
+
+    }
+
+    public function insertUser($c_nick, $c_mail, $c_pwd){
+        if(!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/',$c_mail)) {
+            throw new Exception('Format de l\'email entré invalide');
+        } else {
+            $pdo = Model::connectBD();
+            $sql = 'INSERT INTO Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur) 
+                    VALUES (\''.$c_nick.'\',\''.$c_mail.'\',\''.password_hash($c_pwd,PASSWORD_BCRYPT).'\', 0';
+            Model::executeQuery($pdo,$sql);
+
+            $sql = 'SELECT * FROM Utilisateurs WHERE Nom = \''.$c_nick.'\'';
+            $dataUser = Model::executeQuery($pdo,$sql);
+
+            $this->id    = $dataUser['IdUtilisateur'];
+            $this->nick  = $dataUser['Nom'];
+            $this->mail  = $dataUser['Mail'];
+            $this->pwd   = $dataUser['MotDePasse'];
+            $this->admin = $dataUser['SuperUtilisateur'];
+            $this->date  = $dataUser['DateInscription'];
+        }
+    }
+
+    public function getProperties($idUser)
+    {
+        $pdo = Model::connectBD();
+        $sql = 'SELECT * FROM Utilisateurs WHERE IdUtilisateur = \''.$idUser.'\'';
+        $data = Model::executeQuery($pdo,$sql);
+        return $data;
+
+    }
+
+
+
+    public function getId($idUser)
+    {
+        $data = $this->getProperties($idUser);
+        return $data['IdUtilisateur'];
+    }
+
+
+    public function getMail($idUser)
+    {
+        $data = $this->getProperties($idUser);
+        return $data['Mail'];
+
+    }
+
+    public function setMail($idUser, $mail)
+    {
+        if(!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/',$mail)) {
+            throw new Exception('Format de l\'email entré invalide');
+        } else {
+            $pdo = ConnectBD();
+            $sql = 'UPDATE Utilisateurs SET Mail = \''.$mail.'\' WHERE IdUtilisateur = \''.$idUser.'\'';
+            Model::executeQuery($pdo, $sql);
+        }
+    }
+
+    public function getPwd($idUser)
+    {
+        $data = $this->getProperties($idUser);
+        return $data['MotDePasse'];
+    }
+
+    public function setPwd($idUser, $newPwd)
+    {
         $pdo = ConnectBD();
-        $pdo->query("INSERT INTO Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur, DateInscription) VALUES ($c_nick,$c_mail,md5($c_pwd), '0', date('l j F Y'))");
+        $sql = 'UPDATE Utilisateurs SET MotDePasse = \''.password_hash($newPwd,PASSWORD_BCRYPT).'\' WHERE IdUtilisateur = \''.$idUser.'\'';
+        Model::executeQuery($pdo, $sql);
+        $this->pwd = $newPwd;
     }
 
-    public function getMail()
+    public function getNick($idUser)
     {
-        return $this->mail;
+        $data = $this->getProperties($idUser);
+        return $data['Nom'];
     }
 
-    public function setMail($mail)
+    public function getAdmin($idUser)
     {
-        $pdo = ConnectBD();
-        $pdo->query("UPDATE Utilisateurs SET Mail := $mail) WHERE Nom = $this->nick");
+        $data = $this->getProperties($idUser);
+        return $data['SuperUtilisateur'];
     }
 
-    public function getPwd()
-    {
-        return $this->pwd;
-    }
-
-    public function setPwd($newPwd)
+    public function setAdmin($idUser, $admin)
     {
         $pdo = ConnectBD();
-        $pdo->query("UPDATE Utilisateurs SET MotDePasse := md5($newPwd) WHERE Nom = $this->nick");
+        $sql = 'UPDATE Utilisateurs SET SuperUtilisateur = \''.$admin.'\' WHERE IdUtilisateur = \''.$idUser.'\'';
+        Model::executeQuery($pdo, $sql);
+        $this->admin = $admin;
     }
 
-    public function getNick()
-    {
-        return $this->nick;
-    }
-
-    public function getAdmin()
-    {
-        return $this->admin;
-    }
-
-    public function setAdmin($admin)
-    {
-        $pdo = ConnectBD();
-        $pdo->query("UPDATE Utilisateurs SET SuperUtilisateur := $admin WHERE Nom = $this->nick");
-    }
-
-    function forgetPwd()
+    function forgetPwd($idUser)
     {
         $newPwd = uniqid(); //mot de passe aléatoire
-        $pdo = ConnectBD();
-        $pdo->query("UPDATE Utilisateurs SET MotDePasse := md5($newPwd) WHERE Nom = $this->nick");
+        $this->setPwd($idUser, $newPwd);
         return $newPwd;
     }
 
-    public function getDate()
+    public function getDate($idUser)
     {
-        return $this->date;
+        $data = $this->getProperties();
+        return $data['DateInscription'];
     }
 
 }

@@ -49,16 +49,16 @@
 
         public function getIdAuthorsForMsg($author, $idMsg){
             $pdo = Model::connectBD();
-            $sql = 'SELECT IdUtilisateur FROM Auteur WHERE IdMessage = \''.$idMsg.'\' AND IdUtilisateur = \''.$author.'\'';
+            $sql = 'SELECT Auteur FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\' AND IdUtilisateur = \''.$author.'\'';
             $authors = Model::executeQuery($pdo,$sql);
 
             return $authors;
         }
 
-        public function addAuthor($idAuthor, $idMsg)
+        public function addSectionMessage($idAuthor, $idMsg, $txtSection)
         {
             $pdo = Model::connectBD();
-            $sqlAuthors = 'INSERT INTO Auteur (IdUtilisateur, IdMessage) VALUES (\''.$idAuthor.'\', \''.$idMsg.'\')';
+            $sqlAuthors = 'INSERT INTO SectionMessage (IdMessage, Auteur, TextSection) VALUES (\''.$idMsg.'\', \''.$idAuthor.'\', \''.$txtSection.'\')';
             Model::executeQuery($pdo,$sqlAuthors);
         }
 
@@ -69,12 +69,14 @@
 
             $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
             $idMsgBD = Model::executeQuery($pdo,$sqlRecupIdMessage);
-            $this->addAuthor($this->authors, $this->idMsg);
 
 
             $this->idMsg = $idMsgBD['IdMessage'];
             $this->dateMsg = $this->getDateMsg();
             $this->stateMsg = true;
+
+            $this->addSectionMessage($this->authors, $this->idMsg,$this->textMsg);
+
         }
 
         public function updateMsg($idMsg, $author, $textMsg, $stateMsg){
@@ -87,13 +89,13 @@
             } elseif (!self::getState($idMsg)){
                 throw new Exception('Impossible d\'ecrire dans un message cloturé');
             } else {
+                self::addSectionMessage($author, $idMsg,$textMsg);
+
                 $msgBD = self::getTxt($idMsg);
                 $textMsg =$msgBD['TextMessage'] . ' ' . $textMsg;
 
                 $sql = 'UPDATE Message SET TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\', Date = \'' . date('Y-m-d H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
                 Model::executeQuery($pdo, $sql);
-
-                self::addAuthor($author, $idMsg);
             }
         }
 

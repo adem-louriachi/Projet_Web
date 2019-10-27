@@ -25,7 +25,7 @@
   },
   {
     "IdDiscussion": 5,
-    "EstOuvert": 0,
+    "EstOuvert": 1,
     "Createur": 6,
     "NomDiscussion": "Les musiques"
   },
@@ -37,13 +37,13 @@
   },
   {
     "IdDiscussion": 7,
-    "EstOuvert": 1,
+    "EstOuvert": 0,
     "Createur": 7,
     "NomDiscussion": "Les jambons contre attaquent"
   },
   {
     "IdDiscussion": 8,
-    "EstOuvert": 0,
+    "EstOuvert": 1,
     "Createur": 6,
     "NomDiscussion": "Les parodies"
   },
@@ -55,7 +55,7 @@
   },
   {
     "IdDiscussion": 10,
-    "EstOuvert": 0,
+    "EstOuvert": 1,
     "Createur": 6,
     "NomDiscussion": "Pronostics sportif"
   }
