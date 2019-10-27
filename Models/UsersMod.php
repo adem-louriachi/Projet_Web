@@ -118,7 +118,7 @@ class UsersMod extends Model
 
     public function getDate($idUser)
     {
-        $data = $this->getProperties();
+        $data = $this->getProperties($idUser);
         return $data['DateInscription'];
     }
 
