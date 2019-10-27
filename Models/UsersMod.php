@@ -52,14 +52,14 @@ class UsersMod extends Model
 
     public function getId($idUser)
     {
-        $data = $this->getProperties($idUser);
+        $data = self::getProperties($idUser);
         return $data['IdUtilisateur'];
     }
 
 
     public function getMail($idUser)
     {
-        $data = $this->getProperties($idUser);
+        $data =  self::getProperties($idUser);
         return $data['Mail'];
 
     }
@@ -77,7 +77,7 @@ class UsersMod extends Model
 
     public function getPwd($idUser)
     {
-        $data = $this->getProperties($idUser);
+        $data = self::getProperties($idUser);
         return $data['MotDePasse'];
     }
 
@@ -91,13 +91,13 @@ class UsersMod extends Model
 
     public function getNick($idUser)
     {
-        $data = $this->getProperties($idUser);
+        $data = self::getProperties($idUser);
         return $data['Nom'];
     }
 
     public function getAdmin($idUser)
     {
-        $data = $this->getProperties($idUser);
+        $data = self::getProperties($idUser);
         return $data['SuperUtilisateur'];
     }
 
@@ -112,13 +112,13 @@ class UsersMod extends Model
     function forgetPwd($idUser)
     {
         $newPwd = uniqid(); //mot de passe aléatoire
-        $this->setPwd($idUser, $newPwd);
+        self::setPwd($idUser, $newPwd);
         return $newPwd;
     }
 
     public function getDate($idUser)
     {
-        $data = $this->getProperties($idUser);
+        $data = self::getProperties($idUser);
         return $data['DateInscription'];
     }
 
