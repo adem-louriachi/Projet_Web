@@ -45,12 +45,10 @@ class UsersMod extends Model
     public function getProperties()
     {
         $pdo = Model::connectBD();
-        echo 'Cette <br/>';
-        $sql = 'SELECT * FROM Utilisateurs WHERE IdUtilisateur = \''.$this->id.'\'';
-        echo '<br/>Requete m\'emmerde <br/>';
+        $id = $this->id;
+        $sql = 'SELECT * FROM Utilisateurs WHERE IdUtilisateur = \''.$id.'\'';
         $data = Model::executeQuery($pdo,$sql);
         return $data;
-
     }
 
 
