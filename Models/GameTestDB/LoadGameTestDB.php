@@ -35,7 +35,7 @@
             }
 
             $sqlTest = 'SELECT MAX(LENGTH(TextMessage)) FROM Message';
-            $nb = Model::executeQuery($pdo,$sqlTest);
+            $nb['MAX(LENGTH(TextMessage))'] = Model::executeQuery($pdo,$sqlTest);
             echo '<br/><br/><br/><br/>'.$nb;
         }
     }
