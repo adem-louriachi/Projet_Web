@@ -24,5 +24,14 @@
                         VALUES (\'' . $row['IdDiscussion'] . '\', \'' . $row['EstOuvert'] . '\', \'' . $row['Createur'] . '\', \'' . $row['NomDiscussion'] . '\')';
                 Model::executeQuery($pdo,$sql);
             }
+
+            // Insertion des messages
+            $msgData = file_get_contents( __DIR__.'/MessageDB.json');
+            $msgArray = json_decode($msgData, true);
+            foreach ($msgArray as $row) {
+                $sql = 'INSERT INTO Discussion (IdMessage, IdDisDuMsg, TextMessage, Date, EstOuvert) 
+                        VALUES (\'' . $row['IdMessage'] . '\', \'' . $row['IdDisDuMsg'] . '\', \'' . $row['TextMessage'] . '\', \'' . $row['Date'] . '\', \'' . $row['EstOuvert'] . '\')';
+                Model::executeQuery($pdo,$sql);
+            }
         }
     }
