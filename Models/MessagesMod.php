@@ -96,7 +96,7 @@
 
         public function deleteMsg($idMsg) {
             $pdo = Model::connectBD();
-            $sqlAuthor = 'DELETE FROM Auteur WHERE IdMessage = \''.$idMsg.'\'';
+            $sqlAuthor = 'DELETE FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\'';
             Model::executeQuery($pdo,$sqlAuthor);
             $sql = 'DELETE FROM Message WHERE IdMessage = \''.$idMsg.'\'';
             Model::executeQuery($pdo,$sql);
