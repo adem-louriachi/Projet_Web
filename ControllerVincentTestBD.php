@@ -10,9 +10,9 @@
         $author  = $_POST['author'];
 
         $message = new MessagesMod($idDis, $textMsg, $author);
+        $message->insertMsg();
         $texte =  $message->getTxt(109);
         echo $texte.'<br/>';
-        $message->insertMsg();
 
     }elseif (isset($_POST['idMsg']) && isset($_POST['MessageU']) && isset($_POST['authorU']) && isset($_POST['etatU'])){
         $idMsg   = $_POST['idMsg'];
