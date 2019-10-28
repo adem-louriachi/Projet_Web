@@ -6,9 +6,15 @@ if (isset($_POST['nick']) && $_POST['nick'] != '' && isset($_POST['email']) && $
     $pwdconf = htmlspecialchars($_POST['pwdconf']);
 
     if ($pwd != $pwdconf) {  // Si le premier mdp ne correspond pas au second
+
+        $_POST['error'] = 'Les mots de passe ne sont pas les mêmes';
+        header('/?ctrl=Form&action=register');
+    }
+    else {
         $_SESSION['email'] = $email; // Dans une $_SESSION pour que RegisterView puisse y accéder
         $_SESSION['nick'] = $nick;
-        $_POST['error'] = 'Les mots de passe ne sont pas les mêmes';
-        header('/?ctrl=User?action=register');
+        $user = new UsersMod($email, $pwd, $nick);
+        header('Location: ../Views/UsersView.php');
+
     }
 }
