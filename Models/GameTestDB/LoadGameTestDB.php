@@ -12,7 +12,7 @@
             $utilisateurArray = json_decode($utilisateurData, true);
             foreach ($utilisateurArray as $row) {
                 $sql = 'INSERT INTO Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur, IdUtilisateur, DateInscription) 
-                        VALUES (\'' . $row['Nom'] . '\', \'' . $row['Mail'] . '\', \'' . $row['MotDePasse'] . '\', \'' . $row['SuperUtilisateur'] . '\', \'' . $row['IdUtilisateur'] . '\', \'' . $row['DateInscription'] . '\')';
+                        VALUES (\'' . addcslashes($row['Nom'],'\'') . '\', \'' . $row['Mail'] . '\', \'' . $row['MotDePasse'] . '\', \'' . $row['SuperUtilisateur'] . '\', \'' . $row['IdUtilisateur'] . '\', \'' . $row['DateInscription'] . '\')';
                 Model::executeQuery($pdo,$sql);
             }
 
@@ -21,7 +21,7 @@
             $discussionArray = json_decode($discussionData, true);
             foreach ($discussionArray as $row) {
                 $sql = 'INSERT INTO Discussion (IdDiscussion, EstOuvert, Createur, NomDiscussion) 
-                        VALUES (\'' . $row['IdDiscussion'] . '\', \'' . $row['EstOuvert'] . '\', \'' . $row['Createur'] . '\', \'' . $row['NomDiscussion'] . '\')';
+                        VALUES (\'' . $row['IdDiscussion'] . '\', \'' . $row['EstOuvert'] . '\', \'' . $row['Createur'] . '\', \'' . addcslashes($row['NomDiscussion'],'\'') . '\')';
                 Model::executeQuery($pdo,$sql);
             }
 

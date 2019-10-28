@@ -76,7 +76,7 @@
 
         public function insertMsg(){
             $pdo = Model::connectBD();
-            $sql = 'INSERT INTO Message (IdDisDuMsg, TextMessage, EstOuvert) VALUES (\''.$this->idDis.'\', \''.$this->textMessage.'\', 1)';
+            $sql = 'INSERT INTO Message (IdDisDuMsg, TextMessage, EstOuvert) VALUES (\''.$this->idDis.'\', \''.addcslashes($this->textMessage,'\'').'\', 1)';
             Model::executeQuery($pdo,$sql);
 
             $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
@@ -107,7 +107,7 @@
                 $msgBD = self::getTxt($idMsg);
                 $textMsg =$msgBD['TextMessage'] . ' ' . $textMsg;
 
-                $sql = 'UPDATE Message SET TextMessage = \'' . $textMsg . '\', EstOuvert = \'' . $stateMsg . '\', Date = \'' . date('Y-m-d H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
+                $sql = 'UPDATE Message SET TextMessage = \'' . addcslashes($textMsg,'\'') . '\', EstOuvert = \'' . $stateMsg . '\', Date = \'' . date('Y-m-d H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
                 Model::executeQuery($pdo, $sql);
             }
         }
