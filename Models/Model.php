@@ -9,8 +9,6 @@ abstract class Model
             // Connexion à la base de donnee
             $dsn = 'mysql:host=mysql-freenote-4randoms.alwaysdata.net;dbname=freenote-4randoms_bd';
             $pdo = new PDO($dsn, '191395', 'les4randoms');
-
-            echo 'connection OK <br/>';
             return $pdo;
 
         } catch (PDOException $e) {
@@ -30,8 +28,7 @@ abstract class Model
                 $resultat = $pdo->prepare($sql); // requête préparée
                 $resultat->execute($cond);
             }
-            $row = $resultat->fetch(PDO::FETCH_ASSOC);
-            echo $sql . '<br/>';
+            $row = $resultat->fetch();
             return $row;
         } catch (PDOException $e) {
             // Affichage de l'erreur
