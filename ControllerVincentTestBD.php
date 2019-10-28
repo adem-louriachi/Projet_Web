@@ -10,7 +10,7 @@
         $author  = $_POST['author'];
 
         $message = new MessagesMod($idDis, $textMsg, $author);
-        $texte =  $message->getTxt($message->getIdMsg());
+        $texte =  $message->getTxt(109);
         echo $texte.'<br/>';
         $message->insertMsg();
 
