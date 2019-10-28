@@ -98,7 +98,7 @@
             } else {
                 self::addSectionMessage($author, $idMsg,$textMsg);
 
-                $msgBD = $this->getTxt($this->getIdMsg());
+                $msgBD = self::getTxt(self::getIdMsg());
                 $textMsg =$msgBD['TextMessage'] . ' ' . $textMsg;
 
                 $sql = 'UPDATE Message SET TextMessage = \'' . addcslashes($textMsg,'\'') . '\', EstOuvert = \'' . $stateMsg . '\', Date = \'' . date('Y-m-d H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
