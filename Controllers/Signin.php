@@ -4,24 +4,16 @@
 
     if (isset($_POST['login'],$_POST['pwd']))
     {
-        $pwd = getPwdBD($_POST['login']);
-
-
-        if ($nick == $_POST['login'] &&  $pwd == md5($_POST['pwd']))
+        $user = new UsersMod;
+        if ($user->testLoginPwd($_POST['login'], $_POST['pwd']))
         {
             session_start();
             $_SESSION['login'] = $_POST['login'];
-            $_SESSION['pwd'] = md5($_POST['login']);
-            header('Location: ../Views/UsersView.php');
-        }
-        else if ($nick == $_POST['login'] && $pwd != md5($_POST['pwd']))
-        {
-            //message erreur
-            header('Location: ../Views/SigninView.php');
+            $_SESSION['pwd'] = $_POST['pwd'];
+            header('location: Home.php');
         }
         else
         {
-            //message erreur
-            header('Location: ../Views/SigninView.php');
+            header('location: ../Views/SigninView.php');
         }
     }
