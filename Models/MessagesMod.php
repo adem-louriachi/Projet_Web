@@ -89,7 +89,7 @@
 
         public function updateMsg($idMsg, $author, $textMsg, $stateMsg){
             $pdo = Model::connectBD();
-            $sqlSearchAuthor = 'SELECT IdUtilisateur FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\' AND IdUtilisateur = \''.$idMsg.'\'';
+            $sqlSearchAuthor = 'SELECT Auteur FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\' AND IdUtilisateur = \''.$idMsg.'\'';
             Model::executeQuery($pdo, $sqlSearchAuthor);
 
             if(self::getIdAuthorsForMsg($author, $idMsg)){
