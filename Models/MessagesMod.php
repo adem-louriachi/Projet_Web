@@ -75,23 +75,18 @@
         }
 
         public function insertMsg(){
-            ini_set('memory_limit', 2048);
-            echo ini_get('memory_limit');
             $pdo = Model::connectBD();
             $sql = 'INSERT INTO Message (IdDisDuMsg, EstOuvert) VALUES ('.$this->idDis.', 1)';
-            echo $sql . '<br/>';
             Model::executeQuery($pdo,$sql);
 
             $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
-            echo $sqlRecupIdMessage. '<br/>';
             $idMsgBD = Model::executeQuery($pdo,$sqlRecupIdMessage);
-            echo $idMsgBD['IdMessage']. '<br/>';
+            $this->addSectionMessage($this->authors, $this->idMsg,$this->textMsg);
 
             $this->idMsg = $idMsgBD['IdMessage'];
             $this->dateMsg = $this->getDateMsg();
             $this->stateMsg = true;
 
-            $this->addSectionMessage($this->authors, $this->idMsg,$this->textMsg);
 
         }
 
