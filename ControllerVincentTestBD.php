@@ -65,6 +65,11 @@
             echo 'connexion reussi';
         }
 
-    } else{
+    } elseif (isset($_POST['Mail']) && isset($_POST['ForgetMDP'])) {
+        $mail   = $_POST['Mail'];
+        $newPwd = UsersMod::forgetPwd($mail);
+        echo $newPwd;
+        
+    }else{
         echo 'erreur';
     }

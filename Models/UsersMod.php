@@ -139,7 +139,7 @@ class UsersMod extends Model
 
     function forgetPwd($mail)
     {
-        //mot de passe aléatoire
+        //generation mot de passe aléatoire
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $newPwd = '';
 
@@ -148,7 +148,7 @@ class UsersMod extends Model
             $newPwd .= $characters[$index];
         }
 
-        for ($i = 0; $i < 15; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             for ($i = 0; $i < strlen($newPwd)-1; $i++) {
                 if ( (is_int($newPwd[$i])&& is_int($newPwd[$i+1]))){
                     $newPwd[$i] = random_int(0,9);
@@ -158,10 +158,24 @@ class UsersMod extends Model
         }
         //fin generation mot de passe aléatoire
 
-        $pdo = ConnectBD();
-        $sql = 'UPDATE Utilisateurs SET MotDePasse = \''.password_hash($newPwd,PASSWORD_BCRYPT).'\' WHERE Mail = \''.$mail.'\'';
-        Model::executeQuery($pdo, $sql);
-        return $newPwd;
+        try{
+            if(!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/',$mail)) {
+                throw new Exception('Format de l\'email entré invalide');
+            }
+
+            $pdo = ConnectBD();
+            $sql = 'SELECT * FROM Utilisateurs WHERE Mail = \''.$mail.'\'';
+            $data = Model::executeQuery($pdo, $sql);
+
+            if (empty($data)) {
+                throw new Exception('Mail inexistant');
+            }
+            $sql = 'UPDATE Utilisateurs SET MotDePasse = \''.password_hash($newPwd,PASSWORD_BCRYPT).'\' WHERE Mail = \''.$mail.'\'';
+            Model::executeQuery($pdo, $sql);
+            return $newPwd;
+        } catch (Exception $e){
+            echo 'Erreur : '.$e->getMessage();
+        }
     }
 
     public function getDate()

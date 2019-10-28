@@ -34,9 +34,20 @@ echo '<div class="container black">
                 <input name="Identifiant" type="text" required><br/>
                 
                 <label name="Pwd">Mot de Passe</label>
-                <input name="Pwd" type="text" required><br/>
+                <input name="Pwd" type="password" required><br/>
                 
                 <button name="Connexion" type="submit" value="Envoyer">Connexion</button><br/>
+            </form>
+            
+            
+            <form id="register" method="post" action="ControllerVincentTestBD.php">
+                <label>MOT DE PASSE OUBLIE</label><br/>
+            
+                
+                <label name="Mail">Mail </label>
+                <input name="Mail" type="text" required><br/>
+                
+                <button name="ForgetMDP" type="submit" value="Envoyer">Connexion</button><br/>
             </form>
       </div>';
 
