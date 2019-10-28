@@ -82,7 +82,7 @@
             $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
             echo $sqlRecupIdMessage;
             $idMsgBD = Model::executeQuery($pdo,$sqlRecupIdMessage);
-            echo $idMsgBD;
+            echo $idMsgBD['IdMessage'];
 
             $this->idMsg = $idMsgBD['IdMessage'];
             $this->dateMsg = $this->getDateMsg();
