@@ -5,7 +5,7 @@ ob_start();
 	<p>Nom d'utilisateur : <? $user->getNick(); ?></p>
 	<p>Email : <? $user->getMail(); ?></p>
 	<p>Date d'inscription : <? $user->getDate(); ?>
-	<p>Super aministrateur : <? if ($user->getAdmin() == 0){ echo "non"} else { echo "oui"}; ?>
+	<p>Super aministrateur : <? if ($user->getAdmin() == 0){ echo "non";} else { echo "oui";}; ?>
 	<form id="newMail" method="post" action="../Controllers/User.php">
 	    <label name="email">Changer d'adresse e-mail</label>
 	        <input name="email" type="email">
