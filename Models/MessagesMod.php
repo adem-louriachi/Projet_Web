@@ -69,8 +69,9 @@
         public function addSectionMessage($idAuthor, $idMsg, $txtSection)
         {
             $pdo = Model::connectBD();
-            $sqlAuthors = 'INSERT INTO SectionMessage (IdMessage, Auteur, TextSection) VALUES (\''.$idMsg.'\', \''.$idAuthor.'\', \''.$txtSection.'\')';
-            Model::executeQuery($pdo,$sqlAuthors);
+            $sql = 'INSERT INTO SectionMessage (IdMessage, Auteur, TextSection) VALUES (\''.$idMsg.'\', \''.$idAuthor.'\', \''.$txtSection.'\')';
+            echo $sql;
+            Model::executeQuery($pdo,$sql);
         }
 
         public function insertMsg(){
