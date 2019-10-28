@@ -82,6 +82,9 @@
             $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
             $idMsgBD = Model::executeQuery($pdo,$sqlRecupIdMessage);
 
+
+            echo memory_get_usage();
+
             $this->idMsg = $idMsgBD['IdMessage'];
             $this->dateMsg = $this->getDateMsg();
             $this->stateMsg = true;
