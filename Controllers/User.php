@@ -15,6 +15,6 @@ class User
     public function signout()
     {
         session_destroy();
-        header('location: Home.php');
+        header('location: Controllers/Home.php');
     }
 }
