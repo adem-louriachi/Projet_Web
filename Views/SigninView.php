@@ -1,18 +1,14 @@
 <?php
-    session_start();
-    ob_start();
-    $style = 'SigninView.css';
+$style = 'Views/HomeView.css';
+ob_start(); 
 ?>
-<div class="container black">
-    <form id="signin" method="post" action="../Controllers/Signin.php">
-        <label name="email">Adresse e-mail</label>
-            <input name="email" type="email">
-        <label name="pwd">Mot de passe</label>
-            <input name="pwd" type="password">
-        <input id="submit" type="submit" value="Connexion">
-    </form>
-</div>
+    <div class="container black">
+        <form id="signin" method="post" action="/?ctrl=User&action=register">
+            <label name="nick">Pseudo</label>
+                <input name="nick" type="text" placeholder="FrenchCookie">
+        </form>
+    </div>
 <?php
-    $content = ob_get_clean();
-    require '../Views/TemplateView.php'
+$content = ob_get_clean();
+require 'Views/TemplateView.php';
 ?>
