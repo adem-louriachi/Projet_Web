@@ -1,7 +1,7 @@
 <?php
 session_start();
-ob_start();
 $style = 'Views/UsersView.css';
+ob_start();
 ?>
 <p>Nom d'utilisateur : <? $user->getNick(); ?></p>
 <p>Email : <? $user->getMail(); ?></p>

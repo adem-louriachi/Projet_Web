@@ -4,8 +4,7 @@
 
     if (isset($_POST['login'],$_POST['pwd']))
     {
-        $user = new UsersMod;
-        if ($user->testLoginPwd($_POST['login'], $_POST['pwd']))
+        if (testLoginPwd($_POST['login'], $_POST['pwd']))
         {
             session_start();
             $_SESSION['login'] = $_POST['login'];
