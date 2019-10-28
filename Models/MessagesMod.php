@@ -70,17 +70,21 @@
         }
 
         public function updateMsg($idMsg, $author, $textMsg, $stateMsg) {
-            $pdo = Model::connectBD();
-            if(self::getIdAuthorsForMsg($author, $idMsg)){
-                throw new Exception('Vous avez deja ecrit dans ce message, impossible de réecrire dans ce dernier');
-            } elseif (!self::getState($idMsg)){
-                throw new Exception('Impossible d\'ecrire dans un message cloturé');
-            } else {
-                self::addSectionMessage($author, $idMsg,$textMsg);
-                $msgBD = self::getTxt($idMsg);
-                echo $msgBD;
-                $sql = 'UPDATE Message SET EstOuvert = \'' . $stateMsg . '\', Date = \'' . date('Y-m-d H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
-                Model::executeQuery($pdo, $sql);
+            try{
+                $pdo = Model::connectBD();
+                if(self::getIdAuthorsForMsg($author, $idMsg)){
+                    throw new Exception('Vous avez deja ecrit dans ce message, impossible de réecrire dans ce dernier');
+                } elseif (!self::getState($idMsg)){
+                    throw new Exception('Impossible d\'ecrire dans un message cloturé');
+                } else {
+                    self::addSectionMessage($author, $idMsg,$textMsg);
+                    $msgBD = self::getTxt($idMsg);
+                    echo $msgBD;
+                    $sql = 'UPDATE Message SET EstOuvert = \'' . $stateMsg . '\', Date = \'' . date('Y-m-d H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
+                    Model::executeQuery($pdo, $sql);
+                }
+            } catch (Exception $e){
+                echo $e->getMessage();
             }
         }
 
