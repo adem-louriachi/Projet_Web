@@ -69,7 +69,7 @@
         $mail   = $_POST['Mail'];
         $newPwd = UsersMod::forgetPwd($mail);
         echo $newPwd;
-        
+
     }else{
         echo 'erreur';
     }

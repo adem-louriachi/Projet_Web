@@ -163,7 +163,7 @@ class UsersMod extends Model
                 throw new Exception('Format de l\'email entré invalide');
             }
 
-            $pdo = ConnectBD();
+            $pdo = Model::ConnectBD();
             $sql = 'SELECT * FROM Utilisateurs WHERE Mail = \''.$mail.'\'';
             $data = Model::executeQuery($pdo, $sql);
 
