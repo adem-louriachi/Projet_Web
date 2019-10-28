@@ -60,7 +60,7 @@
             $sql = 'SELECT Auteur FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\' AND IdUtilisateur = \''.$author.'\'';
             $authors = Model::executeQuery($pdo,$sql);
 
-            return $authors;
+            return $authors['Auteur'];
         }
 
         public function addSectionMessage($idAuthor, $idMsg, $txtSection)
