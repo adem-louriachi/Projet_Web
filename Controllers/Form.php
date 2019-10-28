@@ -32,19 +32,8 @@ class Form
     public function signin(){
         require 'AuthenticationCheck.php';
         $style = 'Views/HomeView.css';
-        ob_start(); 
-        ?>
-            <div class="container black">
-                <form id="signin" method="post" action="/?ctrl=Signin&action=signin">
-                    <label name="nick">Pseudo</label>
-                    <input name="nick" type="text" placeholder="FrenchCookie" required autofocus>
-                    <label name="pwd">Mot de passe</label>
-                    <input name="pwd" type="password" required>
-                    <button class="submit btn waves-effect waves-light" type="submit" >Se connecter<i
-                                class="material-icons right">send</i></button>
-                </form>
-            </div>
-        <?php
+        ob_start();
+        require 'Views/SigninView.php';
         $content = ob_get_clean();
         require 'Views/TemplateView.php';
     }
