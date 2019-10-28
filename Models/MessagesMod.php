@@ -79,9 +79,6 @@
             $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
             $idMsgBD = Model::executeQuery($pdo,$sqlRecupIdMessage);
 
-
-            echo memory_get_usage();
-
             $this->idMsg = $idMsgBD['IdMessage'];
             $this->dateMsg = $this->getDateMsg();
             $this->stateMsg = true;
@@ -92,7 +89,7 @@
 
         public function updateMsg($idMsg, $author, $textMsg, $stateMsg){
             $pdo = Model::connectBD();
-            $sqlSearchAuthor = 'SELECT IdUtilisateur FROM Auteur WHERE IdMessage = \''.$idMsg.'\' AND IdUtilisateur = \''.$idMsg.'\'';
+            $sqlSearchAuthor = 'SELECT IdUtilisateur FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\' AND IdUtilisateur = \''.$idMsg.'\'';
             Model::executeQuery($pdo, $sqlSearchAuthor);
 
             if(self::getIdAuthorsForMsg($author, $idMsg)){
@@ -102,11 +99,13 @@
             } else {
                 self::addSectionMessage($author, $idMsg,$textMsg);
 
-                $msgBD = self::getTxt($idMsg);
+                $msgBD = $this->getTxt($this->getIdMsg());
                 $textMsg =$msgBD['TextMessage'] . ' ' . $textMsg;
 
                 $sql = 'UPDATE Message SET TextMessage = \'' . addcslashes($textMsg,'\'') . '\', EstOuvert = \'' . $stateMsg . '\', Date = \'' . date('Y-m-d H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
                 Model::executeQuery($pdo, $sql);
+
+
             }
         }
 
