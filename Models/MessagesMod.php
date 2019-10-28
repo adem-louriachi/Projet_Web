@@ -89,9 +89,6 @@
 
         public function updateMsg($idMsg, $author, $textMsg, $stateMsg){
             $pdo = Model::connectBD();
-            $sqlSearchAuthor = 'SELECT Auteur FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\' AND IdUtilisateur = \''.$idMsg.'\'';
-            Model::executeQuery($pdo, $sqlSearchAuthor);
-
             if(self::getIdAuthorsForMsg($author, $idMsg)){
                 throw new Exception('Vous avez deja ecrit dans ce message, impossible de réecrire dans ce dernier');
             } elseif (!self::getState($idMsg)){
