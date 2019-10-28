@@ -15,6 +15,8 @@
             $this->stateMsg = true;
         }
 
+        public function getIdMsg() { return $this->idMsg; }
+
         public function getState($idMsg) {
             $pdo = Model::connectBD();
             $sqlmsgBD = 'SELECT EstOuvert FROM Message WHERE IdMessage = \''.$idMsg.'\'';
