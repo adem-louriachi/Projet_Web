@@ -1,7 +1,7 @@
 <?php
     session_start();
     ob_start();
-    $style = 'HomeView.css';
+    $style = 'SigninView.css';
 ?>
 <div class="container black">
     <form id="signin" method="post" action="../Controllers/Signin.php">

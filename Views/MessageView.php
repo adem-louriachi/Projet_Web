@@ -1,6 +1,6 @@
 <?php
 ob_start();
-$style = 'HomeView.css';
+$style = 'MessageView.css';
 ?>
 
 <title>
