@@ -81,11 +81,11 @@
 
             $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
             $idMsgBD = Model::executeQuery($pdo,$sqlRecupIdMessage);
-            $this->addSectionMessage($this->authors, $this->idMsg,$this->textMsg);
 
             $this->idMsg = $idMsgBD['IdMessage'];
             $this->dateMsg = $this->getDateMsg();
             $this->stateMsg = true;
+            $this->addSectionMessage($this->authors, $this->idMsg,$this->textMsg);
 
 
         }
