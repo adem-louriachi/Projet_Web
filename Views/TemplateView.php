@@ -23,19 +23,16 @@
 <body>
 
 <header> <!-- en-tête -->
-        <nav>
-            <div class="nav-wrapper black">
-                <a href="/"><img class="brand-logo nav-wrapper" alt="Logo de FreeNote" src="https://image.noelshack.com/fichiers/2019/41/4/1570720588-free-2.png"></a>
-                <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <a href="/"><img class="brand-logo nav-wrapper" alt="Logo de FreeNote" src="https://image.noelshack.com/fichiers/2019/41/4/1570720588-free-2.png"></a>
+        <nav class="nav-wrapper black">>
+                <a href="#" class="sidenav-trigger" data-target="mobile-links">
+                    <i class="material-icons">menu</i>
+                </a>
                 <ul class="right hide-on-med-and-down">
                     <?= $auth?>
                 </ul>
-            </div>
         </nav>
-
-
-
-    <ul class="sidenav" id="mobile-nav">
+    <ul class="sidenav" id="mobile-links">
         <?= $auth?>
     </ul>
 
@@ -53,6 +50,14 @@
 
 </footer>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+        })
+    </script>
 </body>
 
 </html>
