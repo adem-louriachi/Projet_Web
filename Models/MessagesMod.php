@@ -38,13 +38,10 @@
             $pdo = Model::connectBD();
 
             $sqlmsgBD = 'SELECT TextSection FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\' ORDER BY Date ASC';
-            $msgBD =Model::executeQuery($pdo, $sqlmsgBD);
-            while ($msgBD) {
+            $resultat = $pdo->query($sqlmsgBD);
+            while ($row = $resultat->fetch()) {
                 $message .= $msgBD['TextSection'];
             }
-
-
-
             return $message;
         }
 
