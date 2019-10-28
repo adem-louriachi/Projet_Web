@@ -79,7 +79,7 @@
 /*            $sql = 'INSERT INTO Message (IdDisDuMsg, EstOuvert) VALUES ('.$this->idDis.', 1)';
             echo $sql . '<br/>';
             Model::executeQuery($pdo,$sql);
-*/            echo ini_set('memory_limit',512).'<br/>';
+*/          ini_set('memory_limit',512);
 
             $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
             echo $sqlRecupIdMessage. '<br/>';
