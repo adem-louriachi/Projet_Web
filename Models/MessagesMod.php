@@ -1,47 +1,36 @@
     <?php
     require 'Model.php';
-//    require 'Controllers/Messages.php';
-
     class MessagesMod extends Model{
-        private $idMsg;    // autoincremente lors de l'ajout dans la BD
-        private $idDis;    // id discussion a qui appartient msg
-        private $dateMsg;  // current_timestamp dans BD
+        private $idMsg;
+        private $idDis;
+        private $dateMsg;
         private $textMsg;
-        private $stateMsg; // bool
+        private $stateMsg;
         private $authors;
 
-        public function __construct($idDis, $textMsg, $authors){
-
+        public function __construct($idDis, $textMsg, $authors) {
             $this->idDis = $idDis;
-
             $this->textMsg = $textMsg;
             $this->authors = $authors;
             $this->stateMsg = true;
         }
 
-        public function getState($idMsg){
+        public function getState($idMsg) {
             $pdo = Model::connectBD();
-
             $sqlmsgBD = 'SELECT EstOuvert FROM Message WHERE IdMessage = \''.$idMsg.'\'';
             $msgBD =Model::executeQuery($pdo, $sqlmsgBD);
-
             return $msgBD['EstOuvert'];
         }
 
-        public function getTxt($idMsg){
+        public function getTxt($idMsg) {
             $message = '';
-            $pdo = Model::connectBD();
-
             $sqlmsgBD = 'SELECT TextSection FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\' ORDER BY Date ASC';
-            $resultat = Model::executeQuery($pdo, $sqlmsgBD);
-            while ($row = $resultat) {
-                $message .= $row['TextSection'];
-            }
+            $resultat = Model::executeQuery(Model::ConnectBD(), $sqlmsgBD);
+            while ($row = $resultat) { $message .= $row['TextSection']; }
             return $message;
         }
 
-        public function getDateMsg()
-        {
+        public function getDateMsg() {
             $pdo = Model::connectBD();
             $sql = 'SELECT Date FROM Message WHERE IdMessage = \''.$this->idMsg.'\'';
             $dateMsgBD = Model::executeQuery($pdo,$sql);
@@ -50,41 +39,32 @@
         }
 
 
-        public function getIdAuthorsForMsg($author, $idMsg){
+        public function getIdAuthorsForMsg($author, $idMsg) {
             $pdo = Model::connectBD();
             $sql = 'SELECT Auteur FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\' AND Auteur = \''.$author.'\'';
-            echo $sql.'<br/>';
             $authors = Model::executeQuery($pdo,$sql);
-            echo $sql.'<br/>';
-
             return $authors['Auteur'];
         }
 
-        public function addSectionMessage($idAuthor, $idMsg, $txtSection)
-        {
+        public function addSectionMessage($idAuthor, $idMsg, $txtSection) {
             $pdo = Model::connectBD();
             $sql = 'INSERT INTO SectionMessage (IdMessage, Auteur, TextSection) VALUES (\''.$idMsg.'\', \''.$idAuthor.'\', \''.addcslashes($txtSection,'\'').'\')';
-            echo $sql;
             Model::executeQuery($pdo,$sql);
         }
 
-        public function insertMsg(){
+        public function insertMsg() {
             $pdo = Model::connectBD();
             $sql = 'INSERT INTO Message (IdDisDuMsg, EstOuvert, TextMessage) VALUES ('.$this->idDis.', 1, \'Text mis dans SectionMessage\')';
             Model::executeQuery($pdo,$sql);
-
             $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
             $idMsgBD = Model::executeQuery($pdo,$sqlRecupIdMessage);
-
             $this->idMsg = $idMsgBD['IdMessage'];
             $this->dateMsg = $this->getDateMsg();
             $this->stateMsg = true;
             $this->addSectionMessage($this->authors, $this->idMsg,$this->textMsg);
-
-
         }
 
-        public function updateMsg($idMsg, $author, $textMsg, $stateMsg){
+        public function updateMsg($idMsg, $author, $textMsg, $stateMsg) {
             $pdo = Model::connectBD();
             if(self::getIdAuthorsForMsg($author, $idMsg)){
                 throw new Exception('Vous avez deja ecrit dans ce message, impossible de réecrire dans ce dernier');
@@ -92,26 +72,23 @@
                 throw new Exception('Impossible d\'ecrire dans un message cloturé');
             } else {
                 self::addSectionMessage($author, $idMsg,$textMsg);
-
                 $msgBD = self::getTxt($idMsg);
                 $textMsg =$msgBD['TextMessage'] . ' ' . $textMsg;
-
                 $sql = 'UPDATE Message SET TextMessage = \'' . addcslashes($textMsg,'\'') . '\', EstOuvert = \'' . $stateMsg . '\', Date = \'' . date('Y-m-d H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
                 Model::executeQuery($pdo, $sql);
             }
         }
 
-        public function closeMsg($idMsg){
+        public function closeMsg($idMsg) {
             $pdo = Model::connectBD();
             $sql = 'UPDATE Message SET EstOuvert = 0 WHERE IdMessage = \''.$idMsg.'\'';
             Model::executeQuery($pdo,$sql);
         }
 
-        public function deleteMsg($idMsg){
+        public function deleteMsg($idMsg) {
             $pdo = Model::connectBD();
             $sqlAuthor = 'DELETE FROM Auteur WHERE IdMessage = \''.$idMsg.'\'';
             Model::executeQuery($pdo,$sqlAuthor);
-
             $sql = 'DELETE FROM Message WHERE IdMessage = \''.$idMsg.'\'';
             Model::executeQuery($pdo,$sql);
         }
