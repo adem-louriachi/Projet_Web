@@ -27,8 +27,8 @@
             $message = '';
             $sqlmsgBD = 'SELECT TextSection FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\' ORDER BY Date ASC';
             $resultat = $pdo->query($sqlmsgBD);
-            while ($row = $resultat) {
-                $message = $message.$row['TextSection'];
+            while ($row = $resultat->fetch()) {
+                $message = $message.' '.$row['TextSection'];
             }
             return $message;
         }
