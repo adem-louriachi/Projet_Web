@@ -23,15 +23,18 @@
 <body>
 
 <header> <!-- en-tête -->
-    <a href="/"><img class="brand-logo nav-wrapper" alt="Logo de FreeNote" src="https://image.noelshack.com/fichiers/2019/41/4/1570720588-free-2.png"></a>
-        <nav class="nav-wrapper black">>
-            <a href="/"><img class="brand-logo nav-wrapper" alt="Logo de FreeNote" src="https://image.noelshack.com/fichiers/2019/41/4/1570720588-free-2.png"></a>
-            <a href="#" class="sidenav-trigger" data-target="mobile-links">
-                <i class="material-icons">menu</i>
-            </a>
-            <ul class="right hide-on-med-and-down">
-                <?= $auth?>
-            </ul>
+        <nav>
+            <div class="nav-wrapper black">
+                <a href="/">
+                    <img class="brand-logo nav-wrapper" alt="Logo de FreeNote" src="https://image.noelshack.com/fichiers/2019/41/4/1570720588-free-2.png">
+                </a>
+                <a href="#" class="sidenav-trigger" data-target="mobile-links">
+                    <i class="material-icons">menu</i>
+                </a>
+                <ul class="right hide-on-med-and-down">
+                    <?= $auth?>
+                </ul>
+            </div>
         </nav>
     <ul class="sidenav" id="mobile-links">
         <?= $auth?>
