@@ -57,7 +57,7 @@
 
         public function getIdAuthorsForMsg($author, $idMsg){
             $pdo = Model::connectBD();
-            $sql = 'SELECT Auteur FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\' AND IdUtilisateur = \''.$author.'\'';
+            $sql = 'SELECT Auteur FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\' AND Auteur = \''.$author.'\'';
             echo $sql.'<br/>';
             $authors = Model::executeQuery($pdo,$sql);
             echo $sql.'<br/>';
