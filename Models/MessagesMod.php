@@ -88,7 +88,10 @@
             $this->dateMsg = $this->getDateMsg();
             $this->stateMsg = true;
 
-            $this->addSectionMessage($this->authors, $this->idMsg,$this->textMsg);
+            $pdo = Model::connectBD();
+            $sql = 'INSERT INTO SectionMessage (IdMessage, Auteur, TextSection) VALUES (\''.$this->idMsg.'\', \''.$this->authors.'\', \''.$this->textMsg.'\')';
+            echo $sql;
+            Model::executeQuery($pdo,$sql);
 
         }
 
