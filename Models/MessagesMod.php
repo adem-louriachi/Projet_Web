@@ -19,11 +19,6 @@
             $this->stateMsg = true;
         }
 
-        public function getIdMsg()
-        {
-            return $this->idMsg;
-        }
-
         public function getState($idMsg){
             $pdo = Model::connectBD();
 
@@ -98,13 +93,11 @@
             } else {
                 self::addSectionMessage($author, $idMsg,$textMsg);
 
-                $msgBD = self::getTxt(self::getIdMsg());
+                $msgBD = self::getTxt($idMsg);
                 $textMsg =$msgBD['TextMessage'] . ' ' . $textMsg;
 
                 $sql = 'UPDATE Message SET TextMessage = \'' . addcslashes($textMsg,'\'') . '\', EstOuvert = \'' . $stateMsg . '\', Date = \'' . date('Y-m-d H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
                 Model::executeQuery($pdo, $sql);
-
-
             }
         }
 
