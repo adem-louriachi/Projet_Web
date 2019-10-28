@@ -10,9 +10,9 @@
         $author  = $_POST['author'];
 
         $message = new MessagesMod($idDis, $textMsg, $author);
+        $texte =  $message->getTxt($message->getIdMsg());
         $message->insertMsg();
-        echo $message->getTxt($message->getIdMsg());  // objet class MessagesMod could not converted to string  Faire fonction Show()
-        
+
     }elseif (isset($_POST['idMsg']) && isset($_POST['MessageU']) && isset($_POST['authorU']) && isset($_POST['etatU'])){
         $idMsg   = $_POST['idMsg'];
         $textMsg = $_POST['MessageU'];
