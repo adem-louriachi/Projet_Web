@@ -75,6 +75,7 @@
         }
 
         public function insertMsg(){
+            ini_set('memory_limit', 512);
             $pdo = Model::connectBD();
             $sql = 'INSERT INTO Message (IdDisDuMsg, EstOuvert) VALUES ('.$this->idDis.', 1)';
             echo $sql . '<br/>';
