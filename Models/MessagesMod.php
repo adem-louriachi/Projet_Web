@@ -19,6 +19,11 @@
             $this->stateMsg = true;
         }
 
+        public function getIdMsg()
+        {
+            return $this->idMsg;
+        }
+
         public function getState($idMsg){
             $pdo = Model::connectBD();
 
@@ -29,12 +34,18 @@
         }
 
         public function getTxt($idMsg){
+            $message = '';
             $pdo = Model::connectBD();
 
-            $sqlmsgBD = 'SELECT TextMessage FROM Message WHERE IdMessage = \''.$idMsg.'\'';
+            $sqlmsgBD = 'SELECT TextSection FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\' ORDER BY Date ASC';
             $msgBD =Model::executeQuery($pdo, $sqlmsgBD);
+            while ($msgBD) {
+                $message .= $msgBD['TextSection'];
+            }
 
-            return $msgBD;
+
+
+            return $message;
         }
 
         public function getDateMsg()
@@ -62,7 +73,7 @@
             Model::executeQuery($pdo,$sqlAuthors);
         }
 
-        public function InsertMsg(){
+        public function insertMsg(){
             $pdo = Model::connectBD();
             $sql = 'INSERT INTO Message (IdDisDuMsg, TextMessage, EstOuvert) VALUES (\''.$this->idDis.'\', \''.$this->textMessage.'\', 1)';
             Model::executeQuery($pdo,$sql);
