@@ -31,6 +31,7 @@
             foreach ($msgArray as $row) {
                 $sql = 'INSERT INTO Message (IdMessage, IdDisDuMsg, TextMessage, Date, EstOuvert) 
                         VALUES (\'' . $row['IdMessage'] . '\', \'' . $row['IdDisDuMsg'] . '\', \'' . $row['TextMessage'] . '\', \'' . $row['Date'] . '\', \'' . $row['EstOuvert'] . '\')';
+                echo $sql. '<br/>';
                 Model::executeQuery($pdo,$sql);
             }
         }
