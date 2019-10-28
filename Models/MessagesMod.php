@@ -76,10 +76,9 @@
 
         public function insertMsg(){
             $pdo = Model::connectBD();
-/*            $sql = 'INSERT INTO Message (IdDisDuMsg, EstOuvert) VALUES ('.$this->idDis.', 1)';
+            $sql = 'INSERT INTO Message (IdDisDuMsg, EstOuvert) VALUES ('.$this->idDis.', 1)';
             echo $sql . '<br/>';
             Model::executeQuery($pdo,$sql);
-*/ 
 
             $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
             echo $sqlRecupIdMessage. '<br/>';
