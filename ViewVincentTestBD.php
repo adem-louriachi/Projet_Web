@@ -12,7 +12,7 @@ echo '<form id="UserBD" method="post" action="ControllerVincentTestBD.php">
 
 echo '<div class="container black">
             <form id="register" method="post" action="ControllerVincentTestBD.php">
-                <label>AJOUT D\'UN USER</label><br/>
+                <label>REGISTER</label><br/>
                             
                 <label name="Nom">Nom User</label>
                 <input name="Nom" type="text" required><br/>
@@ -25,27 +25,19 @@ echo '<div class="container black">
                 
                 <button name="UserAdd" type="submit" value="Envoyer">Creer</button><br/>
             </form>
-    <!--        
+     
             <form id="register" method="post" action="ControllerVincentTestBD.php">
-                <label>UPDATE UN USER</label><br/>
+                <label>LOGIN</label><br/>
             
                 
-                <label name="idMsg">Id Msg de base </label>
-                <input name="idMsg" type="text" required><br/>
+                <label name="Identifiant">Login </label>
+                <input name="Identifiant" type="text" required><br/>
                 
-                <label name="MessageU">Message</label>
-                <input name="MessageU" type="text" required><br/>
+                <label name="Pwd">Mot de Passe</label>
+                <input name="Pwd" type="text" required><br/>
                 
-                <label name="authorU">Auteur</label>
-                <input name="authorU" type="text"><br/>
-                
-                <label name="etatU">Etat </label>
-                <input name="etatU" type="text"><br/>
-                
-                
-                <button type="submit" value="Envoyer">MISE A JOUR</button><br/>
+                <button name="Connexion" type="submit" value="Envoyer">Connexion</button><br/>
             </form>
-    -->
       </div>';
 
 

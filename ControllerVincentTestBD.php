@@ -43,19 +43,27 @@
         $mail = $_POST['Mail'];
         $pwd  = $_POST['Mdp'];
 
-        $message = new UsersMod($nom, $mail, $pwd);
-        $message->insertUser();
+        $user = new UsersMod($nom, $mail, $pwd);
+        $user->insertUser();
 
-        $data = $message->getProperties();
+        $data = $user->getProperties();
 
-        $id    = $message->getId();
-        $nom   = $message->getNick();
-        $mail  = $message->getMail();
-        $pwd   = $message->getPwd();
-        $admin = $message->getAdmin();
-        $dateI = $message->getDate();
+        $id    = $user->getId();
+        $nom   = $user->getNick();
+        $mail  = $user->getMail();
+        $pwd   = $user->getPwd();
+        $admin = $user->getAdmin();
+        $dateI = $user->getDate();
 
         echo $id .'<br/>'.$nom .'<br/>'.$mail .'<br/>'.$pwd .'<br/>'.$admin .'<br/>'.$dateI .'<br/>';
+
+    } elseif (isset($_POST['Identifiant']) && isset($_POST['Pwd'])) {
+        $identifiant   = $_POST['Identifiant'];
+        $pwd  = $_POST['Pwd'];
+
+        if(UsersMod::testLoginPwd()){
+            echo 'connexion reussi';
+        }
 
     } else{
         echo 'erreur';

@@ -18,6 +18,28 @@ class UsersMod extends Model
 
     }
 
+    public function testLoginPwd($identifiant, $pwd)
+    {
+        try {
+            $pdo = Model::connectBD();
+            if (preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $identifiant)) {
+                $sql = 'SELECT * FROM Utilisateurs WHERE Mail = \'' . $identifiant . '\'';
+            } else {
+                $sql = 'SELECT * FROM Utilisateurs WHERE Nom = \'' . $identifiant . '\'';
+            }
+            $data = Model::executeQuery($pdo, $sql);
+            if (empty($data)) {
+                throw new Exception('Identifiant incorrect');
+            } else if (!password_verify($pwd, $data['MotDePasse'])) {
+                throw new Exception('Mot de passe incorrect');
+            }
+            return true;
+        } catch (Exception $e) {
+            echo 'Erreur : '.$e->getMessage();
+        }
+    }
+
+
     public function insertUser(){
         if(!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/',$this->mail)) {
             throw new Exception('Format de l\'email entré invalide');
@@ -70,13 +92,13 @@ class UsersMod extends Model
 
     }
 
-    public function setMail($idUser, $mail)
+    public function setMail($mail)
     {
         if(!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/',$mail)) {
             throw new Exception('Format de l\'email entré invalide');
         } else {
             $pdo = ConnectBD();
-            $sql = 'UPDATE Utilisateurs SET Mail = \''.$mail.'\' WHERE IdUtilisateur = \''.$idUser.'\'';
+            $sql = 'UPDATE Utilisateurs SET Mail = \''.$mail.'\' WHERE IdUtilisateur = \''.$this->id.'\'';
             Model::executeQuery($pdo, $sql);
         }
     }
@@ -84,13 +106,13 @@ class UsersMod extends Model
     public function getPwd()
     {
         $data = $this->getProperties();
-        return $data['MotDePasse'];
+        return $data['MotDePasse']; // Password en bcrypt pour verifier log utiliser  password_verify ( $mdp_entrer_par_user , $mdpBD ) : bool
     }
 
-    public function setPwd($idUser, $newPwd)
+    public function setPwd($newPwd)
     {
         $pdo = ConnectBD();
-        $sql = 'UPDATE Utilisateurs SET MotDePasse = \''.password_hash($newPwd,PASSWORD_BCRYPT).'\' WHERE IdUtilisateur = \''.$idUser.'\'';
+        $sql = 'UPDATE Utilisateurs SET MotDePasse = \''.password_hash($newPwd,PASSWORD_BCRYPT).'\' WHERE IdUtilisateur = \''.$this->id.'\'';
         Model::executeQuery($pdo, $sql);
         $this->pwd = $newPwd;
     }
@@ -107,18 +129,38 @@ class UsersMod extends Model
         return $data['SuperUtilisateur'];
     }
 
-    public function setAdmin($idUser, $admin)
+    public function setAdmin($admin)
     {
         $pdo = ConnectBD();
-        $sql = 'UPDATE Utilisateurs SET SuperUtilisateur = \''.$admin.'\' WHERE IdUtilisateur = \''.$idUser.'\'';
+        $sql = 'UPDATE Utilisateurs SET SuperUtilisateur = \''.$admin.'\' WHERE IdUtilisateur = \''.$this->id.'\'';
         Model::executeQuery($pdo, $sql);
         $this->admin = $admin;
     }
 
-    function forgetPwd($idUser)
+    function forgetPwd($mail)
     {
-        $newPwd = uniqid(); //mot de passe aléatoire
-        self::setPwd($idUser, $newPwd);
+        //mot de passe aléatoire
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $newPwd = '';
+
+        for ($i = 0; $i < 24; $i++) {
+            $index = rand(0, strlen($characters) - 1);
+            $newPwd .= $characters[$index];
+        }
+
+        for ($i = 0; $i < 15; $i++) {
+            for ($i = 0; $i < strlen($newPwd)-1; $i++) {
+                if ( (is_int($newPwd[$i])&& is_int($newPwd[$i+1]))){
+                    $newPwd[$i] = random_int(0,9);
+                    $newPwd[random_int(0,strlen($newPwd)-1)] = random_int(0,9);
+                }
+            }
+        }
+        //fin generation mot de passe aléatoire
+
+        $pdo = ConnectBD();
+        $sql = 'UPDATE Utilisateurs SET MotDePasse = \''.password_hash($newPwd,PASSWORD_BCRYPT).'\' WHERE Mail = \''.$mail.'\'';
+        Model::executeQuery($pdo, $sql);
         return $newPwd;
     }
 
