@@ -30,7 +30,7 @@
             $msgArray = json_decode($msgData, true);
             foreach ($msgArray as $row) {
                 $sql = 'INSERT INTO Message (IdMessage, IdDisDuMsg, TextMessage, Date, EstOuvert) 
-                        VALUES (\'' . $row['IdMessage'] . '\', \'' . $row['IdDisDuMsg'] . '\', \'' . addcslashes($row['TextMessage']) . '\', \'' . $row['Date'] . '\', \'' . $row['EstOuvert'] . '\')';
+                        VALUES (\'' . $row['IdMessage'] . '\', \'' . $row['IdDisDuMsg'] . '\', \'' . addcslashes($row['TextMessage'],'\'') . '\', \'' . $row['Date'] . '\', \'' . $row['EstOuvert'] . '\')';
                 echo $sql. '<br/>';
                 Model::executeQuery($pdo,$sql);
             }
