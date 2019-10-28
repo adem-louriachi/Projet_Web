@@ -23,10 +23,13 @@
         }
 
         public function getTxt($idMsg) {
+            $pdo = Model::ConnectBD();
             $message = '';
             $sqlmsgBD = 'SELECT TextSection FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\' ORDER BY Date ASC';
-            $resultat = Model::executeQuery(Model::ConnectBD(), $sqlmsgBD);
-            while ($row = $resultat) { $message .= $row['TextSection']; }
+            $resultat = $pdo->query($sqlmsgBD);
+            while ($row = $resultat) {
+                $message = $message.$row['TextSection'];
+            }
             return $message;
         }
 
@@ -73,8 +76,8 @@
             } else {
                 self::addSectionMessage($author, $idMsg,$textMsg);
                 $msgBD = self::getTxt($idMsg);
-                $textMsg =$msgBD['TextMessage'] . ' ' . $textMsg;
-                $sql = 'UPDATE Message SET TextMessage = \'' . addcslashes($textMsg,'\'') . '\', EstOuvert = \'' . $stateMsg . '\', Date = \'' . date('Y-m-d H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
+                echo $msgBD;
+                $sql = 'UPDATE Message SET EstOuvert = \'' . $stateMsg . '\', Date = \'' . date('Y-m-d H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
                 Model::executeQuery($pdo, $sql);
             }
         }
