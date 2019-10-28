@@ -7,7 +7,7 @@ class Form
         ob_start();
         ?>
         <div class="container black">
-            <form id="register" method="post" action="/?ctrl=User&action=register">
+            <form id="register" method="post" action="/?ctrl=Register&action=register">
                 <label name="nick">Pseudo</label>
                 <input name="nick" type="text" placeholder="Wankil"
                        value="<?php if (isset($_SESSION['nick'])) echo $_SESSION['nick']; ?>" autocomplete="nickname" required autofocus>
@@ -35,9 +35,13 @@ class Form
         ob_start(); 
         ?>
             <div class="container black">
-                <form id="signin" method="post" action="/?ctrl=User&action=register">
+                <form id="signin" method="post" action="/?ctrl=Signin&action=signin">
                     <label name="nick">Pseudo</label>
-                        <input name="nick" type="text" placeholder="FrenchCookie">
+                    <input name="nick" type="text" placeholder="FrenchCookie" required autofocus>
+                    <label name="pwd">Mot de passe</label>
+                    <input name="pwd" type="password" required>
+                    <button class="submit btn waves-effect waves-light" type="submit" >Se connecter<i
+                                class="material-icons right">send</i></button>
                 </form>
             </div>
         <?php
