@@ -11,6 +11,7 @@
 
         $message = new MessagesMod($idDis, $textMsg, $author);
         $texte =  $message->getTxt($message->getIdMsg());
+        echo $texte.'<br/>';
         $message->insertMsg();
 
     }elseif (isset($_POST['idMsg']) && isset($_POST['MessageU']) && isset($_POST['authorU']) && isset($_POST['etatU'])){
