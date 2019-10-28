@@ -1,7 +1,7 @@
 <?php
 
-    //require 'Models/MessagesMod.php';
-    require 'Models/UsersMod.php';
+      require 'Models/MessagesMod.php';
+//    require 'Models/UsersMod.php';
     require 'Models/GameTestDB/LoadGameTestDB.php';
 
     if (isset($_POST['idDis']) && isset($_POST['Message']) && isset($_POST['author'])) {
