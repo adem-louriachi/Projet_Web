@@ -61,7 +61,7 @@
         $identifiant   = $_POST['Identifiant'];
         $pwd  = $_POST['Pwd'];
 
-        if(UsersMod::testLoginPwd()){
+        if(UsersMod::testLoginPwd($_POST['Identifiant'], $_POST['Pwd'])){
             echo 'connexion reussi';
         }
 
