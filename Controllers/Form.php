@@ -7,7 +7,7 @@ class Form
         ob_start();
         ?>
         <div class="container black">
-            <form id="register" method="post" action="/?ctrl=Register&action=register">
+            <form id="register" method="post" action="/?ctrl=User&action=register">
                 <label name="nick">Pseudo</label>
                 <input name="nick" type="text" placeholder="Wankil"
                        value="<?php if (isset($_SESSION['nick'])) echo $_SESSION['nick']; ?>" autocomplete="nickname" required autofocus>
