@@ -8,7 +8,7 @@ class Form
         require 'Views/RegisterView.php';
         $nick = filter_input(INPUT_POST, 'nick');
         $email = filter_input(INPUT_POST, 'email');
-        $error = filter_input(INPUT_POST, 'error');
+        $error = '<p style="color:red;">'.filter_input(INPUT_POST, 'error').'</p>';
         ?>
         <div class="container black">
             <form id="register" method="post" action="/?ctrl=User&action=register">
@@ -19,7 +19,7 @@ class Form
                 <input name="email" type="email" placeholder="coucou@wankil.fr"
                        value="<?= $email ?>" autocomplete="email" required>
                 <label
-                    name="pwd"><?php if (isset($_POST['error'])) echo "<p style=\"color:red;\">" . $_POST['error'] . "</p>"; ?>
+                    name="pwd"><?= $error ?>
                     Mot de passe</label>
                 <input name="pwd" type="password" autocomplete="new-password" required>
                 <label name="pwdconf">Confirmation du mot de passe</label>
