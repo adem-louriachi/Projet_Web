@@ -5,7 +5,9 @@ class Form
         require 'AuthenticationCheck.php';
         $style = 'Views/HomeView.css';
         ob_start();
-
+        $_POST['nick'] = 'Paulo';
+        $_POST['email'] = 'test@test.com';
+        $_POST['error'] = 'ça marche pas';
         $nick = filter_input(INPUT_POST, 'nick');
         $email = filter_input(INPUT_POST, 'email');
         $error = '<p style="color:red;">'.filter_input(INPUT_POST, 'error').'</p>';
