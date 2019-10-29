@@ -11,7 +11,7 @@ class Form
         $nick = filter_input(INPUT_POST, 'nick');
         $email = filter_input(INPUT_POST, 'email');
         $error = '<p style="color:red;">'.filter_input(INPUT_POST, 'error').'</p>';
-        require 'Views/RegisterView.php';
+        require 'Views/RegisterView.php'; // les variables ne se communiquent pas à ce fichier pour une raison inconnue pour l'instant
         $content = ob_get_clean();
         require 'Views/TemplateView.php';
     }
