@@ -5,15 +5,19 @@ class Form
         require 'AuthenticationCheck.php';
         $style = 'Views/HomeView.css';
         ob_start();
+        require 'Views/RegisterView.php';
+        $nick = filter_input(INPUT_POST, 'nick');
+        $email = filter_input(INPUT_POST, 'email');
+        $error = filter_input(INPUT_POST, 'error');
         ?>
         <div class="container black">
             <form id="register" method="post" action="/?ctrl=User&action=register">
                 <label name="nick">Pseudo</label>
                 <input name="nick" type="text" placeholder="Wankil"
-                       value="<?php if (isset($_SESSION['nick'])) echo $_SESSION['nick']; ?>" autocomplete="nickname" required autofocus>
+                       value="<?= $nick?>" autocomplete="nickname" required autofocus>
                 <label name="email">Adresse e-mail</label>
                 <input name="email" type="email" placeholder="coucou@wankil.fr"
-                       value="<?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?>" autocomplete="email" required>
+                       value="<?= $email ?>" autocomplete="email" required>
                 <label
                     name="pwd"><?php if (isset($_POST['error'])) echo "<p style=\"color:red;\">" . $_POST['error'] . "</p>"; ?>
                     Mot de passe</label>

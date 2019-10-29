@@ -28,20 +28,19 @@ class User
             $_SESSION['nick'] = $nick;
             $user = new UsersMod($nick, $email, $pwd); // création de l'utilisateur (objet)
             $user->insertUser(); // insertion des données dans la Base
-            header('Location: Views/UsersView.php');
+            header('Location: /?ctrl=User&action=view');
 
         }
     }
 
     public function signin()
     {
-        require 'Models/UsersMod.php';
-        if (UsersMod::testLoginPwd($_POST['login'], $_POST['pwd'])) //vérifie l'existance du login et pwd dans la base
+        if (testLoginPwd($_POST['login'], $_POST['pwd'])) //vérifie l'existance du login et pwd dans la base
         {
             session_start();
             $_SESSION['login'] = $_POST['login'];
             $_SESSION['pwd'] = $_POST['pwd'];
-            header('location: Controllers/Home.php');
+            header('location: Home.php');
         } else {
             //message d'erreur à ajouter
             header('/?ctrl=Form&action=signin'); //reste sur la page signin
@@ -51,6 +50,6 @@ class User
     public function signout()
     {
         session_destroy();
-        header('location: Controllers/Home.php');
+        header('location: /');
     }
 }

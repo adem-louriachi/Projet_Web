@@ -20,7 +20,7 @@ class ErrorPage
                     echo 'Page introuvable';
                     break;
                 case 500:
-                    echo 'Erreur interne du serveur';
+                    echo 'Erreur interne du serveur, désolé on l\'a mal codé';
                     break;
                 case 503:
                     echo 'Service indisponible, réessayez plus tard';
