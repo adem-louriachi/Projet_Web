@@ -1,7 +1,10 @@
 body {
-    background: linear-gradient(#30cfd0, #330867);
+    background: linear-gradient(indigo, black);
 }
 header {
+    background-color: black;
+}
+main {
     background-color: black;
 }
 input {
@@ -9,21 +12,9 @@ input {
 }
 
 .discussion {
-    border-left-style: solid;
-
-    border-left-width: 7px;
-
-    border-right-style: solid;
-
     padding-right: 20px;
 
     padding-left: 20px;
-
-    border-radius: 12px;
-
-    border-right-width: 7px;
-
-    color: white;
 
 }
 .msg {
