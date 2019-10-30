@@ -2,6 +2,7 @@
 
 class DiscussionsMod
 {
+    private $id;
     private $name;
     private $owner;
     private $status;
@@ -10,36 +11,76 @@ class DiscussionsMod
     {
         $this->name = $c_name;
         $this->owner = $c_owner;
-        $pdo = ConnectBD();
-        $pdo->query("INSERT INTO Discussion (NomDiscussion, Createur, EstOuvert) VALUES ($c_name, $c_owner, '1')");
     }
 
-    public function GetName()
-    {
+    public function getName() {
         return $this->name;
     }
 
-    public function setStatus($status)
-    {
+    public function setStatus($status) {
+        $pdo = ConnectBD();
+        $sql = 'UPDATE Utilisateurs SET EstOuvert = \''.$status.'\' WHERE IdDiscussion = \''.$this->id.'\'';
+        Model::executeQuery($pdo, $sql);
         $this->status = $status;
     }
 
-    public function GetStatus()
-    {
+    public function getStatus() {
         return $this->status;
     }
 
 
-    public function GetOwner()
-    {
+    public function getOwner() {
         return $this->owner;
     }
 
-    function createDiscussion($name, $author)
-    {
+    function insertDiscussion() {
+        $pdo = Model::connectBD();
+        $sql = 'INSERT INTO Discussion(EstOuvert,  Createur, NomDiscussion) 
+                    VALUES (1,\''.$this->owner.'\',\''.$this->name.'\')';
+        Model::executeQuery($pdo,$sql);
 
+        $sql = 'SELECT * FROM (SELECT * FROM Discussion ORDER BY IdDiscussion DESC) WHERE rownum = 1';
+        $dataUser = Model::executeQuery($pdo,$sql);
 
-
+        $this->id    = $dataUser['IdDiscusion'];
+        $this->status  = $dataUser['EstOuvert'];
+        $this->owner  = $dataUser['Createur'];
+        $this->name   = $dataUser['NomDiscussion'];
     }
+
+    public function closeDiscussion() {
+        $pdo = Model::connectBD();
+        $sqlmsgBD = 'SELECT IdMessage FROM Message WHERE IdDiscussion = \''.$this->id.'\'';
+        $resultat = $pdo->query($sqlmsgBD);
+        while ($row = $resultat->fetch()) {
+            MessagesMod::closeMsg($row['IdMessage']);
+        }
+
+        $sql = 'UPDATE Discussion SET EstOuvert = 0 WHERE IdDiscussion = \''.$this->status.'\'';
+        Model::executeQuery($pdo,$sql);
+    }
+
+    public function deleteDiscussion() {
+        $pdo = Model::connectBD();
+        $sqlmsgBD = 'SELECT IdMessage FROM Message WHERE IdDiscussion = \''.$this->id.'\'';
+        $resultat = $pdo->query($sqlmsgBD);
+        while ($row = $resultat->fetch()) {
+            MessagesMod::deleteMsg($row['IdMessage']);
+        }
+        $sql = 'DELETE FROM Discussion WHERE IdDiscussion = \''.$this->id.'\'';
+        Model::executeQuery($pdo,$sql);
+    }
+
+
+    public function getProperties() {
+        $data = [
+            'IdDiscusion' => $this->id,
+            'EstOuvert' => $this->status,
+            'Createur' => $this->owner,
+            'NomDiscussion' => $this->name
+        ];
+        return $data;
+    }
+
 
 }
