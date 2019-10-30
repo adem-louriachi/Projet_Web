@@ -8,17 +8,14 @@ class User
         $style = 'Views/HomeView.css';
         ob_start();
         $nick = $_SESSION['user'];
-        $email = "test";
-        $date = "test";
-        $admin = "test";
-//        $email = UsersMod::getMail();
-//        $date = UsersMod::getDate();
-//        if(UsersMod::getAdmin() == 0)
-//        {
-//            $admin = "non";
-//        } else {
-//            $admin = "oui";
-//        };
+        $email = UsersMod::getMail();
+        $date = UsersMod::getDate();
+        if(UsersMod::getAdmin() == 0)
+        {
+            $admin = "non";
+        } else {
+            $admin = "oui";
+        };
         require 'Views/UsersView.php';
         $content = ob_get_clean();
         require 'Views/TemplateView.php';
