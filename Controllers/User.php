@@ -24,6 +24,7 @@ class User
             $_POST['error'] = 'Les mots de passe ne sont pas les mêmes';
             header('/?ctrl=Form&action=register');
         } else {
+            session_start();
             $_SESSION['email'] = $email; // Dans une $_SESSION pour que RegisterView puisse y accéder
             $_SESSION['nick'] = $nick;
             $user = new UsersMod($nick, $email, $pwd); // création de l'utilisateur (objet)
@@ -35,7 +36,8 @@ class User
 
     public function signin()
     {
-        if (testLoginPwd($_POST['login'], $_POST['pwd'])) //vérifie l'existance du login et pwd dans la base
+        $user = new UsersMod;
+        if ($user->testLoginPwd($_POST['login'], $_POST['pwd'])) //vérifie l'existance du login et pwd dans la base
         {
             session_start();
             $_SESSION['login'] = $_POST['login'];
