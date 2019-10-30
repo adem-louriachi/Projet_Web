@@ -133,8 +133,7 @@ class UsersMod extends Model
 
     public function getNick()
     {
-        $data = $this->getProperties();
-        return $data['Nom'];
+        return $this->nick;
     }
 
     public function getAdmin()
