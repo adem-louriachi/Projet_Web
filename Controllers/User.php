@@ -7,15 +7,18 @@ class User
         require 'AuthenticationCheck.php';
         $style = 'Views/HomeView.css';
         ob_start();
-        $nick = UsersMod::getNick();
-        $email = UsersMod::getMail();
-        $date = UsersMod::getDate();
-        if(UsersMod::getAdmin() == 0)
-        {
-            $admin = "non";
-        } else {
-            $admin = "oui";
-        };
+        $nick = $_SESSION['user'];
+        $email = "test";
+        $date = "test";
+        $admin = "test";
+//        $email = UsersMod::getMail();
+//        $date = UsersMod::getDate();
+//        if(UsersMod::getAdmin() == 0)
+//        {
+//            $admin = "non";
+//        } else {
+//            $admin = "oui";
+//        };
         require 'Views/UsersView.php';
         $content = ob_get_clean();
         require 'Views/TemplateView.php';
