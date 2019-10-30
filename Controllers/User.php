@@ -36,8 +36,7 @@ class User
 
     public function signin()
     {
-        $user = new UsersMod;
-        if ($user->testLoginPwd($_POST['login'], $_POST['pwd'])) //vérifie l'existance du login et pwd dans la base
+        if (UsersMod::testLoginPwd($_POST['login'], $_POST['pwd'])) //vérifie l'existance du login et pwd dans la base
         {
             session_start();
             $_SESSION['login'] = $_POST['login'];
