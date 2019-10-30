@@ -46,6 +46,7 @@ class User
     {
         if (UsersMod::testLoginPwd($_POST['login'], $_POST['pwd'])) //vérifie l'existance du login et pwd dans la base
         {
+            UsersMod::signin($_POST['login']);
             session_start();
             $_SESSION['user'] = $_POST['login'];
             header('location: Home.php');
