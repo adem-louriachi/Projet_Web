@@ -10,7 +10,7 @@ class DiscussionsMod
     {
         $this->name = $c_name;
         $this->owner = $c_owner;
-        $pdo = Model::ConnectBD();
+        $pdo = ConnectBD();
         $pdo->query("INSERT INTO Discussion (NomDiscussion, Createur, EstOuvert) VALUES ($c_name, $c_owner, '1')");
     }
 
