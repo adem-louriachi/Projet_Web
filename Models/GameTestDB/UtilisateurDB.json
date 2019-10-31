@@ -82,7 +82,7 @@
     {
       "Nom": "Burns",
       "Mail": "nec.metus@actellus.co.uk",
-      "MotDePasse": "MotDePasse",
+      "MotDePasse": "$2y$10$8tuPB9l.SSIrLlJi7kx0Nu5zWsfAk8RLYi.nK6ZXIXyZMB.FSHk8q",
       "SuperUtilisateur": "0",
       "IdUtilisateur": 10,
       "DateInscription": "2019-02-15"
