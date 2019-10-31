@@ -98,6 +98,4 @@ class DiscussionsMod extends Model {
         ];
         return $data;
     }
-
-
 }
