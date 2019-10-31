@@ -18,7 +18,7 @@ class UsersMod extends Model
 
     }
 
-    public function testLoginPwd($identifiant, $pwd)
+    public static function testLoginPwd($identifiant, $pwd)
     {
         try {
             $pdo = Model::connectBD();
@@ -57,7 +57,9 @@ class UsersMod extends Model
     public function insertUser(){
         try {
             if (!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $this->mail)) {
-                throw new Exception('Format de l\'email entré invalide');
+                $_POST['error'] = 'Format de l\'email entré invalide';
+                header('Location: /?ctrl=Form&action=register');
+                //throw new Exception('Format de l\'email entré invalide'); ( exception non gérée )
             } else {
                 $pdo = Model::connectBD();
                 $sql = 'INSERT INTO Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur) 
@@ -170,7 +172,7 @@ class UsersMod extends Model
         $this->admin = $admin;
     }
 
-    function forgetPwd($mail)
+    static function forgetPwd($mail)
     {
         //generation mot de passe aléatoire
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
