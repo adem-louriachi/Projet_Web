@@ -78,8 +78,11 @@
 
         $discussion = new DiscussionsMod($NomDis, $Creator);
         $discussion->insertDiscussion();
-        $nom =  $discussion->getName();
-        echo $nom.'<br/>';
+        $data = $discussion->getProperties();
+        echo $data['IdDiscusion'] . '<br/>' .
+             $data['EstOuvert'] . '<br/>' .
+             $data['Createur'] . '<br/>' .
+             $data['NomDiscussion'] . '<br/>';
 
     }else{
         echo 'erreur';
