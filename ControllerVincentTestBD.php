@@ -79,7 +79,7 @@
         $discussion = new DiscussionsMod($NomDis, $Creator);
         $discussion->insertDiscussion();
         $data = $discussion->getProperties();
-        echo $data['IdDiscusion'] . '<br/>' .
+        echo $data['IdDiscussion'] . '<br/>' .
              $data['EstOuvert'] . '<br/>' .
              $data['Createur'] . '<br/>' .
              $data['NomDiscussion'] . '<br/>';

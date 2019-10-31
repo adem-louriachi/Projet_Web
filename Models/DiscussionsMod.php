@@ -41,7 +41,7 @@ class DiscussionsMod extends Model {
         $sql = 'SELECT * FROM Discussion ORDER BY IdDiscussion DESC';
         $dataUser = Model::executeQuery($pdo,$sql);
 
-        $this->id    = $dataUser['IdDiscusion'];
+        $this->id    = $dataUser['IdDiscussion'];
         $this->status  = $dataUser['EstOuvert'];
         $this->owner  = $dataUser['Createur'];
         $this->name   = $dataUser['NomDiscussion'];
@@ -73,7 +73,7 @@ class DiscussionsMod extends Model {
 
     public function getProperties() {
         $data = [
-            'IdDiscusion' => $this->id,
+            'IdDiscussion' => $this->id,
             'EstOuvert' => $this->status,
             'Createur' => $this->owner,
             'NomDiscussion' => $this->name
