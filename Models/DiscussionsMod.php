@@ -1,14 +1,12 @@
 <?php
 
-class DiscussionsMod
-{
+class DiscussionsMod extends Model {
     private $id;
     private $name;
     private $owner;
     private $status;
 
-    public function __construct($c_name, $c_owner)
-    {
+    public function __construct($c_name, $c_owner) {
         $this->name = $c_name;
         $this->owner = $c_owner;
     }
