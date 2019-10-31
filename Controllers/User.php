@@ -23,6 +23,7 @@ class User
 
     public function register()
     {
+        echo("<script>console.log('passe par register()');</script>");
         $nick = htmlspecialchars($_POST['nick']); # htmlspecialschars pour ne pas interpreter l'HTML potentiellement inséré dans un champ
         $email = htmlspecialchars($_POST['email']);
         $pwd = htmlspecialchars($_POST['pwd']);

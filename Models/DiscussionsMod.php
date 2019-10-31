@@ -1,5 +1,5 @@
 <?php
-require 'Model.php';
+
 class DiscussionsMod extends Model
 {
     private $name;
@@ -10,7 +10,7 @@ class DiscussionsMod extends Model
     {
         $this->name = $c_name;
         $this->owner = $c_owner;
-        $pdo = ConnectBD();
+        $pdo = Model::ConnectBD();
         $pdo->query("INSERT INTO Discussion (NomDiscussion, Createur, EstOuvert) VALUES ($c_name, $c_owner, '1')");
     }
 
