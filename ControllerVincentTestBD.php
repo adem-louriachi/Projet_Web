@@ -73,7 +73,7 @@
         echo $newPwd;
 
     } elseif (isset($_POST['NomDisCreer']) && isset($_POST['Createur']) && isset($_POST['CreateDiscussion'])) {
-        $NomDis   = $_POST['idDis'];
+        $NomDis   = $_POST['NomDisCreer'];
         $Creator  = $_POST['Createur'];
 
         $discussion = new DiscussionsMod($NomDis, $Creator);
