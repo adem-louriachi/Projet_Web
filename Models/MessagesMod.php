@@ -28,8 +28,8 @@
             $pdo = Model::ConnectBD();
             $message = '';
             $sqlmsgBD = 'SELECT TextSection FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\' ORDER BY Date ASC';
-            $resultat = $pdo->query($sqlmsgBD);
-            while ($row = $resultat->fetch()) {
+            $row = Model::executeQuery($pdo, $sqlmsgBD);
+            while ($row) {
                 $message = $message.' '.$row['TextSection'];
             }
             return $message;

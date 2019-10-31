@@ -5,10 +5,13 @@ class Form
         require 'AuthenticationCheck.php';
         $style = 'Views/HomeView.css';
         ob_start();
-        $_POST['nick'] = filter_input(INPUT_POST, 'nick');
-        $_POST['email'] = filter_input(INPUT_POST, 'email');
-        $_POST['error'] = '<p style="color:red;">'.filter_input(INPUT_POST, 'error').'</p>';
-        require 'Views/RegisterView.php';
+        $_POST['nick'] = 'Paulo';
+        $_POST['email'] = 'test@test.com';
+        $_POST['error'] = 'ça marche pas';
+        $nick = filter_input(INPUT_POST, 'nick');
+        $email = filter_input(INPUT_POST, 'email');
+        $error = '<p style="color:red;">'.filter_input(INPUT_POST, 'error').'</p>';
+        require 'Views/RegisterView.php'; // les variables ne se communiquent pas à ce fichier pour une raison inconnue pour l'instant
         $content = ob_get_clean();
         require 'Views/TemplateView.php';
     }
