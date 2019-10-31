@@ -33,7 +33,6 @@ class DiscussionsMod extends Model {
 
     function insertDiscussion() {
         $pdo = Model::connectBD();
-        echo $this->name. '<br/>';
         $sql = 'INSERT INTO Discussion(EstOuvert,  Createur, NomDiscussion) 
                     VALUES (1,\''.$this->owner.'\',\''.$this->name.'\')';
         echo $sql. '<br/>';
