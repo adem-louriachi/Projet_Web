@@ -50,7 +50,7 @@ class DiscussionsMod extends Model {
     public function closeDiscussion() {
         $pdo = Model::connectBD();
         $sqlmsgBD = 'SELECT IdMessage FROM Message WHERE IdDiscussion = \''.$this->id.'\' ';
-        $resultat = $pdo->query($sqlmsgBD);
+        $resultat = $pdo->execute($sqlmsgBD);
         while ($row = $resultat->fetch()) {
             MessagesMod::closeMsg($row['IdMessage']);
         }
