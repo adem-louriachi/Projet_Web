@@ -1,6 +1,6 @@
 <?php
-
-class DiscussionsMod
+require 'Model.php';
+class DiscussionsMod extends Model
 {
     private $name;
     private $owner;
