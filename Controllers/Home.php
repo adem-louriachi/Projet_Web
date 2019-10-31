@@ -13,7 +13,7 @@
         Choisissez avec soin...
         </p>
 </div>
-<div class="discussion">
+<div class="discussion collection">
 <?php
 $discussion1 = array('nick' => 'Paul', 'contenu' => 'Cookies 🍪');
 $discussion2 = array('nick' => 'Adem', 'contenu' => 'Materialize vie');
@@ -24,7 +24,7 @@ $discussion6 = array('nick' => 'Paul', 'contenu' => 'Autoload magie');
 $discussions = array($discussion1, $discussion2,$discussion3,$discussion4,$discussion5,$discussion6);
 foreach ($discussions as $discussion): ?>
     <article>
-        <a class="discussion">
+        <a class="discussion collection-item">
             <h1><?= $discussion['nick'] ?></h1>
             <p><?= $discussion['contenu'] ?></p>
         </a>
