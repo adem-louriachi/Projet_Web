@@ -6,6 +6,7 @@ body {
     margin: 0;
     background: no-repeat fixed;
     background: black;
+    font: italic small-caps bold 16px/2 cursive;
 }
 header {
     background-color: black;
