@@ -9,6 +9,8 @@ class DiscussionsMod extends Model {
     public function __construct($c_name, $c_owner) {
         $this->name = $c_name;
         $this->owner = $c_owner;
+        $pdo = ConnectBD();
+        $pdo->query("INSERT INTO Discussion (NomDiscussion, Createur, EstOuvert) VALUES ($c_name, $c_owner, '1')");
     }
 
     public function getName() {
