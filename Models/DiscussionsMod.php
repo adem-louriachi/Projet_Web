@@ -56,7 +56,7 @@ class DiscussionsMod extends Model {
             MessagesMod::closeMsg($row['IdMessage']);
         }
 
-        $sql = 'UPDATE Discussion SET EstOuvert = 0 WHERE IdDiscussion = \''.$this->status.'\'';
+        $sql = 'UPDATE Discussion SET EstOuvert = 0 WHERE IdDiscussion = \''.$this->id.'\'';
         Model::executeQuery($pdo,$sql);
     }
 
