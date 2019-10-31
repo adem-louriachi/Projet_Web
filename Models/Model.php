@@ -21,13 +21,8 @@ abstract class Model
 
     public function executeQuery($pdo, $sql, $cond = NULL) {
         try {
-            if ($cond == null) {
-                $resultat = $pdo->query($sql);   // exécution directe
-            }
-            else {
-                $resultat = $pdo->prepare($sql); // requête préparée
-                $resultat->execute($cond);
-            }
+            $resultat = $pdo->prepare($sql); // requête préparée
+            $resultat->execute($cond);
             $row = $resultat->fetch();
             return $row;
         } catch (PDOException $e) {
