@@ -119,7 +119,6 @@ class UsersMod extends Model
     {
         $data =  $this->getProperties();
         return $data['Mail'];
-
     }
 
     public function setMail($mail)
