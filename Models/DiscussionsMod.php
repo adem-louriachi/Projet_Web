@@ -47,6 +47,22 @@ class DiscussionsMod extends Model {
         $this->name   = $dataUser['NomDiscussion'];
     }
 
+    function selectDiscussion($idDis) {
+        $pdo = Model::connectBD();
+
+        $sql = 'SELECT * FROM Discussion WHERE IdDiscussion = \''.$idDis.'\'';
+        $dataUser = Model::executeQuery($pdo,$sql);
+
+        $discussion = new DiscussionsMod($dataUser['NomDiscussion'], $dataUser['Createur']);
+        $discussion->id    = $dataUser['IdDiscussion'];
+        $discussion->status  = $dataUser['EstOuvert'];
+
+        return $discussion;
+    }
+
+
+
+
     public function closeDiscussion() {
         $pdo = Model::connectBD();
         $sqlmsgBD = 'SELECT IdMessage FROM Message WHERE IdDiscussion = \''.$this->id.'\' ';

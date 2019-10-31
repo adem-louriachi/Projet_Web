@@ -17,6 +17,15 @@ echo '<div class="container black">
                 
                 <button  name="CreateDiscussion" type="submit" value="Envoyer">Creer Discussion</button><br/>
             </form>
+            
+                        <form id="register" method="post" action="ControllerVincentTestBD.php">
+                <label>FERMER UNE DISCUSSION</label><br/>
+                        
+                <label name="DisAFermer">Id de la discussion a fermer</label>
+                <input name="DisAFermer" type="text" required><br/>
+                
+                <button  name="CloseDis" type="submit" value="Envoyer">Creer Discussion</button><br/>
+            </form>
       </div>';
 
 

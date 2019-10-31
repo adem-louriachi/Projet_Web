@@ -86,6 +86,12 @@
 
         $discussion->closeDiscussion();
 
-    }else{
+    } elseif (isset($_POST['DisAFermer']) && isset($_POST['CloseDis'])) {
+        $idDis   = $_POST['DisAFermer'];
+
+        $discussion = DiscussionsMod::selectDiscussion($idDis);
+        $discussion->closeDiscussion();
+        
+    } else{
         echo 'erreur';
     }
