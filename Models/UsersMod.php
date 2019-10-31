@@ -18,7 +18,7 @@ class UsersMod extends Model
 
     }
 
-    public static function testLoginPwd($identifiant, $pwd)
+    public function testLoginPwd($identifiant, $pwd)
     {
         try {
             $pdo = Model::connectBD();
@@ -56,9 +56,7 @@ class UsersMod extends Model
 
     public function insertUser(){
         if(!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/',$this->mail)) {
-            $_POST['error'] = 'Format de l\'email entré invalide';
-            header('Location: /?ctrl=Form&action=register');
-            //throw new Exception('Format de l\'email entré invalide'); ( exception non gérée )
+            throw new Exception('Format de l\'email entré invalide');
         } else {
             $pdo = Model::connectBD();
             $sql = 'INSERT INTO Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur) 
@@ -146,7 +144,7 @@ class UsersMod extends Model
 
     public function setAdmin($admin)
     {
-        $pdo = Model::ConnectBD();
+        $pdo = ConnectBD();
         $sql = 'UPDATE Utilisateurs SET SuperUtilisateur = \''.$admin.'\' WHERE IdUtilisateur = \''.$this->id.'\'';
         Model::executeQuery($pdo, $sql);
         $this->admin = $admin;

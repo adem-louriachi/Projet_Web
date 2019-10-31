@@ -3,7 +3,7 @@
 // A voir pour MVC   https://tutowebdesign.com/mvc-php.php
 abstract class Model
 {
-    public static function connectBD()
+    public function connectBD()
     {
         try {
             // Connexion à la base de donnee
@@ -19,7 +19,7 @@ abstract class Model
     }
 
 
-    public static function executeQuery($pdo, $sql, $cond = NULL) {
+    public function executeQuery($pdo, $sql, $cond = NULL) {
         try {
             if ($cond == null) {
                 $resultat = $pdo->query($sql);   // exécution directe
