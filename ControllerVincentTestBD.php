@@ -1,8 +1,8 @@
 <?php
 
 //    require 'Models/MessagesMod.php';
-//    require 'Models/UsersMod.php';
-    require 'Models/DiscussionsMod.php';
+    require 'Models/UsersMod.php';
+//    require 'Models/DiscussionsMod.php';
     require 'Models/GameTestDB/LoadGameTestDB.php';
 
     if (isset($_POST['idDis']) && isset($_POST['Message']) && isset($_POST['author'])) {
@@ -83,8 +83,6 @@
              $data['EstOuvert'] . '<br/>' .
              $data['Createur'] . '<br/>' .
              $data['NomDiscussion'] . '<br/>';
-
-        $discussion->closeDiscussion();
 
     } elseif (isset($_POST['DisAFermer']) && isset($_POST['CloseDis'])) {
         $idDis   = $_POST['DisAFermer'];
