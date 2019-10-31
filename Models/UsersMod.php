@@ -55,25 +55,27 @@ class UsersMod extends Model
 
 
     public function insertUser(){
-        if(!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/',$this->mail)) {
-            throw new Exception('Format de l\'email entré invalide');
-        } else {
-            $pdo = Model::connectBD();
-            $sql = 'INSERT INTO Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur) 
-                    VALUES (\''.$this->nick.'\',\''.$this->mail.'\',\''.password_hash($this->pwd,PASSWORD_BCRYPT).'\', 0)';
-            Model::executeQuery($pdo,$sql);
+        try {
+            if (!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $this->mail)) {
+                throw new Exception('Format de l\'email entré invalide');
+            } else {
+                $pdo = Model::connectBD();
+                $sql = 'INSERT INTO Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur) 
+                    VALUES (\'' . $this->nick . '\',\'' . $this->mail . '\',\'' . password_hash($this->pwd, PASSWORD_BCRYPT) . '\', 0)';
+                Model::executeQuery($pdo, $sql);
 
-            $sql = 'SELECT * FROM Utilisateurs WHERE Nom = \''.$this->nick.'\'';
-            $dataUser = Model::executeQuery($pdo,$sql);
+                $sql = 'SELECT * FROM Utilisateurs WHERE Nom = \'' . $this->nick . '\'';
+                $dataUser = Model::executeQuery($pdo, $sql);
 
-            $this->id    = $dataUser['IdUtilisateur'];
-            $this->nick  = $dataUser['Nom'];
-            $this->mail  = $dataUser['Mail'];
-            $this->pwd   = $dataUser['MotDePasse'];
-            $this->admin = $dataUser['SuperUtilisateur'];
-            $this->date  = $dataUser['DateInscription'];
-
-            echo $this->id ;
+                $this->id = $dataUser['IdUtilisateur'];
+                $this->nick = $dataUser['Nom'];
+                $this->mail = $dataUser['Mail'];
+                $this->pwd = $dataUser['MotDePasse'];
+                $this->admin = $dataUser['SuperUtilisateur'];
+                $this->date = $dataUser['DateInscription'];
+            }
+        } catch (Exception $e){
+            echo 'Erreur : '.$e->getMessage();
         }
     }
 
@@ -108,12 +110,16 @@ class UsersMod extends Model
 
     public function setMail($mail)
     {
-        if(!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/',$mail)) {
-            throw new Exception('Format de l\'email entré invalide');
-        } else {
-            $pdo = ConnectBD();
-            $sql = 'UPDATE Utilisateurs SET Mail = \''.$mail.'\' WHERE IdUtilisateur = \''.$this->id.'\'';
-            Model::executeQuery($pdo, $sql);
+        try {
+            if(!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/',$mail)) {
+                throw new Exception('Format de l\'email entré invalide');
+            } else {
+                $pdo = ConnectBD();
+                $sql = 'UPDATE Utilisateurs SET Mail = \''.$mail.'\' WHERE IdUtilisateur = \''.$this->id.'\'';
+                Model::executeQuery($pdo, $sql);
+            }
+        } catch (Exception $e){
+            echo 'Erreur : '.$e->getMessage();
         }
     }
 
@@ -199,15 +205,3 @@ class UsersMod extends Model
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
