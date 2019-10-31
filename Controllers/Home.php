@@ -3,16 +3,17 @@
     ob_start();
     $style = 'Views/HomeView.css';
 ?>
-<section>
+<div class="center white-text indigo welcome">
     <h2>Description du site</h2>
         <p>
         Bienvenue sur FreeNote ! <br> Un réseau social où les messages privés n'existent pas. <br>
         Vous pouvez lancer une discussion sur un sujet (La mort de Jacques Chirac, Pourquoi il ne faut pas boire de Munster, L'utilité d'un BDE, Greta Thunberg, etc.).
         Puis, vous, cher.ère.s membres, pouvez participer à chaque discussion. <br>
-        Cependant, nous ne sommes pas ici pour créer un b.asique forum. Chacun de vous ne peut écrire que deux mots dans un message sur toute une discussion ET C'EST TOUT. <br>
+        Cependant, nous ne sommes pas ici pour créer un basique forum. Chacun de vous ne peut écrire que deux mots dans un message sur toute une discussion ET C'EST TOUT. <br>
         Choisissez avec soin...
         </p>
-</section>
+</div>
+<div class="discussion">
 <?php
 $discussion1 = array('nick' => 'Paul', 'contenu' => 'Cookies 🍪');
 $discussion2 = array('nick' => 'Adem', 'contenu' => 'Materialize vie');
@@ -30,6 +31,7 @@ foreach ($discussions as $discussion): ?>
     </article>
     <hr/>
 <?php endforeach; ?>
+</div>
 <?php
     $content = ob_get_clean();
     require 'Views/TemplateView.php';
