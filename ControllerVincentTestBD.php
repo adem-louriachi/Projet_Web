@@ -84,6 +84,8 @@
              $data['Createur'] . '<br/>' .
              $data['NomDiscussion'] . '<br/>';
 
+        $discussion->closeDiscussion();
+
     }else{
         echo 'erreur';
     }
