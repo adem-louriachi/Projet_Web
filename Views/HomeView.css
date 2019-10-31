@@ -5,7 +5,8 @@ body {
     height: 100%;
     margin: 0;
     background: no-repeat fixed;
-    background: linear-gradient(#30cfd0, #330867);
+    background: black;
+    font: italic 1.2em "Fira Sans", serif;
 }
 header {
     background-color: black;
@@ -16,4 +17,15 @@ input {
 
 #submit {
     color : black;
+}
+
+blockquote {
+    color: white;
+}
+
+.discussion {
+    background: linear-gradient(indigo, black);
+}
+.welcome {
+    background: linear-gradient(#30cfd0, #330867);
 }
