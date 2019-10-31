@@ -13,7 +13,7 @@
         Choisissez avec soin...
         </p>
 </div>
-<div class="discussion collection">
+<div class="discussion collection container">
 <?php
 $discussion1 = array('nick' => 'Paul', 'contenu' => 'Cookies 🍪');
 $discussion2 = array('nick' => 'Adem', 'contenu' => 'Materialize vie');
@@ -29,7 +29,6 @@ foreach ($discussions as $discussion): ?>
             <p><?= $discussion['contenu'] ?></p>
         </a>
     </article>
-    <hr/>
 <?php endforeach; ?>
 </div>
 <?php
