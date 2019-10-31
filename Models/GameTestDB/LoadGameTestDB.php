@@ -41,7 +41,7 @@
             $msgData = file_get_contents( __DIR__.'/SectionMessageDB.json');
             $msgArray = json_decode($msgData, true);
             foreach ($msgArray as $row) {
-                $sql = 'INSERT INTO Message (IdSection, IdMessage, Auteur, TextSection, Date) 
+                $sql = 'INSERT INTO SectionMessage (IdSection, IdMessage, Auteur, TextSection, Date) 
                         VALUES (\'' . $row['IdSection'] . '\', \'' . $row['IdMessage'] . '\', \'' . $row['Auteur'] . '\', \'' . addcslashes($row['TextSection'],'\'') . '\', \'' . $row['Date'] . '\')';
                 echo $sql. '<br/>';
                 Model::executeQuery($pdo,$sql);
