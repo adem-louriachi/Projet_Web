@@ -3,7 +3,13 @@
     class GameTest extends Model {
         public function loadGameTest() {
             $pdo = Model::connectBD();
-            $sql = 'TRUNCATE TABLE SectionMessage; TRUNCATE TABLE Message; TRUNCATE TABLE Discussion; TRUNCATE TABLE Utilisateurs;';
+            $sql = 'DELETE FROM SectionMessage';
+            Model::executeQuery($pdo,$sql);
+            $sql = 'DELETE FROM Message';
+            Model::executeQuery($pdo,$sql);
+            $sql = 'DELETE FROM Discussion';
+            Model::executeQuery($pdo,$sql);
+            $sql = 'DELETE FROM Utilisateurs';
             Model::executeQuery($pdo,$sql);
 
             // Insertion des utilisateurs
