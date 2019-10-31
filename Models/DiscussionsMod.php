@@ -16,7 +16,7 @@ class DiscussionsMod extends Model {
     }
 
     public function setStatus($status) {
-        $pdo = ConnectBD();
+        $pdo = Model::ConnectBD();
         $sql = 'UPDATE Utilisateurs SET EstOuvert = \''.$status.'\' WHERE IdDiscussion = \''.$this->id.'\'';
         Model::executeQuery($pdo, $sql);
         $this->status = $status;

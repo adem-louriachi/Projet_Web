@@ -39,7 +39,7 @@ class UsersMod extends Model
         }
     }
 
-    public function Signin($nick)
+    public function signin($nick)
     {
         $pdo = Model::connectBD();
         $sql = 'SELECT * FROM Utilisateurs WHERE Nom = \''. $nick .'\'';
@@ -74,6 +74,20 @@ class UsersMod extends Model
                 $this->admin = $dataUser['SuperUtilisateur'];
                 $this->date = $dataUser['DateInscription'];
             }
+        } catch (Exception $e){
+            echo 'Erreur : '.$e->getMessage();
+        }
+    }
+
+    public function deleteUser(){
+        try {
+            $pdo = Model::connectBD();
+            $sql = 'DELETE FROM Discussion WHERE IdUtilisateur = \''.$this->id.'\'';
+            Model::executeQuery($pdo, $sql);
+
+            $sql = 'SELECT * FROM Utilisateurs WHERE Nom = \'' . $this->nick . '\' ';
+            $dataUser = Model::executeQuery($pdo, $sql);
+
         } catch (Exception $e){
             echo 'Erreur : '.$e->getMessage();
         }
