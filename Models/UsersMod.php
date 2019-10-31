@@ -39,6 +39,20 @@ class UsersMod extends Model
         }
     }
 
+    public function Signin($nick)
+    {
+        $pdo = Model::connectBD();
+        $sql = 'SELECT * FROM Utilisateurs WHERE Nom = \''. $nick .'\'';
+        $data = Model::executeQuery($pdo,$sql);
+
+        $this->id    = $data['IdUtilisateur'];
+        $this->nick  = $data['Nom'];
+        $this->mail  = $data['Mail'];
+        $this->pwd   = $data['MotDePasse'];
+        $this->admin = $data['SuperUtilisateur'];
+        $this->date  = $data['DateInscription'];
+    }
+
 
     public function insertUser(){
         if(!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/',$this->mail)) {

@@ -7,6 +7,15 @@ class User
         require 'AuthenticationCheck.php';
         $style = 'Views/HomeView.css';
         ob_start();
+        $nick = $_SESSION['user'];
+        $email = UsersMod::getMail();
+        $date = UsersMod::getDate();
+        if(UsersMod::getAdmin() == 0)
+        {
+            $admin = "non";
+        } else {
+            $admin = "oui";
+        };
         require 'Views/UsersView.php';
         $content = ob_get_clean();
         require 'Views/TemplateView.php';
@@ -25,8 +34,7 @@ class User
             header('/?ctrl=Form&action=register');
         } else {
             session_start();
-            $_SESSION['email'] = $email; // Dans une $_SESSION pour que RegisterView puisse y accéder
-            $_SESSION['nick'] = $nick;
+            $_SESSION['user'] = $nick;
             $user = new UsersMod($nick, $email, $pwd); // création de l'utilisateur (objet)
             $user->insertUser(); // insertion des données dans la Base
             header('Location: /?ctrl=User&action=view');
@@ -38,9 +46,9 @@ class User
     {
         if (UsersMod::testLoginPwd($_POST['login'], $_POST['pwd'])) //vérifie l'existance du login et pwd dans la base
         {
+            UsersMod::Signin($_POST['login']);
             session_start();
-            $_SESSION['login'] = $_POST['login'];
-            $_SESSION['pwd'] = $_POST['pwd'];
+            $_SESSION['user'] = $_POST['login'];
             header('location: Home.php');
         } else {
             //message d'erreur à ajouter
