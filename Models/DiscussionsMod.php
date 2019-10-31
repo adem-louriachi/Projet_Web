@@ -1,5 +1,5 @@
 <?php
-
+require 'Model.php';
 class DiscussionsMod extends Model {
     private $id;
     private $name;
