@@ -91,7 +91,13 @@
 
         $discussion = DiscussionsMod::selectDiscussion($idDis);
         $discussion->closeDiscussion();
-        
+
+    } elseif (isset($_POST['DisASuppr']) && isset($_POST['SupprDis'])) {
+        $idDis   = $_POST['DisASuppr'];
+
+        $discussion = DiscussionsMod::selectDiscussion($idDis);
+        $discussion->deleteDiscussion();
+
     } else{
         echo 'erreur';
     }
