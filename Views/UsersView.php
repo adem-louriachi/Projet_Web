@@ -1,8 +1,8 @@
 
-<p>Nom d'utilisateur : <?=$nick?></p>
-<p>Email : <?=$email?></p>
-<p>Date d'inscription : <?=$date?></p>
-<p>Super administrateur : <?=$admin?></p>
+<p>Nom d'utilisateur : <?=$_SESSION['nick']?></p>
+<p>Email : <?=$_SESSION['email']?></p>
+<p>Date d'inscription : <?=$_SESSION['date']?></p>
+<p>Super administrateur : <?=$_SESSION['admin']?></p>
 <form id="newMail" method="post" action="/?ctrl=User&action=changeMail">
     <label name="email">Changer d'adresse e-mail</label>
         <input name="email" type="email">
