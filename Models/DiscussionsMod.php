@@ -37,7 +37,7 @@ class DiscussionsMod extends Model {
                     VALUES (1,\''.$this->owner.'\',\''.$this->name.'\')';
         Model::executeQuery($pdo,$sql);
 
-        $sql = 'SELECT * FROM (SELECT * FROM Discussion ORDER BY IdDiscussion DESC) WHERE rownum = 1';
+        $sql = 'SELECT * FROM (SELECT * FROM Discussion ORDER BY IdDiscussion DESC) WHERE rownum = \'1\'';
         $dataUser = Model::executeQuery($pdo,$sql);
 
         $this->id    = $dataUser['IdDiscusion'];
