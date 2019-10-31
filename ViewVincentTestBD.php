@@ -4,6 +4,25 @@
           </form>';
 
 
+echo '<div class="container black">
+            <form id="register" method="post" action="ControllerVincentTestBD.php">
+                <label>AJOUT D\'UNE DISCUSSION</label><br/>
+            
+                
+                <label name="NomDisCreer">Nom de la discussion</label>
+                <input name="NomDisCreer" type="text" required><br/>
+                
+                <label name="Createur">Createur</label>
+                <input name="Createur" type="text" required><br/>
+                
+                <button  name="CreateDiscussion" type="submit" value="Envoyer">Creer Discussion</button><br/>
+            </form>
+      </div>';
+
+
+
+
+
 echo '<form id="UserBD" method="post" action="ControllerVincentTestBD.php">
             <label name="idUser">Id User</label>
             <input name="idUser" type="text" required><br/>

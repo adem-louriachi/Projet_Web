@@ -71,6 +71,15 @@
         $newPwd = UsersMod::forgetPwd($mail);
         echo $newPwd;
 
+    } elseif (isset($_POST['NomDisCreer']) && isset($_POST['Createur']) && isset($_POST['CreateDiscussion'])) {
+        $NomDis   = $_POST['idDis'];
+        $Creator  = $_POST['Createur'];
+
+        $discussion = new DiscussionsMod($NomDis, $Creator);
+        $discussion->insertDiscussion();
+        $nom =  $discussion->getName();
+        echo $nom.'<br/>';
+
     }else{
         echo 'erreur';
     }
