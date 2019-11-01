@@ -96,6 +96,11 @@
         $discussion = DiscussionsMod::selectDiscussion($idDis);
         $discussion->deleteDiscussion();
 
+    } elseif (isset($_POST['LogS']) && isset($_POST['SupprUser'])) {
+        $nick   = $_POST['LogS'];
+
+        $discussion = UsersMod::deleteUser($nick);
+
     } else{
         echo 'erreur';
     }
