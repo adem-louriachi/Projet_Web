@@ -85,6 +85,17 @@ echo '<div class="container black">
                 
                 <button name="ForgetMDP" type="submit" value="Envoyer">Connexion</button><br/>
             </form>
+            
+            <form id="register" method="post" action="ControllerVincentTestBD.php">
+                <label>SUPPRIMER USER</label><br/>
+            
+                
+                <label name="LogS">Login </label>
+                <input name="LogS" type="text" required><br/>
+                
+                <button name="SupprUser" type="submit" value="Envoyer">Supprimer</button><br/>
+            </form>
+            
       </div>';
 
 

@@ -66,7 +66,7 @@ class UsersMod extends Model {
             $sql = 'UPDATE SectionMessage SET Auteur = 2 WHERE Auteur = \''.$dataUser['IdUtilisateur'].'\'';
             Model::executeQuery($pdo, $sql);
 
-            $sql = 'DELETE FROM Utilisateurs WHERE IdMessage = \''.$dataUser['IdUtilisateur'].'\'  ';
+            $sql = 'DELETE FROM Utilisateurs WHERE IdUtilisateur = \''.$dataUser['IdUtilisateur'].'\'  ';
             Model::executeQuery($pdo, $sql);
 
         } catch (Exception $e) {
