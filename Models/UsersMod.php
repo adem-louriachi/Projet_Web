@@ -47,6 +47,10 @@ class UsersMod extends Model {
                 $sql = 'INSERT INTO Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur) 
                     VALUES (\'' . $c_nick . '\',\'' . $c_mail . '\',\'' . password_hash($c_pwd, PASSWORD_BCRYPT) . '\', 0)';
                 Model::executeQuery($pdo, $sql);
+                $_SESSION['nick'] = $c_nick;
+                $_SESSION['email'] = $c_mail;
+                $_SESSION['admin'] = 0;
+                $_SESSION['date'] = self::getDate($c_nick);
             }
         } catch (Exception $e) {
             echo 'Erreur : '.$e->getMessage();
@@ -100,6 +104,13 @@ class UsersMod extends Model {
         Model::executeQuery($pdo, $sql);
     }
 
+    public function getDate($c_nick){
+        $pdo = Model::connectBD();
+        $sql = 'SELECT DateInscription FROM Utilisateurs WHERE Nom = \'' . $c_nick . '\' ';
+        $dataUser = Model::executeQuery($pdo, $sql);
+        return $dataUser['DateInscription'];
+    }
+    
     public static function forgetPwd($mail) {
         //generation mot de passe aléatoire
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
