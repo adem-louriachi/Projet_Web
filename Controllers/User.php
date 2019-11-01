@@ -7,6 +7,8 @@ class User
         require 'AuthenticationCheck.php';
         $style = 'Views/HomeView.css';
         ob_start();
+        if($_SESSION['admin'] == 0) $_SESSION['isAdmin'] = 'Non';
+        else $_SESSION['isAdmin'] = 'Oui 👑';
         require 'Views/UsersView.php';
         $content = ob_get_clean();
         require 'Views/TemplateView.php';
