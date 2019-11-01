@@ -79,17 +79,14 @@ class DiscussionsMod extends Model {
 
     public function deleteDiscussion() {
         $pdo = Model::connectBD();
-        $sqlmsgBD = 'SELECT IdMessage FROM Message WHERE IdDiscussion = \''.$this->id.'\' ORDER BY IdMessage DESC';
+        $sqlmsgBD = 'SELECT IdMessage FROM Message WHERE IdDiscussion = '.$this->id.' ORDER BY IdMessage DESC';
         echo $sqlmsgBD. '<br/>';
         $resultat = $pdo->prepare($sqlmsgBD);
         $resultat->execute();
-        do {
+        while ($row = $resultat->fetch(PDO::FETCH_ASSOC)) {
             echo 'entrer dans boucle';
-            $rowset = $resultat->fetchAll(PDO::FETCH_NUM);
-            if ($rowset) {
-                MessagesMod::deleteMsg($rowset['IdMessage']);
-            }
-        } while ($resultat->nextRowset());
+            MessagesMod::deleteMsg($row['IdMessage']);
+        }
         $sql = 'DELETE FROM Discussion WHERE IdDiscussion = \''.$this->id.'\'';
         echo $sql. '<br/>';
         Model::executeQuery($pdo,$sql);
