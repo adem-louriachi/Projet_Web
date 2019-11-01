@@ -79,8 +79,6 @@
                     throw new Exception('Impossible d\'ecrire dans un message cloturé');
                 } else {
                     self::addSectionMessage($author, $idMsg,$textMsg);
-                    $msgBD = self::getTxt($idMsg);
-                    echo $msgBD;
                     $sql = 'UPDATE Message SET EstOuvert = \'' . $stateMsg . '\', Date = \'' . date('Y-m-d H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
                     Model::executeQuery($pdo, $sql);
                 }

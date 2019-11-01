@@ -38,7 +38,6 @@ class DiscussionsMod extends Model {
         $pdo = Model::connectBD();
         $sql = 'INSERT INTO Discussion(EstOuvert,  Createur, NomDiscussion) 
                     VALUES (1,\''.$this->owner.'\',\''.$this->name.'\')';
-        echo $sql. '<br/>';
         Model::executeQuery($pdo,$sql);
 
         $sql = 'SELECT * FROM Discussion ORDER BY IdDiscussion DESC';
@@ -81,7 +80,6 @@ class DiscussionsMod extends Model {
     public function deleteDiscussion() {
         $pdo = Model::connectBD();
         $sqlmsgBD = 'SELECT IdMessage FROM Message WHERE IdDisDuMsg = '.$this->id.' ORDER BY IdMessage DESC';
-        echo $sqlmsgBD. '<br/>';
         $resultat = $pdo->prepare($sqlmsgBD);
         $resultat->execute();
         while ($row = $resultat->fetch()) {
