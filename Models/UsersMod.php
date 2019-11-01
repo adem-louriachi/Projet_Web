@@ -61,7 +61,7 @@ class UsersMod extends Model {
             }
         }
         catch (Exception $e){
-            $_POST['error'] = (string) $e->getMessage();
+            $_POST['error'] = $e->getMessage();
             header('Location: /?ctrl=Form&action=register');
         }
     }
