@@ -28,8 +28,9 @@
             $pdo = Model::ConnectBD();
             $message = '';
             $sqlmsgBD = 'SELECT TextSection FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\' ORDER BY Date ASC';
-            $row = Model::executeQuery($pdo, $sqlmsgBD);
-            while ($row) {
+            $resultat = $pdo->prepare($sqlmsgBD);
+            $resultat->execute();
+            while ($row = $resultat->fetch()) {
                 $message = $message.' '.$row['TextSection'];
             }
             return $message;
@@ -78,8 +79,6 @@
                     throw new Exception('Impossible d\'ecrire dans un message cloturé');
                 } else {
                     self::addSectionMessage($author, $idMsg,$textMsg);
-                    $msgBD = self::getTxt($idMsg);
-                    echo $msgBD;
                     $sql = 'UPDATE Message SET EstOuvert = \'' . $stateMsg . '\', Date = \'' . date('Y-m-d H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
                     Model::executeQuery($pdo, $sql);
                 }

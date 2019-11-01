@@ -1,5 +1,6 @@
 <?php
-require 'Model.php';
+//require 'Model.php';
+require 'MessagesMod.php';
 class DiscussionsMod extends Model {
     private $id;
     private $name;
@@ -37,7 +38,6 @@ class DiscussionsMod extends Model {
         $pdo = Model::connectBD();
         $sql = 'INSERT INTO Discussion(EstOuvert,  Createur, NomDiscussion) 
                     VALUES (1,\''.$this->owner.'\',\''.$this->name.'\')';
-        echo $sql. '<br/>';
         Model::executeQuery($pdo,$sql);
 
         $sql = 'SELECT * FROM Discussion ORDER BY IdDiscussion DESC';
@@ -67,21 +67,22 @@ class DiscussionsMod extends Model {
 
     public function closeDiscussion() {
         $pdo = Model::connectBD();
-        $sqlmsgBD = 'SELECT IdMessage FROM Message WHERE IdDiscussion = \''.$this->id.'\' ';
-        $row = Model::executeQuery($pdo, $sqlmsgBD);
-        while ($row) {
+        $sqlmsgBD = 'SELECT IdMessage FROM Message WHERE IdDisDuMsg = \''.$this->id.'\' ';
+        $resultat = $pdo->prepare($sqlmsgBD);
+        $resultat->execute();
+        while ($row = $resultat->fetch()) {
             MessagesMod::closeMsg($row['IdMessage']);
         }
-
         $sql = 'UPDATE Discussion SET EstOuvert = 0 WHERE IdDiscussion = \''.$this->id.'\'';
         Model::executeQuery($pdo,$sql);
     }
 
     public function deleteDiscussion() {
         $pdo = Model::connectBD();
-        $sqlmsgBD = 'SELECT IdMessage FROM Message WHERE IdDiscussion = \''.$this->id.'\'';
-        $row = Model::executeQuery($pdo, $sqlmsgBD);
-        while ($row) {
+        $sqlmsgBD = 'SELECT IdMessage FROM Message WHERE IdDisDuMsg = '.$this->id.' ORDER BY IdMessage DESC';
+        $resultat = $pdo->prepare($sqlmsgBD);
+        $resultat->execute();
+        while ($row = $resultat->fetch()) {
             MessagesMod::deleteMsg($row['IdMessage']);
         }
         $sql = 'DELETE FROM Discussion WHERE IdDiscussion = \''.$this->id.'\'';
