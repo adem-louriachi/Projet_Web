@@ -1,5 +1,5 @@
 <?php
-
+require 'User.php';
 class Controller
 {
     public function routeRequest()
