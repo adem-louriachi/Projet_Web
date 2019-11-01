@@ -8,14 +8,18 @@ class User
     }
     public static function view()
     {
-        require 'AccountMenu.php';
-        $style = 'Views/HomeView.css';
-        ob_start();
-        if($_SESSION['admin'] == 0) $_SESSION['isAdmin'] = 'Non';
-        else $_SESSION['isAdmin'] = 'Oui 👑';
-        require 'Views/UsersView.php';
-        $content = ob_get_clean();
-        require 'Views/TemplateView.php';
+        if (self::isConnected()){
+            require 'AccountMenu.php';
+            $style = 'Views/HomeView.css';
+            ob_start();
+            if($_SESSION['admin'] == 0) $_SESSION['isAdmin'] = 'Non';
+            else $_SESSION['isAdmin'] = 'Oui 👑';
+            require 'Views/UsersView.php';
+            $content = ob_get_clean();
+            require 'Views/TemplateView.php';
+        } else {
+            header('Location: /');
+        }
     }
 
     public static function register()
@@ -31,7 +35,6 @@ class User
             header('/?ctrl=Form&action=register');
         } else {
             session_start();
-            $_SESSION['user'] = $nick;
             UsersMod::insertUser($nick, $email, $pwd); // insertion des données dans la Base
         }
     }
