@@ -83,7 +83,7 @@ class DiscussionsMod extends Model {
         echo $sqlmsgBD;
         $resultat = $pdo->prepare($sqlmsgBD);
         $resultat->execute();
-        while ($row = $resultat->fetch()) {
+        while ($row = $resultat->fetchAll()) {
             echo 'entrer dans boucle';
             MessagesMod::deleteMsg($row['IdMessage']);
         }
