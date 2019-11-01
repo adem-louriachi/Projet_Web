@@ -35,30 +35,34 @@ class UsersMod extends Model {
 
 
     public static function insertUser($c_nick, $c_mail, $c_pwd) {
-        if (!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $c_mail)) {
-            $_POST['error'] = 'Format de l\'email entré invalide';
-            header('Location: /?ctrl=Form&action=register');
-        } else {
-            $pdo = Model::connectBD();
-            $sql = 'SELECT Nom FROM Utilisateurs WHERE Nom = \'' . $c_nick . '\' ';
-            if (Model::executeQuery($pdo, $sql)['Nom'] == $c_nick){
-                $_POST['error'] = 'Pseudo déjà utilisé';
-                header('Location: /?ctrl=Form&action=register');
+        try{
+            if (!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $c_mail)) {
+                throw new Exception('Format de l\'email entré invalide');
             } else {
-                $sql = 'SELECT Mail FROM Utilisateurs WHERE Mail = \'' . $c_mail . '\' ';
-                if (Model::executeQuery($pdo, $sql)['Mail'] == $c_mail){
-                    $_POST['error'] = 'Email déjà utilisé';
-                    header('Location: /?ctrl=Form&action=register');
+                $pdo = Model::connectBD();
+                $sql = 'SELECT Nom FROM Utilisateurs WHERE Nom = \'' . $c_nick . '\' ';
+                if (Model::executeQuery($pdo, $sql)['Nom'] == $c_nick){
+                    throw new Exception('Pseudo déjà utilisé');
                 } else {
-                    $sql = 'INSERT INTO Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur) 
-                        VALUES (\'' . $c_nick . '\',\'' . $c_mail . '\',\'' . password_hash($c_pwd, PASSWORD_BCRYPT) . '\', 0)';
-                    Model::executeQuery($pdo, $sql);
-                    $_SESSION['nick'] = $c_nick;
-                    $_SESSION['email'] = $c_mail;
-                    $_SESSION['admin'] = 0;
-                    $_SESSION['date'] = self::getDate($c_nick);
+                    $sql = 'SELECT Mail FROM Utilisateurs WHERE Mail = \'' . $c_mail . '\' ';
+                    if (Model::executeQuery($pdo, $sql)['Mail'] == $c_mail){
+                        throw new Exception('Email déjà utilisé');
+                    } else {
+                        $sql = 'INSERT INTO Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur) 
+                            VALUES (\'' . $c_nick . '\',\'' . $c_mail . '\',\'' . password_hash($c_pwd, PASSWORD_BCRYPT) . '\', 0)';
+                        Model::executeQuery($pdo, $sql);
+                        $_SESSION['nick'] = $c_nick;
+                        $_SESSION['email'] = $c_mail;
+                        $_SESSION['admin'] = 0;
+                        $_SESSION['date'] = self::getDate($c_nick);
+                        header('Location: /?ctrl=User&action=view');
+                    }
                 }
             }
+        }
+        catch (Exception $e){
+            $_POST['error'] = (string) $e->getMessage();
+            header('Location: /?ctrl=Form&action=register');
         }
     }
 

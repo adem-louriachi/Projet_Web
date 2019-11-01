@@ -29,7 +29,6 @@ class User
             session_start();
             $_SESSION['user'] = $nick;
             UsersMod::insertUser($nick, $email, $pwd); // insertion des données dans la Base
-            header('Location: /?ctrl=User&action=view');
         }
     }
 
