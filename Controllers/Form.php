@@ -2,7 +2,7 @@
 class Form
 {
     public function register(){
-        require 'AuthenticationCheck.php';
+        require 'AccountMenu.php';
         $style = 'Views/HomeView.css';
         ob_start();
         $_POST['nick'] = filter_input(INPUT_POST, 'nick');
@@ -14,7 +14,7 @@ class Form
     }
 
     public function signin(){
-        require 'AuthenticationCheck.php';
+        require 'AccountMenu.php';
         $style = 'Views/HomeView.css';
         ob_start();
         require 'Views/SigninView.php';

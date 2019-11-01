@@ -2,9 +2,13 @@
 require 'Models/UsersMod.php';
 class User
 {
-    public function view()
+    public static function isConnected(){
+        if (isset($_SESSION['nick']) && isset($_SESSION['email']) && isset($_SESSION['date']) && isset($_SESSION['admin'])) return true;
+        else return false;
+    }
+    public static function view()
     {
-        require 'AuthenticationCheck.php';
+        require 'AccountMenu.php';
         $style = 'Views/HomeView.css';
         ob_start();
         if($_SESSION['admin'] == 0) $_SESSION['isAdmin'] = 'Non';
@@ -14,7 +18,7 @@ class User
         require 'Views/TemplateView.php';
     }
 
-    public function register()
+    public static function register()
     {
         $nick = htmlspecialchars($_POST['nick']); # htmlspecialschars pour ne pas interpreter l'HTML potentiellement inséré dans un champ
         $email = htmlspecialchars($_POST['email']);
@@ -32,7 +36,7 @@ class User
         }
     }
 
-    public function signin()
+    public static function signin()
     {
         if (UsersMod::testLoginPwd($_POST['login'], $_POST['pwd'])) //vérifie l'existance du login et pwd dans la base
         {
@@ -46,7 +50,7 @@ class User
         }
     }
 
-    public function signout()
+    public static function signout()
     {
         session_destroy();
         header('location: /');

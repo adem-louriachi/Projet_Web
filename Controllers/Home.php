@@ -1,5 +1,5 @@
 <?php
-    require 'AuthenticationCheck.php';
+    require 'AccountMenu.php';
     ob_start();
     $style = 'Views/HomeView.css';
 ?>

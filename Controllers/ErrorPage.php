@@ -5,7 +5,7 @@ class ErrorPage
 {
     public function error(){
         ob_start();
-        require 'AuthenticationCheck.php';
+        require 'AccountMenu.php';
         $style = 'Views/HomeView.css';
         if (isset($_GET['error']) && $_GET['error'] != ''){
             $error = $_GET['error']; echo 'Erreur '.$error.' : ';
@@ -41,7 +41,7 @@ class ErrorPage
     }
     public function show(){
         ob_start();
-        require 'AuthenticationCheck.php';
+        require 'AccountMenu.php';
         $style = 'Views/HomeView.css';?>
             Une erreur s'est produite<br>
             <a href="/">Retourner à l'accueil</a>
