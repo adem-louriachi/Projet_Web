@@ -2,27 +2,12 @@
 
 require 'Model.php';
 
-class UsersMod extends Model
-{
-    private $id;
-    private $nick;
-    private $mail;
-    private $pwd;
-    private $admin;
-    private $date;
+class UsersMod extends Model {
 
-    public function __construct($c_nick, $c_mail, $c_pwd) {
-        $this->nick = $c_nick;
-        $this->mail = $c_mail;
-        $this->pwd = $c_pwd;
-
-    }
-
-    public static function testLoginPwd($identifiant, $pwd)
-    {
+    public static function testLoginPwd($identifiant, $pwd) {
         try {
             $pdo = Model::connectBD();
-            if (preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $identifiant)) {
+            if (preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $identifiant)) { // verifie si $nick est de la forme d'un mail
                 $sql = 'SELECT * FROM Utilisateurs WHERE Mail = \'' . $identifiant . '\'';
             } else {
                 $sql = 'SELECT * FROM Utilisateurs WHERE Nom = \'' . $identifiant . '\'';
@@ -39,98 +24,63 @@ class UsersMod extends Model
         }
     }
 
-    public function signin($nick)
-    {
+    public static function signin($nick) {
         $pdo = Model::connectBD();
-        $sql = 'SELECT * FROM Utilisateurs WHERE Nom = \''. $nick .'\'';
+        if (preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $nick)) {  // verifie si $nick est de la forme d'un mail
+            $sql = 'SELECT * FROM Utilisateurs WHERE Mail = \'' . $nick . '\'';
+        } else {
+            $sql = 'SELECT * FROM Utilisateurs WHERE Nom = \'' . $nick . '\'';
+        }
         $data = Model::executeQuery($pdo,$sql);
-
-        $this->id    = $data['IdUtilisateur'];
-        $this->nick  = $data['Nom'];
-        $this->mail  = $data['Mail'];
-        $this->pwd   = $data['MotDePasse'];
-        $this->admin = $data['SuperUtilisateur'];
-        $this->date  = $data['DateInscription'];
+        return $data;
     }
 
 
-    public function insertUser(){
+    public static function insertUser($c_nick, $c_mail, $c_pwd) {
         try {
-            if (!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $this->mail)) {
+            if (!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $c_mail)) {
                 $_POST['error'] = 'Format de l\'email entré invalide';
                 header('Location: /?ctrl=Form&action=register');
                 //throw new Exception('Format de l\'email entré invalide'); ( exception non gérée )
             } else {
                 $pdo = Model::connectBD();
                 $sql = 'INSERT INTO Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur) 
-                    VALUES (\'' . $this->nick . '\',\'' . $this->mail . '\',\'' . password_hash($this->pwd, PASSWORD_BCRYPT) . '\', 0)';
+                    VALUES (\'' . $c_nick . '\',\'' . $c_mail . '\',\'' . password_hash($c_pwd, PASSWORD_BCRYPT) . '\', 0)';
                 Model::executeQuery($pdo, $sql);
-
-                $sql = 'SELECT * FROM Utilisateurs WHERE Nom = \'' . $this->nick . '\'';
-                $dataUser = Model::executeQuery($pdo, $sql);
-
-                $this->id = $dataUser['IdUtilisateur'];
-                $this->nick = $dataUser['Nom'];
-                $this->mail = $dataUser['Mail'];
-                $this->pwd = $dataUser['MotDePasse'];
-                $this->admin = $dataUser['SuperUtilisateur'];
-                $this->date = $dataUser['DateInscription'];
             }
-        } catch (Exception $e){
+        } catch (Exception $e) {
             echo 'Erreur : '.$e->getMessage();
         }
     }
 
-    public function deleteUser(){
+    public static function deleteUser($c_nick) {
         try {
             $pdo = Model::connectBD();
-            $sql = 'DELETE FROM Discussion WHERE IdUtilisateur = \''.$this->id.'\'';
-            Model::executeQuery($pdo, $sql);
-
-            $sql = 'SELECT * FROM Utilisateurs WHERE Nom = \'' . $this->nick . '\' ';
+            $sql = 'SELECT IdUtilisateur FROM Utilisateurs WHERE Nom = \'' . $c_nick . '\' ';
             $dataUser = Model::executeQuery($pdo, $sql);
 
-        } catch (Exception $e){
+            // IdUtilisateur = 2 correspond à l'Utilisateur Ex-membre
+            $sql = 'UPDATE Discussion SET Createur = 2 WHERE Createur = \''.$dataUser['IdUtilisateur'].'\'';
+            Model::executeQuery($pdo, $sql);
+
+            $sql = 'UPDATE SectionMessage SET Auteur = 2 WHERE Auteur = \''.$dataUser['IdUtilisateur'].'\'';
+            Model::executeQuery($pdo, $sql);
+
+            $sql = 'DELETE FROM Utilisateurs WHERE IdMessage = \''.$dataUser['IdUtilisateur'].'\'  ';
+            Model::executeQuery($pdo, $sql);
+
+        } catch (Exception $e) {
             echo 'Erreur : '.$e->getMessage();
         }
     }
 
-    public function getProperties()
-    {
-        $data = [
-            'IdUtilisateur' => $this->id,
-            'Nom' => $this->nick,
-            'Mail' => $this->mail,
-            'MotDePasse' => $this->pwd,
-            'SuperUtilisateur' => $this->admin,
-            'DateInscription' => $this->date,
-        ];
-        return $data;
-    }
-
-
-
-    public function getId()
-    {
-        $data = $this->getProperties();
-        return $data['IdUtilisateur'];
-    }
-
-
-    public function getMail()
-    {
-        $data =  $this->getProperties();
-        return $data['Mail'];
-    }
-
-    public function setMail($mail)
-    {
+    public static function setMail($idUser, $mail) {
         try {
             if(!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/',$mail)) {
                 throw new Exception('Format de l\'email entré invalide');
             } else {
                 $pdo = ConnectBD();
-                $sql = 'UPDATE Utilisateurs SET Mail = \''.$mail.'\' WHERE IdUtilisateur = \''.$this->id.'\'';
+                $sql = 'UPDATE Utilisateurs SET Mail = \''.$mail.'\' WHERE IdUtilisateur = \''.$idUser.'\'';
                 Model::executeQuery($pdo, $sql);
             }
         } catch (Exception $e){
@@ -138,42 +88,19 @@ class UsersMod extends Model
         }
     }
 
-    public function getPwd()
-    {
-        $data = $this->getProperties();
-        return $data['MotDePasse']; // Password en bcrypt pour verifier log utiliser  password_verify ( $mdp_entrer_par_user , $mdpBD ) : bool
-    }
-
-    public function setPwd($newPwd)
-    {
+    public static function setPwd($idUser, $newPwd) {
         $pdo = ConnectBD();
-        $sql = 'UPDATE Utilisateurs SET MotDePasse = \''.password_hash($newPwd,PASSWORD_BCRYPT).'\' WHERE IdUtilisateur = \''.$this->id.'\'';
+        $sql = 'UPDATE Utilisateurs SET MotDePasse = \''.password_hash($newPwd,PASSWORD_BCRYPT).'\' WHERE IdUtilisateur = \''.$idUser.'\'';
         Model::executeQuery($pdo, $sql);
-        $this->pwd = $newPwd;
     }
 
-    public function getNick()
-    {
-        $data = $this->getProperties();
-        return $data['Nom'];
-    }
-
-    public function getAdmin()
-    {
-        $data = $this->getProperties();
-        return $data['SuperUtilisateur'];
-    }
-
-    public function setAdmin($admin)
-    {
+    public static function setAdmin($idUser, $admin) {
         $pdo = ConnectBD();
-        $sql = 'UPDATE Utilisateurs SET SuperUtilisateur = \''.$admin.'\' WHERE IdUtilisateur = \''.$this->id.'\'';
+        $sql = 'UPDATE Utilisateurs SET SuperUtilisateur = \''.$admin.'\' WHERE IdUtilisateur = \''.$idUser.'\'';
         Model::executeQuery($pdo, $sql);
-        $this->admin = $admin;
     }
 
-    static function forgetPwd($mail)
-    {
+    public static function forgetPwd($mail) {
         //generation mot de passe aléatoire
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $newPwd = '';
@@ -185,7 +112,7 @@ class UsersMod extends Model
 
         for ($i = 0; $i < 5; $i++) {
             for ($i = 0; $i < strlen($newPwd)-1; $i++) {
-                if ( (is_int($newPwd[$i])&& is_int($newPwd[$i+1]))){
+                if ( (is_int($newPwd[$i])&& is_int($newPwd[$i+1]))) {
                     $newPwd[$i] = random_int(0,9);
                     $newPwd[random_int(0,strlen($newPwd)-1)] = random_int(0,9);
                 }
@@ -193,7 +120,7 @@ class UsersMod extends Model
         }
         //fin generation mot de passe aléatoire
 
-        try{
+        try {
             if(!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/',$mail)) {
                 throw new Exception('Format de l\'email entré invalide');
             }
@@ -208,15 +135,8 @@ class UsersMod extends Model
             $sql = 'UPDATE Utilisateurs SET MotDePasse = \''.password_hash($newPwd,PASSWORD_BCRYPT).'\' WHERE Mail = \''.$mail.'\'';
             Model::executeQuery($pdo, $sql);
             return $newPwd;
-        } catch (Exception $e){
+        } catch (Exception $e) {
             echo 'Erreur : '.$e->getMessage();
         }
     }
-
-    public function getDate()
-    {
-        $data = $this->getProperties();
-        return $data['DateInscription'];
-    }
-
 }
