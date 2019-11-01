@@ -67,7 +67,7 @@ class DiscussionsMod extends Model {
 
     public function closeDiscussion() {
         $pdo = Model::connectBD();
-        $sqlmsgBD = 'SELECT IdMessage FROM Message WHERE IdDiscussion = \''.$this->id.'\' ';
+        $sqlmsgBD = 'SELECT IdMessage FROM Message WHERE IdDisDuMsg = \''.$this->id.'\' ';
         $row = Model::executeQuery($pdo, $sqlmsgBD);
         while ($row) {
             MessagesMod::closeMsg($row['IdMessage']);
@@ -79,10 +79,10 @@ class DiscussionsMod extends Model {
 
     public function deleteDiscussion() {
         $pdo = Model::connectBD();
-        $sqlmsgBD = 'SELECT IdMessage FROM Message WHERE IdDiscussion = '.$this->id.' ORDER BY IdMessage DESC';
+        $sqlmsgBD = 'SELECT IdMessage FROM Message WHERE IdDisDuMsg = '.$this->id.' ORDER BY IdMessage DESC';
         echo $sqlmsgBD. '<br/>';
-        $resultat = $pdo->query($sqlmsgBD);
-        //$resultat->execute();
+        $resultat = $pdo->prepare($sqlmsgBD);
+        $resultat->execute();
         while ($row = $resultat->fetch()) {
             echo 'entrer dans boucle';
             MessagesMod::deleteMsg($row['IdMessage']);
