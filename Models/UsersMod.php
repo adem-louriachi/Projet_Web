@@ -5,21 +5,24 @@ require 'Model.php';
 class UsersMod extends Model {
 
     public static function testLoginPwd($identifiant, $pwd) {
-        $pdo = Model::connectBD();
-        if (preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $identifiant)) { // verifie si $nick est de la forme d'un mail
-            $sql = 'SELECT * FROM Utilisateurs WHERE Mail = \'' . $identifiant . '\'';
-        } else {
-            $sql = 'SELECT * FROM Utilisateurs WHERE Nom = \'' . $identifiant . '\'';
-        }
-        $data = Model::executeQuery($pdo, $sql);
-        if (empty($data)) {
-            $_POST['error'] = 'Identifiant incorrect';
+        try {
+            $pdo = Model::connectBD();
+            if (preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $identifiant)) { // verifie si $nick est de la forme d'un mail
+                $sql = 'SELECT * FROM Utilisateurs WHERE Mail = \'' . $identifiant . '\'';
+            } else {
+                $sql = 'SELECT * FROM Utilisateurs WHERE Nom = \'' . $identifiant . '\'';
+            }
+            $data = Model::executeQuery($pdo, $sql);
+            if (empty($data)) {
+                throw new Exception('Identifiant incorrect');
+            } else if (!password_verify($pwd, $data['MotDePasse'])) {
+                throw new Exception('Mot de passe incorrect');
+            }
+            return true;
+        } catch (Exception $e){
+            $_POST['error'] = $e->getMessage();
             header('Location: /?ctrl=Form&action=signin');
-        } else if (!password_verify($pwd, $data['MotDePasse'])) {
-            $_POST['error'] = 'Mot de passe incorrect';
-            header('Location: /?ctrl=Form&action=signin');
         }
-        return true;
     }
 
     public static function signin($nick) {
@@ -83,13 +86,17 @@ class UsersMod extends Model {
     }
 
     public static function setMail($idUser, $mail) {
-        if(!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/',$mail)) {
-            $_POST['error'] = 'Format de l\'email entré invalide';
+        try {
+            if (!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $mail)) {
+                throw new Exception('Format de l\'email entré invalide');
+            } else {
+                $pdo = ConnectBD();
+                $sql = 'UPDATE Utilisateurs SET Mail = \'' . $mail . '\' WHERE IdUtilisateur = \'' . $idUser . '\'';
+                Model::executeQuery($pdo, $sql);
+            }
+        } catch (Exception $e) {
+            $_POST['error'] = $e->getMessage();
             header('Location: /?ctrl=User&action=view');
-        } else {
-            $pdo = ConnectBD();
-            $sql = 'UPDATE Utilisateurs SET Mail = \''.$mail.'\' WHERE IdUtilisateur = \''.$idUser.'\'';
-            Model::executeQuery($pdo, $sql);
         }
     }
 
@@ -131,21 +138,24 @@ class UsersMod extends Model {
             }
         }
         //fin generation mot de passe aléatoire
-        if(!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/',$mail)) {
-            $_POST['error'] = 'Format de l\'email entré invalide';
+        try {
+            if (!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $mail)) {
+                throw new Exception('Format de l\'email entré invalide');
+            }
+
+            $pdo = Model::ConnectBD();
+            $sql = 'SELECT * FROM Utilisateurs WHERE Mail = \'' . $mail . '\'';
+            $data = Model::executeQuery($pdo, $sql);
+
+            if (empty($data)) {
+                throw new Exception('Mail inexistant');
+            }
+            $sql = 'UPDATE Utilisateurs SET MotDePasse = \'' . password_hash($newPwd, PASSWORD_BCRYPT) . '\' WHERE Mail = \'' . $mail . '\'';
+            Model::executeQuery($pdo, $sql);
+            return $newPwd;
+        } catch (Exception $e) {
+            $_POST['error'] = $e->getMessage();
             header('Location: /?ctrl=Form&action=forget');
         }
-
-        $pdo = Model::ConnectBD();
-        $sql = 'SELECT * FROM Utilisateurs WHERE Mail = \''.$mail.'\'';
-        $data = Model::executeQuery($pdo, $sql);
-
-        if (empty($data)) {
-            $_POST['error'] = 'Mail inexistant';
-            header('Location: /?ctrl=Form&action=forget');
-        }
-        $sql = 'UPDATE Utilisateurs SET MotDePasse = \''.password_hash($newPwd,PASSWORD_BCRYPT).'\' WHERE Mail = \''.$mail.'\'';
-        Model::executeQuery($pdo, $sql);
-        return $newPwd;
     }
 }
