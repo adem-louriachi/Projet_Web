@@ -88,6 +88,7 @@ class DiscussionsMod extends Model {
         }
         */
         $sql = 'DELETE FROM Discussion WHERE IdDiscussion = \''.$this->id.'\'';
+        echo $sql;
         Model::executeQuery($pdo,$sql);
     }
 
