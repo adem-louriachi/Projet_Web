@@ -1,4 +1,5 @@
 <?php
+    require 'User.php';
     ob_start();
     if (User::isConnected()){
         echo '<li><a href="/?ctrl=User&action=view" class="waves-effect waves-light btn">Mon compte</a></li><li><a href="/?ctrl=User&action=signout">Se déconnecter</a></li>';
