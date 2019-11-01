@@ -80,8 +80,9 @@ class DiscussionsMod extends Model {
     public function deleteDiscussion() {
         $pdo = Model::connectBD();
         $sqlmsgBD = 'SELECT IdMessage FROM Message WHERE IdDiscussion = \''.$this->id.'\'';
-        $row = Model::executeQuery($pdo, $sqlmsgBD);
-        while ($result = $row) {
+        $resultat = $pdo->prepare($sqlmsgBD);
+        $resultat->execute();
+        while ($row = $resultat->fetch()) {
             MessagesMod::deleteMsg($row['IdMessage']);
         }
         $sql = 'DELETE FROM Discussion WHERE IdDiscussion = \''.$this->id.'\'';
