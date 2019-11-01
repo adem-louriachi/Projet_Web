@@ -4,7 +4,7 @@
     $style = 'Views/HomeView.css';
 ?>
 <div class="center white-text indigo welcome">
-    <h2 class="left-align">Description du site</h2>
+    <h2>Description du site</h2>
         <p>
         Bienvenue sur FreeNote ! <br> Un réseau social où les messages privés n'existent pas. <br>
         Vous pouvez lancer une discussion sur un sujet (La mort de Jacques Chirac, Pourquoi il ne faut pas boire de Munster, L'utilité d'un BDE, Greta Thunberg, etc.).
