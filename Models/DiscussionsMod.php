@@ -1,5 +1,6 @@
 <?php
 require 'Model.php';
+require 'MessagesMod.php';
 class DiscussionsMod extends Model {
     private $id;
     private $name;
