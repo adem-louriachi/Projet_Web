@@ -1,7 +1,7 @@
 <?php
 
-//    require 'Models/MessagesMod.php';
-    require 'Models/UsersMod.php';
+    require 'Models/MessagesMod.php';
+//    require 'Models/UsersMod.php';
 //    require 'Models/DiscussionsMod.php';
     require 'Models/GameTestDB/LoadGameTestDB.php';
 
