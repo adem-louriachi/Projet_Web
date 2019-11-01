@@ -72,10 +72,8 @@ class DiscussionsMod extends Model {
         $resultat = $pdo->prepare($sqlmsgBD);
         $resultat->execute();
         while ($row = $resultat->fetch()) {
-            echo 'entrer dans boucle';
             MessagesMod::closeMsg($row['IdMessage']);
         }
-
         $sql = 'UPDATE Discussion SET EstOuvert = 0 WHERE IdDiscussion = \''.$this->id.'\'';
         Model::executeQuery($pdo,$sql);
     }
@@ -87,11 +85,9 @@ class DiscussionsMod extends Model {
         $resultat = $pdo->prepare($sqlmsgBD);
         $resultat->execute();
         while ($row = $resultat->fetch()) {
-            echo 'entrer dans boucle';
             MessagesMod::deleteMsg($row['IdMessage']);
         }
         $sql = 'DELETE FROM Discussion WHERE IdDiscussion = \''.$this->id.'\'';
-        echo $sql. '<br/>';
         Model::executeQuery($pdo,$sql);
     }
 

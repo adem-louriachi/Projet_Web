@@ -28,8 +28,9 @@
             $pdo = Model::ConnectBD();
             $message = '';
             $sqlmsgBD = 'SELECT TextSection FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\' ORDER BY Date ASC';
-            $row = Model::executeQuery($pdo, $sqlmsgBD);
-            while ($row) {
+            $resultat = $pdo->prepare($sqlmsgBD);
+            $resultat->execute();
+            while ($row = $resultat->fetch()) {
                 $message = $message.' '.$row['TextSection'];
             }
             return $message;
@@ -97,10 +98,8 @@
         public function deleteMsg($idMsg) {
             $pdo = Model::connectBD();
             $sqlAuthor = 'DELETE FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\'';
-            echo $sqlAuthor;
             Model::executeQuery($pdo,$sqlAuthor);
             $sql = 'DELETE FROM Message WHERE IdMessage = \''.$idMsg.'\'';
-            echo $sql;
             Model::executeQuery($pdo,$sql);
         }
     }
