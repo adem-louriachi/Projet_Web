@@ -81,7 +81,7 @@ class DiscussionsMod extends Model {
         $pdo = Model::connectBD();
         $sqlmsgBD = 'SELECT IdMessage FROM Message WHERE IdDiscussion = \''.$this->id.'\' ORDER BY IdMessage DESC';
         echo $sqlmsgBD;
-        $resultat = $pdo->query($sqlmsgBD);
+        $resultat = $pdo->execute($sqlmsgBD);
         while ($row = $resultat->fetch()) {
             echo 'entrer dans boucle';
             MessagesMod::deleteMsg($row['IdMessage']);
