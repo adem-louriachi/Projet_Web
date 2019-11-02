@@ -4,13 +4,13 @@ require 'Model.php';
 
 class UsersMod extends Model {
 
-    public static function testLoginPwd($identifiant, $pwd) {
+    public static function signin($identifiant, $pwd, $isID) {
         try {
             $pdo = Model::connectBD();
-            if (preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $identifiant)) { // verifie si $nick est de la forme d'un mail
-                $sql = 'SELECT * FROM Utilisateurs WHERE Mail = \'' . $identifiant . '\'';
-            } else {
+            if ($isID) { // si ce n'est pas un identifiant ( une adresse email )
                 $sql = 'SELECT * FROM Utilisateurs WHERE Nom = \'' . $identifiant . '\'';
+            } else {
+                $sql = 'SELECT * FROM Utilisateurs WHERE Mail = \'' . $identifiant . '\'';
             }
             $data = Model::executeQuery($pdo, $sql);
             if (empty($data)) {
@@ -18,24 +18,12 @@ class UsersMod extends Model {
             } else if (!password_verify($pwd, $data['MotDePasse'])) {
                 throw new Exception('Mot de passe incorrect');
             }
-            return true;
+            return $data;
         } catch (Exception $e){
             $_POST['error'] = $e->getMessage();
             header('Location: /?ctrl=Form&action=signin');
         }
     }
-
-    public static function signin($nick) {
-        $pdo = Model::connectBD();
-        if (preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $nick)) {  // verifie si $nick est de la forme d'un mail
-            $sql = 'SELECT * FROM Utilisateurs WHERE Mail = \'' . $nick . '\'';
-        } else {
-            $sql = 'SELECT * FROM Utilisateurs WHERE Nom = \'' . $nick . '\'';
-        }
-        $data = Model::executeQuery($pdo,$sql);
-        return $data;
-    }
-
 
     public static function insertUser($c_nick, $c_mail, $c_pwd) {
         try{

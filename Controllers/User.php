@@ -34,23 +34,21 @@ class User
             $_POST['error'] = 'Les mots de passe ne sont pas les mêmes';
             header('/?ctrl=Form&action=register');
         } else {
-            session_start();
             UsersMod::insertUser($nick, $email, $pwd); // insertion des données dans la Base
         }
     }
 
     public static function signin()
     {
-        if (UsersMod::testLoginPwd($_POST['login'], $_POST['pwd'])) //vérifie l'existance du login et pwd dans la base
-        {
-            UsersMod::Signin($_POST['login']);
-            session_start();
-            $_SESSION['user'] = $_POST['login'];
-            header('location: Home.php');
-        } else {
-            //message d'erreur à ajouter
-            header('/?ctrl=Form&action=signin'); //reste sur la page signin
-        }
+        $isID = (preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $_POST['nick'])) ? false : true;
+        $userData = UsersMod::signin($_POST['nick'], $_POST['pwd'], $isID);
+        $_SESSION = [
+            'nick' => $userData['Nom'],
+            'email' => $userData['Mail'],
+            'date' => $userData['DateInscription'],
+            'admin' => $userData['SuperUtilisateur']
+        ];
+        header('location: Home.php');
     }
 
     public static function signout()
