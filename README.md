@@ -29,7 +29,7 @@ La configuration logicielle
 ---------------------------
 |         |                                    Mnimale                                    |                                  Recommandé                                 |
 |:-------:|:-----------------------------------------------------------------------------:|:---------------------------------------------------------------------------:|
-| Windows | Chrome 39.0   Firefox 30.0    Opera 57.0  Internet Explorer 10                | Chrome 78.0   Firefox 70.0.1   Opera 64.0 Microsoft Edge 44                 |
+| Windows | Chrome 39.0  Firefox 30.0  Opera 57.0  Internet Explorer 10                | Chrome 78.0  Firefox 70.0.1  Opera 64.0  Microsoft Edge 44                 |
 |  Linux  | Debian 6.0         - Firefox 16.0         - Chrome 38.0         - Opera 12.16 | - Linux Ubuntu 18.04.3         - Firefox         - Chrome         - Opera   |
 |  MAC OS | Chrome 41.0   Firefox 30.0   Safari 5.1                                       | Chrome   Firefox   Safari                                                   |
   
