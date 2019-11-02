@@ -15,17 +15,18 @@
 </div>
 <div class="discussion collection container">
 <?php
-$pdo = Model::connectBD();
-$allDis = $pdo->query('SELECT * FROM Discussion');
+
+$allDis = DiscussionsMod::getAllDiscussion();
 
 while ($dis = $allDis->fetch()) { ?>
     <article>
         <a href="#!" class="discussion collection-item active">
             <h3 class="center-align"><?= $dis['NomDiscussion'] ?></h3>
-            <p class="left-align"><?= $dis['contenu'] ?></p>
+            <p class="left-align"><?= $dis['Createur'] ?></p>
+            <p class="left-align"><?= if ($dis['EstOuvert'] == 0) { echo 'ouvert'; } else { echo 'fermé'; } ?></p>
         </a>
     </article>
-<?php } ?>
+<?php $i += 1; } ?>
 </div>
 <?php
     $content = ob_get_clean();
