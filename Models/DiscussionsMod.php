@@ -79,7 +79,12 @@ class DiscussionsMod extends Model {
         return $nomDis['NomDiscussion'];
     }
 
-
+    public static function getNameDiscussions(){
+        $pdo = Model::connectBD();
+        $sql = 'SELECT NomDiscussion FROM Discussion';
+        $nameDis = Model::executeQuery($pdo,$sql);
+        return $nameDis;
+    }
 
     public function closeDiscussion() {
         $pdo = Model::connectBD();
