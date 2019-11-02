@@ -78,7 +78,7 @@ class UsersMod extends Model {
             if (!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $mail)) {
                 throw new Exception('Format de l\'email entré invalide');
             } else {
-                $pdo = ConnectBD();
+                $pdo = Model::ConnectBD();
                 $sql = 'UPDATE Utilisateurs SET Mail = \'' . $mail . '\' WHERE Nom = \'' . $nick . '\'';
                 Model::executeQuery($pdo, $sql);
                 header('Location: /?ctrl=User&action=signout');
@@ -90,13 +90,13 @@ class UsersMod extends Model {
     }
 
     public static function setPwd($nick, $newPwd) {
-        $pdo = ConnectBD();
+        $pdo = Model::ConnectBD();
         $sql = 'UPDATE Utilisateurs SET MotDePasse = \''.password_hash($newPwd,PASSWORD_BCRYPT).'\' WHERE Nom = \''.$nick.'\'';
         Model::executeQuery($pdo, $sql);
     }
 
     public static function setAdmin($idUser, $admin) {
-        $pdo = ConnectBD();
+        $pdo = Model::ConnectBD();
         $sql = 'UPDATE Utilisateurs SET SuperUtilisateur = \''.$admin.'\' WHERE IdUtilisateur = \''.$idUser.'\'';
         Model::executeQuery($pdo, $sql);
     }
