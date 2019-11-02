@@ -27,12 +27,16 @@ class Discussion{
                         class="material-icons right">send</i></button>
             </form>
         <?php
-                if (isset($_POST['message']))
-                {
-                    MessagesMod::insertSectionMsg($idDis, $maxIdMsg, $_SESSION['nick'], $_POST['message']);
-                }
-                else {
-                    echo 'marche pas';
+                if (MessagesMod::getState($maxIdMsg) == 1) { //vérifie si le msg est ouvert
+
+                    if (isset($_POST['message']) AND !empty($_POST['message'])) {
+                        MessagesMod::insertSectionMsg($idDis, $maxIdMsg, $_SESSION['nick'], $_POST['message']);
+                        if (MessagesMod::countSection($maxIdMsg) == 3 ) { //nouveau message quand le dernier est plein
+                            MessagesMod::closeMsg($maxIdMsg);
+                            MessagesMod::insertMsg($idDis);
+                        }
+                        header('refresh: 1');
+                    }
                 }
             }
         $content = ob_get_clean();

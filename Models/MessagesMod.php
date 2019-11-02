@@ -16,7 +16,7 @@ class MessagesMod extends Model{
 
     public function getIdMsg() { return $this->idMsg; }
 
-    public function getState($idMsg) {
+    public static function getState($idMsg) {
         $pdo = Model::connectBD();
         $sqlmsgBD = 'SELECT EstOuvert FROM Message WHERE IdMessage = \''.$idMsg.'\'';
         $msgBD =Model::executeQuery($pdo, $sqlmsgBD);
@@ -73,26 +73,23 @@ class MessagesMod extends Model{
 
     public static function countSection($idMsg){
         $pdo = Model::connectBD();
-        $sql = 'SELECT COUNT(*) FROM SectionMessage WHERE IdMessage =' . $idMsg;
+        $sql = "SELECT count(*) AS NbSection FROM SectionMessage WHERE IdMessage ='$idMsg'";
         $nbSection = Model::executeQuery($pdo,$sql);
-        return $nbSection;
+        return $nbSection['NbSection'];
     }
 
     public static function insertMsg($idDis)
     {
         $pdo = Model::connectBD();
-        $sql = 'INSERT INTO Message (IdDisDuMsg, EstOuvert) VALUES (' . $idDis . ', 1) ';
+        $sql = "INSERT INTO Message (IdDisDuMsg, EstOuvert) VALUES ('$idDis' , 1) ";
         Model::executeQuery($pdo, $sql);
     }
 
     public static function insertSectionMsg($idDis, $idMsg, $author, $textWord) {
         $pdo = Model::connectBD();
-        $sql = 'INSERT INTO SectionMessage (IdMessage, Auteur, TextSection) VALUES (' . $idMsg . ',' . $author . ',' . $textWord . ')';
+        $sql = "INSERT INTO SectionMessage (IdMessage, Auteur, TextSection) VALUES ('$idMsg','$author', '$textWord')";
         Model::executeQuery($pdo, $sql);
-        if (self::countSection($idMsg) == 3 ) {
-            self::closeMsg($idMsg);
-            self::insertMsg($idDis);
-        }
+
     }
 
 
