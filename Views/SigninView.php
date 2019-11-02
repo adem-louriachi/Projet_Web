@@ -1,5 +1,6 @@
 <div class="container black">
     <form id="signin" method="post" action="/?ctrl=User&action=signin">
+        <?= $_SESSION['error'] ?>
         <label>Pseudo / Email
             <input name="login" type="text" placeholder="FrenchCookie / french@cookie.fr" required autofocus>
         </label>
