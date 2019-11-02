@@ -16,13 +16,14 @@
 <div class="discussion collection container">
 <?php
 
+require '../Models/DiscussionsMod.php';
 $nbDiscussion = DiscussionsMod::getNbDiscussion();
 $i = 0;
 while ($i < $nbDiscussion) { ?>
     <article>
         <a href="#!" class="discussion collection-item active">
             <h3 class="center-align"><? DiscussionsMod::showNameDis(i); ?></h3>
-            <p class="left-align"><?= $dis['Createur'] ?></p>
+            <p class="left-align"></p>
         </a>
     </article>
 <?php $i += 1; } ?>
