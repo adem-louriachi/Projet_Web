@@ -11,7 +11,7 @@ class Discussion{
 
         $id = $_GET['id'];
         while ( $msg = MessagesMod::getAllMessage($id)->fetch()) {?>
-            <p><?= DiscussionsMod::getTxt($msg)?></p>
+            <p><?= MessagesMod::getTxt($msg)?></p>
         <?php }
 
         $content = ob_get_clean();
