@@ -96,17 +96,17 @@ class MessagesMod extends Model{
     }
 
 
-    public function insertMsg() {
-        $pdo = Model::connectBD();
-        $sql = 'INSERT INTO Message (IdDisDuMsg, EstOuvert, TextMessage) VALUES ('.$this->idDis.', 1, \'Text mis dans SectionMessage\')';
-        Model::executeQuery($pdo,$sql);
-        $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
-        $idMsgBD = Model::executeQuery($pdo,$sqlRecupIdMessage);
-        $this->idMsg = $idMsgBD['IdMessage'];
-        $this->dateMsg = $this->getDateMsg();
-        $this->stateMsg = true;
-        $this->addSectionMessage($this->authors, $this->idMsg,$this->textMsg);
-    }
+//    public function insertMsg() {
+//        $pdo = Model::connectBD();
+//        $sql = 'INSERT INTO Message (IdDisDuMsg, EstOuvert, TextMessage) VALUES ('.$this->idDis.', 1, \'Text mis dans SectionMessage\')';
+//        Model::executeQuery($pdo,$sql);
+//        $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
+//        $idMsgBD = Model::executeQuery($pdo,$sqlRecupIdMessage);
+//        $this->idMsg = $idMsgBD['IdMessage'];
+//        $this->dateMsg = $this->getDateMsg();
+//        $this->stateMsg = true;
+//        $this->addSectionMessage($this->authors, $this->idMsg,$this->textMsg);
+//    }
 
     public function updateMsg($idMsg, $author, $textMsg, $stateMsg) {
         try{
