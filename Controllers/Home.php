@@ -3,6 +3,7 @@
     ob_start();
     $style = 'Views/HomeView.css';
 ?>
+<div class="center green-text"><?=$_SESSION['success']?></div>
 <div class="center white-text indigo welcome">
     <h2>Description du site</h2>
         <p>
@@ -32,4 +33,5 @@ while ($dis = $allDis->fetch()) { ?>
 <?php
     $content = ob_get_clean();
     require 'Views/TemplateView.php';
+    unset($_SESSION['success']);
 ?>

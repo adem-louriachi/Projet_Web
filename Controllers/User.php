@@ -14,7 +14,11 @@ class User
             $style = 'Views/HomeView.css';
             ob_start();
             if($_SESSION['admin'] == 0) $_SESSION['isAdmin'] = 'Non';
-            else $_SESSION['isAdmin'] = 'Oui 👑';
+            else{
+                $_SESSION['isAdmin'] = 'Oui 👑';
+                $_SESSION['giveAdmin'] = '<form method="post" action="/?ctrl=User&action=giveAdmin"><label>Donner les droits super utilisateur à ( pseudo ) <input name="nick" type="text"></label><button class="submit btn waves-effect waves-light" type="submit" value="Envoyer">Envoyer<i
+                class="material-icons right">send</i></button></form>';
+            }
             require 'Views/UsersView.php';
             $content = ob_get_clean();
             require 'Views/TemplateView.php';
@@ -103,10 +107,20 @@ class User
     }
 
     public static function changePwd(){
-        if ($_POST['pwd'] === $_POST['pwdconf']) UsersMod::setPwd($_SESSION['nick'],$_POST['pwd']);
+        if ($_POST['pwd'] === $_POST['pwdconf']){
+            UsersMod::setPwd($_SESSION['nick'],$_POST['pwd']);
+            $_SESSION['success'] = 'Mot de passe changé';
+            header('Location: /');
+        }
         else {
             $_SESSION['error']['changePwd'] = 'Mots de passe différents';
             header('Location: /?ctrl=User&action=view');
         }
+    }
+
+    public static function giveAdmin(){
+        UsersMod::setAdmin($_POST['nick'],1);
+        $_SESSION['success'] = 'Privilèges Super Utilisateur donnés à '.$_POST['nick'];
+        header('Location: /');
     }
 }
