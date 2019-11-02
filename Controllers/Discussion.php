@@ -18,7 +18,7 @@ class Discussion{
                 <p><? echo MessagesMod::getTxt($idMsg['IdMessage']); ?></p>
             </article>
         <?php }
-            if(isset($_SESSION['user']))
+            if(User::isConnected())
             {
         ?>
             <form id="register" method="post" action="<? MessagesMod::insertSectionMsg($idDis, $maxIdMsg, $_SESSION['user'], $_POST['message']) ?> >" >
