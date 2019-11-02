@@ -66,7 +66,8 @@ class DiscussionsMod extends Model {
         $pdo = Model::connectBD();
 
         $sql = 'SELECT * FROM Discussion';
-        return $sql;
+        $dataUser = Model::executeQuery($pdo,$sql);
+        return $dataUsersql;
     }
 
 
