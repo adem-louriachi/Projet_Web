@@ -16,7 +16,7 @@
 <div class="discussion collection container">
 <?php
 
-while ($dis = DiscussionsMod::getAllDiscussion()->fetch()) { ?>
+while ($dis = DiscussionsMod::getAllDiscussion()) { ?>
     <article>
         <a href="#!" class="discussion collection-item active">
             <h3 class="center-align"><?= $dis['NomDiscussion'] ?></h3>
