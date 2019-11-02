@@ -22,7 +22,7 @@ class User
             require 'Views/UsersView.php';
             $content = ob_get_clean();
             require 'Views/TemplateView.php';
-            unset($_SESSION['error']);
+            if (isset($_SESSION['error'])) unset($_SESSION['error']);
         } else {
             header('Location: /');
         }

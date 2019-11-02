@@ -11,7 +11,7 @@ class Form
         require 'Views/RegisterView.php';
         $content = ob_get_clean();
         require 'Views/TemplateView.php';
-        unset($_SESSION['error']);
+        if (isset($_SESSION['error'])) unset($_SESSION['error']);
     }
 
     public static function signin(){
@@ -22,7 +22,7 @@ class Form
         $content = ob_get_clean();
         require 'Views/TemplateView.php';
         $_SESSION['error'] = '<p style="color:red;">'.$_SESSION['error'].'</p>';
-        unset($_SESSION['error']);
+        if (isset($_SESSION['error'])) unset($_SESSION['error']);
     }
 
     public static function forget(){
@@ -33,7 +33,7 @@ class Form
         require 'Views/ForgetView.php';
         $content = ob_get_clean();
         require 'Views/TemplateView.php';
-        unset($_SESSION['error']);
+        if (isset($_SESSION['error'])) unset($_SESSION['error']);
     }
 
     public static function show(){

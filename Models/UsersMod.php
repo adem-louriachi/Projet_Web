@@ -81,7 +81,9 @@ class UsersMod extends Model {
                 $pdo = Model::ConnectBD();
                 $sql = 'UPDATE Utilisateurs SET Mail = \'' . $mail . '\' WHERE Nom = \'' . $nick . '\'';
                 Model::executeQuery($pdo, $sql);
-                header('Location: /?ctrl=User&action=signout');
+                $_SESSION['email'] = $mail;
+                $_SESSION['success'] = 'Email changé';
+                header('Location: /');
             }
         } catch (Exception $e) {
             $_SESSION['error']['changeEmail'] = $e->getMessage();

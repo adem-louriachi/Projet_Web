@@ -33,5 +33,5 @@ while ($dis = $allDis->fetch()) { ?>
 <?php
     $content = ob_get_clean();
     require 'Views/TemplateView.php';
-    unset($_SESSION['success']);
+    if (isset($_SESSION['success'])) unset($_SESSION['success']);
 ?>
