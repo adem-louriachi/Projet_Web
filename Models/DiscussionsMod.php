@@ -63,6 +63,23 @@ class DiscussionsMod extends Model {
     }
 
 
+    function getNbDiscussion() {
+        $pdo = Model::connectBD();
+
+        $sql = 'SELECT COUNT(*) AS NbDiscusion FROM Discussion';
+        $nbDis = Model::executeQuery($pdo,$sql);
+        return $nbDis['NbDiscusion'];
+    }
+
+    function showNameDis($posInDB) {
+        $pdo = Model::connectBD();
+        $predDisWant = $posInDB - 1;
+        $sql = 'SELECT NomDiscussion FROM Discussion LIMIT '.$predDisWant.', 1';
+        $nomDis = Model::executeQuery($pdo,$sql);
+        return $nomDis['NomDiscussion'];
+    }
+
+
 
     public function closeDiscussion() {
         $pdo = Model::connectBD();
