@@ -1,10 +1,11 @@
 <?php
-require 'Models/Model.php';
-require 'Models/DiscussionsMod.php';
+
+
 class Discussion{
 
     public static function show(){ // affiche la discussion qu'on lui donne
         require 'AccountMenu.php';
+        require 'Models/DiscussionsMod.php';
         $style = 'Views/HomeView.css';
         ob_start();
 
