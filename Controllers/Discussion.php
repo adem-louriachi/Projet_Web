@@ -21,7 +21,7 @@ class Discussion{
             if(User::isConnected())
             {
         ?>
-            <form id="register" method="post" action="<? MessagesMod::insertSectionMsg($idDis, $maxIdMsg, $_SESSION['user'], $_POST['message']) ?>" >
+            <form id="register" method="post" action="<? MessagesMod::insertSectionMsg($idDis, $maxIdMsg, $_SESSION['nick'], $_POST['message']) ?>" >
                 <input name="message" type="text" placeholder="Message...">
                 <button class="submit btn waves-effect waves-light" type="submit">Envoyer<i
                         class="material-icons right">send</i></button>
