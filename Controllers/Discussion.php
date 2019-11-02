@@ -1,5 +1,5 @@
 <?php
-
+require 'Models/Model.php';
 require 'Models/DiscussionsMod.php';
 class Discussion{
 
