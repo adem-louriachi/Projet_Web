@@ -23,7 +23,7 @@ while ($dis = $allDis->fetch()) { ?>
         <a href="#!" class="discussion collection-item active">
             <h3 class="center-align"><?= $dis['NomDiscussion'] ?></h3>
             <p class="left-align"><?= $dis['Createur'] ?></p>
-            <p class="left-align"><?= if ($dis['EstOuvert'] == 0) { echo 'ouvert'; } else { echo 'fermé'; } ?></p>
+            <p class="left-align"><? if ($dis['EstOuvert'] == 0) { echo 'ouvert'; } else { echo 'fermé'; } ?></p>
         </a>
     </article>
 <?php $i += 1; } ?>
