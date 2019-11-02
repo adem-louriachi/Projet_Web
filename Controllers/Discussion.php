@@ -13,7 +13,7 @@ class Discussion{
         $allIdMsg = MessagesMod::getAllMessage($idDis);
         $maxIdMsg = 0;
         while ( $idMsg = $allIdMsg->fetch()) {
-            if ($idMsg > $maxIdMsg) { $maxIdMsg = $idMsg; } //obtenir le plus grand idMessage (le dernier) ?>
+            if ($idMsg['IdMessage'] > $maxIdMsg) { $maxIdMsg = $idMsg['IdMessage']; } //obtenir le plus grand idMessage (le dernier) ?>
             <article>
                 <p><? echo MessagesMod::getTxt($idMsg['IdMessage']); ?></p>
             </article>
@@ -30,6 +30,9 @@ class Discussion{
                 if (isset($_POST['message']))
                 {
                     MessagesMod::insertSectionMsg($idDis, $maxIdMsg, $_SESSION['nick'], $_POST['message']);
+                }
+                else {
+                    echo 'marche pas';
                 }
             }
         $content = ob_get_clean();
