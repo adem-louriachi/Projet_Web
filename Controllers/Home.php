@@ -20,7 +20,7 @@ require_once 'Models/DiscussionsMod.php';
 $allDis = DiscussionsMod::getAllDiscussion();
 while ($dis = $allDis->fetch()) { ?>
     <article>
-        <a href="#!" class="discussion collection-item active">
+        <a href="/?ctrl=Discussion&action=show&id=<?= $dis['IdDiscussion'] ?>" class="discussion collection-item active">
             <h3 class="center-align"><?= $dis['NomDiscussion']; ?></h3>
             <p class="left-align"><?= $dis['Createur']; ?></p>
             <p class="left-align"><? if($dis['EstOuvert'] == 0) { echo 'Ouvert'; } else { echo 'Fermé'; } ?></p>
