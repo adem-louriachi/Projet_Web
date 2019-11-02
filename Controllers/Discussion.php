@@ -13,7 +13,7 @@ class Discussion{
         $allMsg = MessagesMod::getAllMessage($id);
         while ( $idMsg = $allMsg->fetch()) { ?>
             <article>
-                <p><? echo MessagesMod::getTxt($idMsg); ?></p>
+                <p><? echo MessagesMod::getTxt($idMsg['IdMessage']); ?></p>
             </article>
         <?php }
 
