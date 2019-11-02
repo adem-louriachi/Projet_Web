@@ -16,7 +16,7 @@ class User
             if($_SESSION['admin'] == 0) $_SESSION['isAdmin'] = 'Non';
             else{
                 $_SESSION['isAdmin'] = 'Oui 👑';
-                $_SESSION['giveAdmin'] = '<form method="post" action="/?ctrl=User&action=giveAdmin"><label>Donner les droits super utilisateur à ( pseudo ) <input name="nick" type="text"></label><button class="submit btn waves-effect waves-light" type="submit" value="Envoyer">Envoyer<i
+                $_SESSION['giveAdmin'] = '<form method="post" action="/?ctrl=User&action=giveAdmin"><label>Donner les droits super utilisateur à ( pseudo ) <input name="nick" type="text" placeholder="Pseudo choisi"></label><button class="submit btn waves-effect waves-light" type="submit" value="Envoyer">Envoyer<i
                 class="material-icons right">send</i></button></form>';
             }
             require 'Views/UsersView.php';

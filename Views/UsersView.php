@@ -9,7 +9,7 @@
     <label>Changer d'adresse e-mail
         <input name="email" type="email">
     </label>
-    <input id="submit" type="submit" value="Modifier l'adresse mail">
+    <button class="submit btn waves-effect waves-light" type="submit" value="Modifier l'adresse email">Modifier l'adresse email<i class="material-icons right">send</i></button>
 </form>
 <form id="newPwd" method="post" action="/?ctrl=User&action=changePwd">
     <?= $_SESSION['error']['changePwd'] ?>
@@ -17,5 +17,5 @@
         <input name="pwd" type="password">
         <input name="pwdconf" type="password">
     </label>
-    <input id="submit" type="submit" value="Modifier le mot de passe">
+    <button class="submit btn waves-effect waves-light" type="submit" value="Modifier le mot de passe">Modifier le mot de passe<i class="material-icons right">send</i></button>
 </form>
