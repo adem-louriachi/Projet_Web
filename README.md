@@ -6,7 +6,7 @@ Vincent Ferrer vincent.ferrer@etu.univ-amu.fr
 Adem Louriachi adem.louriachi@etu.univ-amu.fr  
 Guillaume Piccina guillaume.piccina@etu.univ-amu.fr  
 
-URL de l'index du site : http://freenote-4randoms.alwaysdata.net/  
+URL de l'index du site : https://freenote-4randoms.alwaysdata.net/  
 
 Présentation du projet
 ----------------------
