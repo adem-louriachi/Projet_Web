@@ -21,6 +21,8 @@ class Form
         require 'Views/SigninView.php';
         $content = ob_get_clean();
         require 'Views/TemplateView.php';
+        $_SESSION['error'] = '<p style="color:red;">'.$_SESSION['error'].'</p>';
+        unset($_SESSION['error']);
     }
 
     public static function forget(){
