@@ -10,19 +10,19 @@ URL de l'index du site : http://freenote-4randoms.alwaysdata.net/
 
 Présentation du projet
 ----------------------
-Ce projet a pour but de creer un réseau social d’un nouveau genre appelé FreeNote qui est fait pour communiquer, comme tous réseau social, à la difference que dans FreeNote, il n'est possible d'écrire q'un ou deux mots dans un message qui fait lui-même partie d'une discussion.
+Ce projet a pour but de créer un réseau social d’un nouveau genre appelé FreeNote qui est fait pour communiquer, comme tout réseau social, à la différence que dans FreeNote, il n'est possible d'écrire qu'un ou deux mots dans un message qui fait lui-même partie d'une discussion.
 
 Choix techniques  
 ----------------
-Nous avons fait plusieurs choix technique :  
-  - Alwaysdata comme hebergeur car c'est un hebergeur fiable et performant  
-  - MySQL pour gerer notre base de donnée  
+Nous avons fait plusieurs choix techniques :  
+  - Alwaysdata comme hébergeur car c'est un hébergeur fiable et performant  
+  - MySQL pour gérer notre base de données
   - Le PHP pour avoir un site Web dynamique  
-    Au sein même du PHP, nous avons fait certains choix technique  
+    Au sein même du PHP, nous avons fait certains choix techniques  
         - Utiliser le modèle MVC ainsi que la programmation orientée objet afin que notre application soit évolutive, modulaire et professionnelle  
-        - L'utilisation de PDO plutôt que l'utilisation de mysqli pour gerer la base de donnée car PDO est plus sécurisé
-        - Pour le cryptage des mots de passe nous avons choisi le cryptage avec la fonction password_hash() avec pour algorythme de cryptage le PASSWORD_BCRYPT car cela nous permet d'avoir des mots de passe proteger de maniere assez élevée
-  - Pour le CSS de notre site nous avons utiliser Materialize pour que notre site soit parfaitement responsive  
+        - L'utilisation de PDO plutôt que l'utilisation de mysqli pour gérer la base de donnée car PDO est plus sécurisé
+        - Pour le cryptage des mots de passe, nous avons choisi le cryptage avec la fonction password_hash() avec pour algorithme de cryptage le PASSWORD_BCRYPT car cela nous permet d'avoir des mots de passe protegés.
+  - Pour le CSS de notre site, nous avons utilisé Materialize pour que notre site soit parfaitement responsive  
   
   
 La configuration logicielle  

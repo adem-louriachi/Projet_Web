@@ -6,6 +6,7 @@ class User
         if (isset($_SESSION['nick']) && isset($_SESSION['email']) && isset($_SESSION['date']) && isset($_SESSION['admin'])) return true;
         else return false;
     }
+
     public static function view()
     {
         if (self::isConnected()){
