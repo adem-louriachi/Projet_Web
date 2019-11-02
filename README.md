@@ -20,7 +20,8 @@ Nous avons fait plusieurs choix technique :
   - Le PHP pour avoir un site Web dynamique  
     Au sein même du PHP, nous avons fait certains choix technique  
         - Utiliser le modèle MVC ainsi que la programmation orientée objet afin que notre application soit évolutive, modulaire et professionnelle  
-        - L'utilisation de PDO plutôt que l'utilisation de mysqli pour gerer la base de donnée car PDO est plus sécurisé  
+        - L'utilisation de PDO plutôt que l'utilisation de mysqli pour gerer la base de donnée car PDO est plus sécurisé
+        - Pour le cryptage des mots de passe nous avons choisi le cryptage avec la fonction password_hash() avec pour algorythme de cryptage le PASSWORD_BCRYPT car cela nous permet d'avoir des mots de passe proteger de maniere assez élevée
   - Pour le CSS de notre site nous avons utiliser Materialize pour que notre site soit parfaitement responsive  
   
   

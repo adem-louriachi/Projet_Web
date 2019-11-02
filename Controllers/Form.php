@@ -1,7 +1,7 @@
 <?php
 class Form
 {
-    public function register(){
+    public static function register(){
         require 'AccountMenu.php';
         $style = 'Views/HomeView.css';
         ob_start();
@@ -13,7 +13,7 @@ class Form
         require 'Views/TemplateView.php';
     }
 
-    public function signin(){
+    public static function signin(){
         require 'AccountMenu.php';
         $style = 'Views/HomeView.css';
         ob_start();
@@ -21,10 +21,18 @@ class Form
         $content = ob_get_clean();
         require 'Views/TemplateView.php';
     }
-    public function forget(){
-        echo 'oui';
+
+    public static function forget(){
+        require 'AccountMenu.php';
+        $style = 'Views/HomeView.css';
+        ob_start();
+        $_POST['error'] = '<p style="color:red;">'.filter_input(INPUT_POST, 'error').'</p>';
+        require 'Views/ForgetView.php';
+        $content = ob_get_clean();
+        require 'Views/TemplateView.php';
     }
-    public function show(){
+
+    public static function show(){
         header('Location: /');
     }
 }

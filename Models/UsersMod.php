@@ -107,40 +107,22 @@ class UsersMod extends Model {
         return $dataUser['DateInscription'];
     }
 
-    public static function forgetPwd($mail) {
-        //generation mot de passe aléatoire
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $newPwd = '';
-
-        for ($i = 0; $i < 24; $i++) {
-            $index = rand(0, strlen($characters) - 1);
-            $newPwd .= $characters[$index];
-        }
-
-        for ($i = 0; $i < 5; $i++) {
-            for ($i = 0; $i < strlen($newPwd)-1; $i++) {
-                if ( (is_int($newPwd[$i])&& is_int($newPwd[$i+1]))) {
-                    $newPwd[$i] = random_int(0,9);
-                    $newPwd[random_int(0,strlen($newPwd)-1)] = random_int(0,9);
-                }
-            }
-        }
-        //fin generation mot de passe aléatoire
+    public static function forgetPwd($email, $newPwd) {
         try {
-            if (!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $mail)) {
+            if (!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $email)) {
                 throw new Exception('Format de l\'email entré invalide');
             }
 
             $pdo = Model::ConnectBD();
-            $sql = 'SELECT * FROM Utilisateurs WHERE Mail = \'' . $mail . '\'';
+            $sql = 'SELECT * FROM Utilisateurs WHERE Mail = \'' . $email . '\'';
             $data = Model::executeQuery($pdo, $sql);
 
             if (empty($data)) {
                 throw new Exception('Mail inexistant');
             }
-            $sql = 'UPDATE Utilisateurs SET MotDePasse = \'' . password_hash($newPwd, PASSWORD_BCRYPT) . '\' WHERE Mail = \'' . $mail . '\'';
+            $sql = 'UPDATE Utilisateurs SET MotDePasse = \'' . password_hash($newPwd, PASSWORD_BCRYPT) . '\' WHERE Mail = \'' . $email . '\'';
             Model::executeQuery($pdo, $sql);
-            return $newPwd;
+            return true; // ( succès du changement de mot de passe )
         } catch (Exception $e) {
             $_POST['error'] = $e->getMessage();
             header('Location: /?ctrl=Form&action=forget');
