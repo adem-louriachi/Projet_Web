@@ -27,7 +27,7 @@ class MessagesMod extends Model{
     {
         $pdo = Model::connectBD();
 
-        $sql = $pdo->query('SELECT * FROM Message WHERE IdDisDuMsg =' . $idDis );
+        $sql = $pdo->query('SELECT IdMessage FROM Message WHERE IdDisDuMsg =\'' . $idDis . '\'');
         return $sql;
     }
 

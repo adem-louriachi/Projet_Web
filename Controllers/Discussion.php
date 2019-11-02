@@ -10,8 +10,8 @@ class Discussion{
         ob_start();
 
         $id = $_GET['id'];
-        while ( $msg = MessagesMod::getAllMessage($id)->fetch()) {?>
-            <p><?= MessagesMod::getTxt($msg)?></p>
+        while ( $idmsg = MessagesMod::getAllMessage($id)->fetch()) {?>
+            <p><?= MessagesMod::getTxt($idmsg)?></p>
         <?php }
 
         $content = ob_get_clean();
