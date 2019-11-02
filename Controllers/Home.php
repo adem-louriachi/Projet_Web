@@ -15,7 +15,7 @@
 </div>
 <div class="discussion collection container">
 <?php
-require 'Models/DiscussionsMod.php';
+require '/Models/DiscussionsMod.php';
 while ($dis = DiscussionsMod::getAllDiscussion()) { ?>
     <article>
         <a href="#!" class="discussion collection-item active">
