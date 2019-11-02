@@ -40,11 +40,11 @@ La configuration logicielle
 Identifiants de Connexion  
 Site Web ( possible de se connecter avec le Nom ou le Mail au choix)
 
-| Titre 1       |     Titre 2     |        Titre 3 |
-| :------------ | :-------------: | -------------: |
-| Colonne       |     Colonne     |        Colonne |
-| Alignée à     |   Alignée au    |      Alignée à |
-| Gauche        |     Centre      |         Droite |
+| Login                           | Mot de Passe   |
+|:-------------:                  |:-------------: |
+|     Nom        |        Mail    |                |
+| :------------  | :-------------:|                |
+| Admin  | admin@freenote-4randoms.net|      Admin          |
 
 
 
