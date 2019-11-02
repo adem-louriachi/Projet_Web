@@ -94,6 +94,7 @@ class User
             $message .= $message_html . "\n\n";
             $headers = 'From:' . $from;
             mail($to, $subject, $message, $headers);
+            header('/?ctrl=User&action=signin');
         }
     }
 
