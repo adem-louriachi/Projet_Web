@@ -18,6 +18,7 @@ class User
             require 'Views/UsersView.php';
             $content = ob_get_clean();
             require 'Views/TemplateView.php';
+            unset($_SESSION['error']);
         } else {
             header('Location: /');
         }
@@ -93,6 +94,19 @@ class User
             $message .= $message_html . "\n\n";
             $headers = 'From:' . $from;
             mail($to, $subject, $message, $headers);
+            header('/?ctrl=User&action=signin');
+        }
+    }
+
+    public static function changeMail(){
+        UsersMod::setMail($_SESSION['nick'], $_POST['email']);
+    }
+
+    public static function changePwd(){
+        if ($_POST['pwd'] === $_POST['pwdconf']) UsersMod::setPwd($_SESSION['nick'],$_POST['pwd']);
+        else {
+            $_SESSION['error']['changePwd'] = 'Mots de passe différents';
+            header('Location: /?ctrl=User&action=view');
         }
     }
 }
