@@ -1,6 +1,7 @@
 <?php
 ob_start();
 $style = 'MessageView.css';
+require 'Controllers/AccountMenu.php';
 ?>
 
 <title>
@@ -21,6 +22,9 @@ $style = 'MessageView.css';
     <div class="message msg grey darken-4 white-text z-depth-3">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent accumsan nisi quis rutrum feugiat. Phasellus pharetra sem eros, non congue lorem faucibus sit amet. Phasellus tincidunt lorem lorem, et dapibus augue imperdiet vitae. Curabitur facilisis dictum nisi non ornare. Maecenas interdum elit sit amet lorem gravida, quis sollicitudin elit euismod. Fusce vel sem et arcu viverra ornare.</p>
     </div>
+    <input name="msg" type="text" placeholder="Un ou deux mots maximum">
+    <button class="submit btn waves-effect waves-light" name="submit" type="submit" >Envoyer le message <i class="material-icons right">send</i></button>
+    <button class="submit btn waves-effect waves-light" name="submit2" type="submit" >Envoyer et clore le message<i class="material-icons right">send</i></button>
 </div>
 
 <?php
