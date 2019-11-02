@@ -26,8 +26,7 @@ foreach ($discussions as $discussion): ?>
     <article>
         <a href="#!" class="discussion collection-item active">
             <h3 class="center-align"><?= $discussion['nick'] ?></h3>
-            <p class="left-align"><?= $discussion['contenu'] ?></p>
-            <a href="#!" class="secondary-content"><i class="material-icons">arrow-forward</i></a>
+            <p class="left-align"><?= $discussion['contenu'] ?></p
         </a>
     </article>
 <?php endforeach; ?>
