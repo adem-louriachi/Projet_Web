@@ -15,11 +15,13 @@
 </div>
 <div class="discussion collection container">
 <?php
-$allDis = DiscussionsMod::selectAllDiscussion();
+$pdo = Model::connectBD();
+$allDis = $pdo->query('SELECT * FROM Discussion');
+
 while ($dis = $allDis->fetch()) { ?>
     <article>
         <a href="#!" class="discussion collection-item active">
-            <h3 class="center-align"><?= $dis['nick'] ?></h3>
+            <h3 class="center-align"><?= $dis['NomDiscussion'] ?></h3>
             <p class="left-align"><?= $dis['contenu'] ?></p>
         </a>
     </article>
