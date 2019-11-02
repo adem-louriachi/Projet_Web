@@ -15,7 +15,7 @@
 </div>
 <div class="discussion collection container">
 <?php
-
+require_once 'Models/DiscussionsMod.php';
 
 $nbDiscussion = DiscussionsMod::getNbDiscussion();
 $i = 0;
