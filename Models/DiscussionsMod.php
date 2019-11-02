@@ -62,6 +62,14 @@ class DiscussionsMod extends Model {
         return $discussion;
     }
 
+    public static function getAllDiscussion()
+    {
+        $pdo = Model::connectBD();
+
+        $sql = $pdo->query('SELECT * FROM Discussion');
+        return $sql;
+    }
+
 
     public static function getNbDiscussion() {
         $pdo = Model::connectBD();

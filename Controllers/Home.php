@@ -17,16 +17,17 @@
 <?php
 require_once 'Models/DiscussionsMod.php';
 
-$nbDiscussion = DiscussionsMod::getNbDiscussion();
-$i = 0;
-while ($i < $nbDiscussion) { ?>
+$allDis = DiscussionsMod::getAllDiscussion();
+while ($dis = $allDis->fetch()) { ?>
     <article>
         <a href="#!" class="discussion collection-item active">
-            <h3 class="center-align"><? DiscussionsMod::showNameDis($i); ?></h3>
-            <p class="left-align"></p>
+            <h3 class="center-align"><?= $dis['NomDiscussion']; ?></h3>
+            <p class="left-align"><?= $dis['Createur']; ?></p>
+            <p class="left-align"><? if($dis['EstOuvert'] == 0) { echo 'Ouvert'; } else { echo 'Fermé'; } ?></p>
         </a>
     </article>
-<?php $i += 1; } ?>
+<?php } ?>
+
 </div>
 <?php
     $content = ob_get_clean();
