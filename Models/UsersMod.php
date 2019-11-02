@@ -123,6 +123,7 @@ class UsersMod extends Model {
             }
             $sql = 'UPDATE Utilisateurs SET MotDePasse = \'' . password_hash($newPwd, PASSWORD_BCRYPT) . '\' WHERE Mail = \'' . $email . '\'';
             Model::executeQuery($pdo, $sql);
+            echo 'Fin du forgetPwd';
             return true; // ( succès du changement de mot de passe )
         } catch (Exception $e) {
             $_SESSION['error'] = $e->getMessage();
