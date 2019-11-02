@@ -65,9 +65,8 @@ class DiscussionsMod extends Model {
     function selectAllDiscussion() {
         $pdo = Model::connectBD();
 
-        $sql = 'SELECT * FROM Discussion';
-        $dataUser = Model::executeQuery($pdo,$sql);
-        return $dataUser;
+        $sql = $pdo->query('SELECT * FROM Discussion');
+        return $sql;
     }
 
 
