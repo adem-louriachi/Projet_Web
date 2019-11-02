@@ -3,6 +3,7 @@
 <p>Email : <?=$_SESSION['email']?></p>
 <p>Date d'inscription : <?=$_SESSION['date']?></p>
 <p>Super administrateur : <?=$_SESSION['isAdmin']?></p>
+<?= $_SESSION['giveAdmin'] ?>
 <form id="newMail" method="post" action="/?ctrl=User&action=changeMail">
     <?= $_SESSION['error']['changeEmail'] ?>
     <label>Changer d'adresse e-mail
