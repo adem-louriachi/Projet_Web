@@ -2150,7 +2150,6 @@
 html {
   line-height: 1.15;
   /* 1 */
-  -ms-text-size-adjust: 100%;
   /* 2 */
   /* 2 */
 }
@@ -2403,35 +2402,13 @@ select {
  *    controls in Android 4.
  * 2. Correct the inability to style clickable types in iOS and Safari.
  */
-button,
-html [type="button"],
-[type="reset"],
-[type="submit"] {
-  -webkit-appearance: button;
-  /* 2 */
-}
 
 /**
  * Remove the inner border and padding in Firefox.
  */
-button::-moz-focus-inner,
-[type="button"]::-moz-focus-inner,
-[type="reset"]::-moz-focus-inner,
-[type="submit"]::-moz-focus-inner {
-  border-style: none;
-  padding: 0;
-}
-
 /**
  * Restore the focus styles unset by the previous rule.
  */
-button:-moz-focusring,
-[type="button"]:-moz-focusring,
-[type="reset"]:-moz-focusring,
-[type="submit"]:-moz-focusring {
-  outline: 1px dotted ButtonText;
-}
-
 /**
  * Correct the padding in Firefox.
  */
@@ -2503,7 +2480,6 @@ textarea {
  * 2. Correct the outline style in Safari.
  */
 [type="search"] {
-  -webkit-appearance: textfield;
   /* 1 */
   outline-offset: -2px;
   /* 2 */
@@ -2583,9 +2559,7 @@ a {
 }
 
 .valign-wrapper {
-  display: -ms-flexbox;
   display: flex;
-      -ms-flex-align: center;
           align-items: center;
 }
 
@@ -2904,11 +2878,8 @@ ul.staggered-list li {
 .page-footer .footer-copyright {
   overflow: hidden;
   min-height: 50px;
-  display: -ms-flexbox;
   display: flex;
-      -ms-flex-align: center;
           align-items: center;
-      -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 10px 0px;
   color: rgba(255, 255, 255, 0.8);
@@ -3246,8 +3217,6 @@ td, th {
 
 .no-select, input[type=range],
 input[type=range] + .thumb {
-     -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 
@@ -3330,7 +3299,6 @@ table span.badge {
 /* This is needed for some mobile phones to display the Google Icon font properly */
 .material-icons {
   text-rendering: optimizeLegibility;
-     -moz-font-feature-settings: 'liga';
           font-feature-settings: 'liga';
 }
 
@@ -4684,7 +4652,6 @@ small {
 }
 
 .card.horizontal {
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -4709,11 +4676,8 @@ small {
 }
 
 .card.horizontal .card-stacked {
-  display: -ms-flexbox;
   display: flex;
-      -ms-flex-direction: column;
           flex-direction: column;
-      -ms-flex: 1;
           flex: 1;
   position: relative;
 }
@@ -4858,11 +4822,8 @@ small {
   font-size: 1.1rem;
   font-weight: 300;
   color: #fff;
-  display: -ms-flexbox;
   display: flex;
-      -ms-flex-align: center;
           align-items: center;
-      -ms-flex-pack: justify;
           justify-content: space-between;
   cursor: default;
 }
@@ -4916,7 +4877,6 @@ small {
 }
 
 .tabs.tabs-fixed-width {
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -4972,7 +4932,6 @@ small {
 
 @media only screen and (max-width: 992px) {
   .tabs {
-    display: -ms-flexbox;
     display: flex;
   }
   .tabs .tab {
@@ -5245,9 +5204,7 @@ button.btn-floating {
 .fixed-action-btn.direction-bottom ul {
   top: 64px;
   bottom: auto;
-  display: -ms-flexbox;
   display: flex;
-      -ms-flex-direction: column-reverse;
           flex-direction: column-reverse;
 }
 
@@ -5265,7 +5222,6 @@ button.btn-floating {
 }
 
 .fixed-action-btn.toolbar ul {
-  display: -ms-flexbox;
   display: flex;
   top: 0;
   bottom: 0;
@@ -5273,7 +5229,6 @@ button.btn-floating {
 }
 
 .fixed-action-btn.toolbar ul li {
-      -ms-flex: 1;
           flex: 1;
   display: inline-block;
   margin: 0;
@@ -5466,8 +5421,6 @@ body.keyboard-focused .dropdown-content li:focus {
   cursor: pointer;
   display: inline-block;
   overflow: hidden;
-     -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   vertical-align: middle;
   z-index: 1;
@@ -5668,7 +5621,6 @@ body.keyboard-focused .dropdown-content li:focus {
 }
 
 .collapsible-header {
-  display: -ms-flexbox;
   display: flex;
   cursor: pointer;
   line-height: 1.5;
@@ -5904,15 +5856,6 @@ label {
 /* Text Inputs + Textarea
    ========================================================================== */
 /* Style Placeholders */
-::-moz-placeholder {
-  color: #d1d1d1;
-}
-:-ms-input-placeholder {
-  color: #d1d1d1;
-}
-::-ms-input-placeholder {
-  color: #d1d1d1;
-}
 ::placeholder {
   color: #d1d1d1;
 }
@@ -6199,8 +6142,6 @@ textarea.materialize-textarea.invalid ~ .helper-text[data-error],
 textarea.materialize-textarea:focus.invalid ~ .helper-text[data-error], .select-wrapper.valid .helper-text[data-success],
 .select-wrapper.invalid ~ .helper-text[data-error] {
   color: transparent;
-     -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   pointer-events: none;
 }
@@ -6504,8 +6445,6 @@ textarea.materialize-textarea {
   line-height: 25px;
   font-size: 1rem;
   transition: .28s ease;
-     -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 
@@ -6623,8 +6562,6 @@ textarea.materialize-textarea {
   height: 25px;
   line-height: 25px;
   font-size: 1rem;
-     -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 
@@ -6790,8 +6727,6 @@ textarea.materialize-textarea {
    ========================================================================== */
 .switch,
 .switch * {
-     -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 
@@ -6920,8 +6855,6 @@ select {
   margin: 0 0 8px 0;
   padding: 0;
   display: block;
-     -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   z-index: 1;
 }
@@ -6961,8 +6894,6 @@ select:disabled {
 .select-wrapper input.select-dropdown:disabled {
   color: rgba(0, 0, 0, 0.42);
   cursor: default;
-     -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 
@@ -7126,101 +7057,10 @@ input[type=range] + .thumb.active .value {
 }
 
 input[type=range] {
-  -webkit-appearance: none;
-}
-
-input[type=range]::-webkit-slider-runnable-track {
-  height: 3px;
-  background: #c2c0c2;
-  border: none;
-}
-
-input[type=range]::-webkit-slider-thumb {
-  border: none;
-  height: 14px;
-  width: 14px;
-  border-radius: 50%;
-  background: #26a69a;
-  -webkit-transition: -webkit-box-shadow .3s;
-  transition: -webkit-box-shadow .3s;
-  transition: box-shadow .3s;
-  transition: box-shadow .3s, -webkit-box-shadow .3s;
-  -webkit-appearance: none;
-  background-color: #26a69a;
-  -webkit-transform-origin: 50% 50%;
-          transform-origin: 50% 50%;
-  margin: -5px 0 0 0;
-}
-
-.keyboard-focused input[type=range]:focus:not(.active)::-webkit-slider-thumb {
-          box-shadow: 0 0 0 10px rgba(38, 166, 154, 0.26);
-}
-
-input[type=range] {
   /* fix for FF unable to apply focus style bug  */
   border: 1px solid white;
   /*required for proper track sizing in FF*/
 }
-
-input[type=range]::-moz-range-track {
-  height: 3px;
-  background: #c2c0c2;
-  border: none;
-}
-
-input[type=range]::-moz-focus-inner {
-  border: 0;
-}
-
-input[type=range]::-moz-range-thumb {
-  border: none;
-  height: 14px;
-  width: 14px;
-  border-radius: 50%;
-  background: #26a69a;
-  transition: box-shadow .3s;
-  margin-top: -5px;
-}
-
-input[type=range]:-moz-focusring {
-  outline: 1px solid #fff;
-  outline-offset: -1px;
-}
-
-.keyboard-focused input[type=range]:focus:not(.active)::-moz-range-thumb {
-  box-shadow: 0 0 0 10px rgba(38, 166, 154, 0.26);
-}
-
-input[type=range]::-ms-track {
-  height: 3px;
-  background: transparent;
-  border-color: transparent;
-  border-width: 6px 0;
-  /*remove default tick marks*/
-  color: transparent;
-}
-
-input[type=range]::-ms-fill-lower {
-  background: #777;
-}
-
-input[type=range]::-ms-fill-upper {
-  background: #ddd;
-}
-
-input[type=range]::-ms-thumb {
-  border: none;
-  height: 14px;
-  width: 14px;
-  border-radius: 50%;
-  background: #26a69a;
-  transition: box-shadow .3s;
-}
-
-.keyboard-focused input[type=range]:focus:not(.active)::-ms-thumb {
-  box-shadow: 0 0 0 10px rgba(38, 166, 154, 0.26);
-}
-
 /***************
     Nav List
 ***************/
@@ -7264,7 +7104,6 @@ input[type=range]::-ms-thumb {
   transform: translateX(-100%);
   height: 100%;
   height: calc(100% + 60px);
-  height: -moz-calc(100%);
   padding-bottom: 60px;
   background-color: #fff;
   z-index: 999;
@@ -8130,24 +7969,19 @@ input[type=range]::-ms-thumb {
 }
 
 .datepicker-container.modal-content {
-  display: -ms-flexbox;
   display: flex;
-      -ms-flex-direction: column;
           flex-direction: column;
   padding: 0;
 }
 
 .datepicker-controls {
-  display: -ms-flexbox;
   display: flex;
-      -ms-flex-pack: justify;
           justify-content: space-between;
   width: 280px;
   margin: 0 auto;
 }
 
 .datepicker-controls .selects-container {
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -8182,7 +8016,6 @@ input[type=range]::-ms-thumb {
 
 /* Date Display */
 .datepicker-date-display {
-      -ms-flex: 1 auto;
           flex: 1 auto;
   background-color: #26a69a;
   color: #fff;
@@ -8206,7 +8039,6 @@ input[type=range]::-ms-thumb {
 
 /* Calendar */
 .datepicker-calendar-container {
-      -ms-flex: 2.5 auto;
           flex: 2.5 auto;
 }
 
@@ -8274,9 +8106,7 @@ input[type=range]::-ms-thumb {
   width: 280px;
   margin: 0 auto;
   padding-bottom: 5px;
-  display: -ms-flexbox;
   display: flex;
-      -ms-flex-pack: justify;
           justify-content: space-between;
 }
 
@@ -8298,11 +8128,9 @@ input[type=range]::-ms-thumb {
     max-width: 625px;
   }
   .datepicker-container.modal-content {
-        -ms-flex-direction: row;
             flex-direction: row;
   }
   .datepicker-date-display {
-        -ms-flex: 0 1 270px;
             flex: 0 1 270px;
   }
   .datepicker-controls,
@@ -8322,9 +8150,7 @@ input[type=range]::-ms-thumb {
 }
 
 .timepicker-container.modal-content {
-  display: -ms-flexbox;
   display: flex;
-      -ms-flex-direction: column;
           flex-direction: column;
   padding: 0;
 }
@@ -8335,7 +8161,6 @@ input[type=range]::-ms-thumb {
 
 /* Clock Digital Display */
 .timepicker-digital-display {
-      -ms-flex: 1 auto;
           flex: 1 auto;
   background-color: #26a69a;
   padding: 10px;
@@ -8349,8 +8174,6 @@ input[type=range]::-ms-thumb {
   color: rgba(255, 255, 255, 0.6);
   font-weight: 400;
   position: relative;
-     -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 
@@ -8378,7 +8201,6 @@ input[type=range]::-ms-thumb {
 
 /* Analog Clock Display */
 .timepicker-analog-display {
-      -ms-flex: 2.5 auto;
           flex: 2.5 auto;
 }
 
@@ -8392,8 +8214,6 @@ input[type=range]::-ms-thumb {
   margin: auto;
   margin-top: 25px;
   margin-bottom: 5px;
-     -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 
@@ -8471,9 +8291,7 @@ input[type=range]::-ms-thumb {
 .timepicker-footer {
   margin: 0 auto;
   padding: 5px 1rem;
-  display: -ms-flexbox;
   display: flex;
-      -ms-flex-pack: justify;
           justify-content: space-between;
 }
 
@@ -8496,7 +8314,6 @@ input[type=range]::-ms-thumb {
     max-width: 600px;
   }
   .timepicker-container.modal-content {
-        -ms-flex-direction: row;
             flex-direction: row;
   }
   .timepicker-text-container {
