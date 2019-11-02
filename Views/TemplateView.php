@@ -13,6 +13,7 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="/materialize/css/materialize.css">
     <link rel="stylesheet" href="/materialize/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans&display=swap" rel="stylesheet">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
