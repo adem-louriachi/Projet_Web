@@ -21,12 +21,17 @@ class Discussion{
             if(User::isConnected())
             {
         ?>
-            <form id="register" method="post" action="<? MessagesMod::insertSectionMsg($idDis, $maxIdMsg, $_SESSION['nick'], $_POST['message']) ?>" >
+            <form id="register" method="post" action="" >
                 <input name="message" type="text" placeholder="Message...">
                 <button class="submit btn waves-effect waves-light" type="submit">Envoyer<i
                         class="material-icons right">send</i></button>
             </form>
-        <?php }
+        <?php
+                if (isset($_POST['message']))
+                {
+                    MessagesMod::insertSectionMsg($idDis, $maxIdMsg, $_SESSION['nick'], $_POST['message']);
+                }
+            }
         $content = ob_get_clean();
         require 'Views/TemplateView.php';
 
