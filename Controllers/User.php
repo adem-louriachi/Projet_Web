@@ -99,7 +99,7 @@ class User
     }
 
     public static function changeMail(){
-        UsersMod::setMail($_POST['email'], $_SESSION['email']);
+        UsersMod::setMail($_SESSION['nick'], $_POST['email']);
     }
 
     public static function changePwd(){
