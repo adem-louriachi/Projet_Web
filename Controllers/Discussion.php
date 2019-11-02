@@ -1,5 +1,6 @@
 <?php
 
+require 'Models/DiscussionsMod.php';
 class Discussion{
 
     public static function show(){ // affiche la discussion qu'on lui donne
