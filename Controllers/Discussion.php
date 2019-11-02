@@ -5,7 +5,7 @@ class Discussion{
 
     public static function show(){ // affiche la discussion qu'on lui donne
         require 'AccountMenu.php';
-        require 'Models/DiscussionsMod.php';
+        require 'Models/MessagesMod.php';
         $style = 'Views/HomeView.css';
         ob_start();
 
