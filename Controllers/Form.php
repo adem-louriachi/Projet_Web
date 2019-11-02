@@ -26,6 +26,7 @@ class Form
         require 'AccountMenu.php';
         $style = 'Views/HomeView.css';
         ob_start();
+        $_POST['error'] = '<p style="color:red;">'.filter_input(INPUT_POST, 'error').'</p>';
         require 'Views/ForgetView.php';
         $content = ob_get_clean();
         require 'Views/TemplateView.php';
