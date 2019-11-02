@@ -65,6 +65,13 @@ class MessagesMod extends Model{
         Model::executeQuery($pdo,$sql);
     }
 
+    public static function insertSectionMsg($idMsg, $author, $textWord) {
+        $pdo = Model::connectBD();
+        $sql = 'INSERT INTO SectionMessage (IdMessage, Auteur, TextSection) VALUES ($idMsg, $author, $textWord)';
+        Model::executeQuery($pdo,$sql);
+    }
+
+
     public function insertMsg() {
         $pdo = Model::connectBD();
         $sql = 'INSERT INTO Message (IdDisDuMsg, EstOuvert, TextMessage) VALUES ('.$this->idDis.', 1, \'Text mis dans SectionMessage\')';
