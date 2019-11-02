@@ -16,7 +16,7 @@
 <div class="discussion collection container">
 <?php
 
-require '../Models/DiscussionsMod.php';
+require 'Models/DiscussionsMod.php';
 $nbDiscussion = DiscussionsMod::getNbDiscussion();
 $i = 0;
 while ($i < $nbDiscussion) { ?>
