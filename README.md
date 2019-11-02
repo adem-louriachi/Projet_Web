@@ -38,7 +38,16 @@ La configuration logicielle
   - Recommandée  
   
 Identifiants de Connexion  
-Site Web ( possible de se connecter avec le Nom ou le Mail au choix)  
+Site Web ( possible de se connecter avec le Nom ou le Mail au choix)
+
+| Titre 1       |     Titre 2     |        Titre 3 |
+| :------------ | :-------------: | -------------: |
+| Colonne       |     Colonne     |        Colonne |
+| Alignée à     |   Alignée au    |      Alignée à |
+| Gauche        |     Centre      |         Droite |
+
+
+
 	        Nom             		Mail			
 Login :  	Admin	     	        admin@freenote-4randoms.net	                      	Mot de Passe :   Admin  
 Login :  	Ex-membre	     	Ex-membre@freenote-4randoms.net	                      	Mot de Passe :   Ex-membre  
