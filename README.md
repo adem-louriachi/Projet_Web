@@ -45,29 +45,29 @@ Identifiants de Connexion
 
 Site Web ( possible de se connecter avec le Nom ou le Mail au choix)
 
-| Nom         | Mail                                            | Mot De Passe  |
-|:------------|:------------------------------------------------|:--------------|
-| Admin       | admin@freenote-4randoms.net                     | Admin         |
-| Ex-membre   | Ex-membre@freenote-4randoms.net                 | Ex-membre     |
-| Cole        | ac.feugiat.non@Quisque.com                      | Cole          |
-| Hodges      | In.nec@elit.com                                 | Hodges        |
-| Lopez       | Maecenas.mi@aliquet.net                         | Lopez         |
-| Gibson      | et.ultrices.posuere@lobortismauris.co.uk        | Gibson        |
-| Carlson     | dui.nec@erat.org                                | Carlson       |
-| Guthrie     | libero@Maecenas.org                             | Guthrie       |
-| Matthews    | aliquet.Proin@porttitortellusnon.edu            | Matthews      |
-| Hutchinson  | imperdiet.non.vestibulum@tempusscelerisque.edu  | Hutchinson    |
-| Burns       | nec.metus@actellus.co.uk                        | Burns         |
-| Potter      | blandit.Nam@mitemporlorem.ca                    | Potter        |
-| Wynn        | amet.diam.eu@fringillapurusmauris.edu           | Wynn          |
-| Mckenzie    | dui@risusMorbimetus.co.uk                       | Mckenzie      |
-| Benton      | neque.Nullam.ut@faucibusMorbivehicula.ca        | Benton        |
-| Love        | Mauris.eu.turpis@ipsumprimis.org                | Love          |
-| Joseph      | consequat@Suspendissenonleo.edu                 | Joseph        |
-| Burke       | Praesent.interdum.ligula@Donec.net              | Burke         |
-| Gray        | eu.eleifend.nec@risus.net                       | Gray          |
-| Peterson    | eu.turpis.Nulla@magnisdisparturient.com         | Peterson      |
-| Andrews     | Phasellus.at@venenatislacus.edu                 | Andrews       |
+| Nom                            | Mail                                            | Mot De Passe  |
+|:-------------------------------|:------------------------------------------------|:--------------|
+| Admin      (super utilisateur) | admin@freenote-4randoms.net                     | Admin         |
+| Ex-membre  (super utilisateur) | Ex-membre@freenote-4randoms.net                 | Ex-membre     |
+| Cole                           | ac.feugiat.non@Quisque.com                      | Cole          |
+| Hodges                         | In.nec@elit.com                                 | Hodges        |
+| Lopez                          | Maecenas.mi@aliquet.net                         | Lopez         |
+| Gibson                         | et.ultrices.posuere@lobortismauris.co.uk        | Gibson        |
+| Carlson                        | dui.nec@erat.org                                | Carlson       |
+| Guthrie                        | libero@Maecenas.org                             | Guthrie       |
+| Matthews                       | aliquet.Proin@porttitortellusnon.edu            | Matthews      |
+| Hutchinson                     | imperdiet.non.vestibulum@tempusscelerisque.edu  | Hutchinson    |
+| Burns                          | nec.metus@actellus.co.uk                        | Burns         |
+| Potter                         | blandit.Nam@mitemporlorem.ca                    | Potter        |
+| Wynn                           | amet.diam.eu@fringillapurusmauris.edu           | Wynn          |
+| Mckenzie                       | dui@risusMorbimetus.co.uk                       | Mckenzie      |
+| Benton                         | neque.Nullam.ut@faucibusMorbivehicula.ca        | Benton        |
+| Love                           | Mauris.eu.turpis@ipsumprimis.org                | Love          |
+| Joseph                         | consequat@Suspendissenonleo.edu                 | Joseph        |
+| Burke                          | Praesent.interdum.ligula@Donec.net              | Burke         |
+| Gray                           | eu.eleifend.nec@risus.net                       | Gray          |
+| Peterson                       | eu.turpis.Nulla@magnisdisparturient.com         | Peterson      |
+| Andrews                        | Phasellus.at@venenatislacus.edu                 | Andrews       |
 
 
 **Alwaysdata**  
