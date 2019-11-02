@@ -20,7 +20,7 @@ class UsersMod extends Model {
             }
             return $data;
         } catch (Exception $e){
-            $_POST['error'] = $e->getMessage();
+            $_SESSION['error'] = $e->getMessage();
             header('Location: /?ctrl=Form&action=signin');
         }
     }
@@ -52,7 +52,7 @@ class UsersMod extends Model {
             }
         }
         catch (Exception $e){
-            $_POST['error'] = $e->getMessage();
+            $_SESSION['error'] = $e->getMessage();
             header('Location: /?ctrl=Form&action=register');
         }
     }
@@ -83,7 +83,7 @@ class UsersMod extends Model {
                 Model::executeQuery($pdo, $sql);
             }
         } catch (Exception $e) {
-            $_POST['error'] = $e->getMessage();
+            $_SESSION['error'] = $e->getMessage();
             header('Location: /?ctrl=User&action=view');
         }
     }

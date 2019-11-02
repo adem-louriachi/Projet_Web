@@ -31,7 +31,7 @@ class User
 
         if ($pwd != $pwdconf) {  // Si le premier mdp ne correspond pas au second
 
-            $_POST['error'] = 'Les mots de passe ne sont pas les mêmes';
+            $_SESSION['error'] = 'Les mots de passe ne sont pas les mêmes';
             header('/?ctrl=Form&action=register');
         } else {
             UsersMod::insertUser($nick, $email, $pwd); // insertion des données dans la Base
