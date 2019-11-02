@@ -1,6 +1,6 @@
 <div class="container black">
     <form id="signin" method="post" action="/?ctrl=User&action=forget">
-        <?= $_GET['error'] ?>
+        <?= $_SESSION['error'] ?>
         <label>Adresse e-mail
             <input name="nick" type="email" placeholder="coucou@wankil.fr" required autofocus>
         </label>
