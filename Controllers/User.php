@@ -48,7 +48,7 @@ class User
             'date' => $userData['DateInscription'],
             'admin' => $userData['SuperUtilisateur']
         ];
-        header('location: Home.php');
+        header('location: /');
     }
 
     public static function signout()
