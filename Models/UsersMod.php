@@ -124,8 +124,7 @@ class UsersMod extends Model {
             Model::executeQuery($pdo, $sql);
             return true; // ( succès du changement de mot de passe )
         } catch (Exception $e) {
-            $_POST['error'] = $e->getMessage();
-            header('Location: /?ctrl=Form&action=forget');
+            header('Location: /?ctrl=Form&action=forget&error='.$e->getMessage());
         }
     }
 }

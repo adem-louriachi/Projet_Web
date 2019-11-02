@@ -6,7 +6,7 @@
         <label>Adresse e-mail
             <input name="email" type="email" placeholder="coucou@wankil.fr" value="<?= $_POST['email'] ?>" autocomplete="email" required>
         </label>
-        <label><?= $_POST['error'] ?>Mot de passe
+        <label><?= $_GET['error'] ?>Mot de passe
             <input name="pwd" type="password" autocomplete="new-password" required>
         </label>
         <label>Confirmation du mot de passe
