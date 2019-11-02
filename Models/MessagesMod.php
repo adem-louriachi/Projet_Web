@@ -23,7 +23,15 @@ class MessagesMod extends Model{
         return $msgBD['EstOuvert'];
     }
 
-    public function getTxt($idMsg) {
+    public static function getAllMessage($idDis)
+    {
+        $pdo = Model::connectBD();
+
+        $sql = $pdo->query('SELECT * FROM Message WHERE IdDisDuMsg =' . $idDis );
+        return $sql;
+    }
+
+    public static function getTxt($idMsg) {
         $pdo = Model::ConnectBD();
         $message = '';
         $sqlmsgBD = 'SELECT TextSection FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\' ORDER BY Date ASC';
