@@ -15,21 +15,11 @@ class Discussion
         $allIdMsg = MessagesMod::getAllMessage($idDis);
         $maxIdMsg = 0;
         foreach ($allIdMsg as $idMsg['IdMessage'] => $id) {
-            if ($id['IdMessage'] > $maxIdMsg) {
-                $maxIdMsg = $id['IdMessage']; }?>
+            if ($id['IdMessage'] > $maxIdMsg) { $maxIdMsg = $id['IdMessage']; }?>
                 <article>
                     <p><? echo MessagesMod::getTxt($id['IdMessage']); ?></p>
                 </article>
         <?php } ?>
-
-            <?php /*
-        while ( $idMsg = $allIdMsg->fetch()) {
-            if ($idMsg['IdMessage'] > $maxIdMsg) { $maxIdMsg = $idMsg['IdMessage']; } //obtenir le plus grand idMessage (le dernier) ?>
-            <article>
-                <p><? echo MessagesMod::getTxt($idMsg['IdMessage']); ?></p>
-            </article>
-        <?php } */ ?>
-
 
         <?php
         if (User::isConnected()) {
