@@ -41,6 +41,7 @@ class Discussion
             if (isset($_POST['msg']) && isset($_POST['message']) && !empty($_POST['message'])) {
                 if (MessagesMod::getState($maxIdMsg) == 1) { //vérifie si le msg est ouvert
                     MessagesMod::updateMsg($maxIdMsg, UsersMod::getIdByNick($_SESSION['nick']), $_POST['message']);
+                    header('refresh: 1');
                 } else {
                     MessagesMod::insertMsg($idDis);
                     $maxIdMsg = MessagesMod::getLastMessage($idDis);
