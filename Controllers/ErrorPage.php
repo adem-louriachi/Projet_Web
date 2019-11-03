@@ -20,7 +20,7 @@ class ErrorPage
                     echo 'Page introuvable';
                     break;
                 case 500:
-                    echo 'Erreur interne du serveur, boulette';
+                    echo 'Erreur interne du serveur, boulette'. $_SESSION['test'];
                     break;
                 case 503:
                     echo 'Service indisponible, réessayez plus tard';

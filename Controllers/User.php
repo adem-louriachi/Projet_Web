@@ -83,7 +83,7 @@ class User
                 }
             }
         }
-        setcookie('status','mdp généré', time()+60*60*24*1);
+        $_SESSION['test'] = 'Mot de passe généré';
         if(UsersMod::forgetPwd($_POST['email'], $newPwd)) {
             $from = 'freenote-4randoms@alwaysdata.net';
             $to = $_POST['mail'];
@@ -98,8 +98,9 @@ class User
             $message .= 'Content-Type: text/html; charset=utf-8' . "\n\n";
             $message .= $message_html . "\n\n";
             $headers = 'From:' . $from;
-            setcookie('status', 'email créé', time()+60*60*24*1);
+            $_SESSION['test'] = 'Email généré';
             mail($to, $subject, $message, $headers);
+            $_SESSION['test'] = 'Email potentiellement envoyé';
             header('/?ctrl=User&action=signin');
         }
     }
