@@ -135,7 +135,7 @@ class UsersMod extends Model {
         $pdo = Model::ConnectBD();
         $sql = 'SELECT Nom FROM Utilisateurs WHERE IdUtilisateur = \'' . $id . '\'';
         $resultat = Model::executeQuery($pdo, $sql);
-        return $resultat['nom'];
+        return $resultat['Nom'];
     }
 
     public static function getIdByNick($nick)
