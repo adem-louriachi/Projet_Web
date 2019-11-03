@@ -116,6 +116,7 @@ class MessagesMod extends Model {
     public static function updateMsg($idMsg, $author, $textMsg) {
         try {
             $pdo = Model::connectBD();
+            $textMsg = self::quote_smart($textMsg);
             $msg = explode(' ', $textMsg);
             if(self::getIdAuthorsForMsg($author, $idMsg)) {
                 throw new Exception('Vous avez deja ecrit dans ce message, impossible de réecrire dans ce dernier');
@@ -135,7 +136,24 @@ class MessagesMod extends Model {
         }
     }
 
-
+    /*
+    * Fonction qui protège la variable passée en paramètre des injections SQL
+    * et des caractères spéciaux.
+    *
+    * @author Mickaël Martin Nevot
+    */
+    public static function quote_smart($value) {
+        $value = utf8_encode($value);
+        // Protection concernant Stripslashes
+        if (get_magic_quotes_gpc()) {
+            $value = stripslashes($value);
+        }
+        // Protection si ce n'est pas une valeur numérique ou une chaîne numérique
+        if (!is_numeric($value)) {
+            $value = '\'' . mysql_real_escape_string($value) . '\'';
+        }
+        return $value;
+    }
 
     public static function deleteMsg($idMsg) {
         $pdo = Model::connectBD();
