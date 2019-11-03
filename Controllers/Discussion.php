@@ -27,7 +27,8 @@ class Discussion
             <form id="register" method="post" action="">
                 <input name="message" type="text" placeholder="Message...">
                 <button class="submit btn waves-effect waves-light" type="submit">Envoyer<i
-                            class="material-icons right">send</i></button>
+                            class="material-icons right">send</i></button><br/>
+                <input name="new_message" type="text" placeholder="Message...">
                 <button name="new"class="submit btn waves-effect waves-light" type="submit">Nouveau Message<i
                             class="material-icons right">close</i><i class="material-icons right">send</i></button>
             </form>
@@ -45,7 +46,7 @@ class Discussion
                 MessagesMod::closeMsg($maxIdMsg);
                 MessagesMod::insertMsg($idDis);
                 $maxIdMsg = MessagesMod::getLastMessage($idDis);
-                MessagesMod::insertSectionMsg($maxIdMsg, $_SESSION['nick'], $_POST['new']);
+                MessagesMod::insertSectionMsg($maxIdMsg, $_SESSION['nick'], $_POST['new_message']);
             }
         }
         $content = ob_get_clean();
