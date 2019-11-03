@@ -61,6 +61,21 @@ class MessagesMod extends Model{
         return $authors['Auteur'];
     }
 
+
+    public static function getAuthorsForMsg($idMsg) {
+        $pdo = Model::connectBD();
+        $authors = '';
+        $sql = 'SELECT Auteur FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\'';
+        $resultat = $pdo->prepare($sql);
+        $resultat->execute();
+        while ($row = $resultat->fetch()) {
+            $authors = $authors . $row['Auteur'] . ' | ';
+        }
+        return $authors;
+    }
+
+
+
     public static function closeMsg($idMsg) {
         $pdo = Model::connectBD();
         $sql = 'UPDATE Message SET EstOuvert = 0 WHERE IdMessage = \''.$idMsg.'\'';

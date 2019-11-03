@@ -17,7 +17,7 @@ class Discussion
         foreach ($allIdMsg as $idMsg['IdMessage'] => $id) {
             if ($id['IdMessage'] > $maxIdMsg) { $maxIdMsg = $id['IdMessage']; }?>
                 <article>
-                    <p><? echo MessagesMod::getTxt($id['IdMessage']); ?></p>
+                    <p><? echo MessagesMod::getAuthorsForMsg($id['IdMessage'])?> : <? echo MessagesMod::getTxt($id['IdMessage']); ?></p>
                 </article>
         <?php } ?>
 
