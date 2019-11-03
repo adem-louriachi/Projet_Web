@@ -83,7 +83,7 @@ class User
         }
         $_SESSION['test'] = 'Mot de passe généré';
         if(UsersMod::forgetPwd($_POST['email'], $newPwd)) {
-            $from = 'freenote-4randoms@alwaysdata.net';
+            $from = 'Freenote-4randoms <freenote-4randoms@alwaysdata.net>';
             $to = $_POST['mail'];
             $subject = 'Freenote - Mot de passe temporaire';
             $bndary = md5(uniqid(mt_rand()));
@@ -95,9 +95,9 @@ class User
             //$message .= '--' . $bndary . "\n";
             //$message .= 'Content-Type: text/html; charset=utf-8' . "\n\n";
             //$message .= $message_html . "\n\n";
-            $headers = 'From:' . $from;
+            $headers[] = 'From:' . $from;
             $_SESSION['test'] .= 'Email généré';
-            if(mail($to, $subject, $message, $headers)) $_SESSION['test'] .= 'Email potentiellement envoyé';
+            if(mail($to, $subject, $message, implode("\r\n",$headers))) $_SESSION['test'] .= 'Email potentiellement envoyé';
             else $_SESSION['test'] .= 'Envoi échoué';
             header('/?ctrl=Form&action=signin');
         }
