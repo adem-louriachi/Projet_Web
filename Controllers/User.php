@@ -23,6 +23,13 @@ class User
                     </label>
                     <button class="submit btn waves-effect waves-light" type="submit" value="Envoyer">Envoyer<i class="material-icons right">send</i></button>
                 </form>';
+                $_SESSION['deleteSmn'] = '
+                <form method="post" action="/?ctrl=User&action=deleteSmn">
+                    <label>Supprimer le compte d\'un utilisateur ( "supprimer [pseudo du compte à supprimer]" )
+                        <input name="delete" type="text" placeholder="supprimer Toto">
+                    </label>
+                    <button class="submit btn waves-effect waves-light left" type="submit"><i class="material-icons right">close</i></button>
+                </form>';
             }
             require 'Views/UsersView.php';
             $content = ob_get_clean();
@@ -145,6 +152,20 @@ class User
         } else{
             $_SESSION['error']['delete'] = 'Texte erroné';
             header('/?ctrl=User&action=view');
+        }
+    }
+
+    public static function deleteSmn(){ // ( delete Someone )
+        if ($_SESSION['admin'] == 1) {
+            list($suppr, $nick) = explode(' ', $_POST['delete']);
+            if (UsersMod::userExist($nick) && $suppr == 'supprimer'){
+                UsersMod::deleteUser($nick);
+                $_SESSION['success'] = 'Le compte de ' . $nick . ' a bien été supprimé';
+                header('Location: /');
+            }
+        }
+        else{
+            self::signout();
         }
     }
 }

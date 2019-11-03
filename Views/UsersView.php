@@ -9,7 +9,6 @@
         </div>
     </div>
 </div>
-<?= $_SESSION['giveAdmin'] ?>
 <form id="newMail" method="post" action="/?ctrl=User&action=changeMail">
     <?= $_SESSION['error']['changeEmail'] ?>
     <label>Changer d'adresse e-mail
@@ -32,3 +31,5 @@
     </label>
     <button class="submit btn waves-effect waves-light" type="submit" value="SUPPRIMER mon compte">SUPPRIMER mon compte<i class="material-icons right">send</i></button>
 </form>
+<?= $_SESSION['giveAdmin'] ?>
+<?= $_SESSION['deleteSmn'] ?>

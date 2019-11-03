@@ -145,4 +145,14 @@ class UsersMod extends Model {
         $resultat = Model::executeQuery($pdo, $sql);
         return $resultat['IdUtilisateur'];
     }
+
+    public static function userExist($nick){
+        $pdo = Model::ConnectBD();
+        $sql = 'SELECT IdUtilisateur FROM Utilisateurs WHERE Nom = \'' . $nick . '\'';
+        $resultat = Model::executeQuery($pdo, $sql);
+        if (!empty($resultat['IdUtilisateur'])){
+            return true;
+        }
+        else return false;
+    }
 }
