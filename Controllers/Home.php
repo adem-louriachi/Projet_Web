@@ -71,8 +71,8 @@ foreach ($allDis as $dis) { ?>
     <?php } ?>
 
 
-    <a href="?page=<?php echo $page - 1; ?>">Page précédente</a>
-    <a href="?page=<?php echo $page + 1; ?>">Page suivante</a>
+    <a class="waves-effect waves-light btn" href="?page=<?php echo $page - 1; ?>"><i class="material-icons center"></i>Page précédente</a>
+    <<a class="waves-effect waves-light btn" href="?page=<?php echo $page +1; ?>"><i class="material-icons center"></i>Page suivante</a>
 </div>
 <?php
     $content = ob_get_clean();
