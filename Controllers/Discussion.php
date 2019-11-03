@@ -7,13 +7,16 @@ class Discussion
     public static function show()
     { // affiche la discussion qu'on lui donne
         require 'AccountMenu.php';
-        require 'Models/MessagesMod.php';
+        require 'Models/DiscussionsMod.php';
         $style = 'Views/HomeView.css';
         ob_start();
 
         $idDis = $_GET['id'];
         $allIdMsg = MessagesMod::getAllMessage($idDis);
         $maxIdMsg = 0;
+
+        echo '<h2>' . DiscussionsMod::getName($idDis) .'</h2>';
+
         foreach ($allIdMsg as $idMsg['IdMessage'] => $id) {
             if ($id['IdMessage'] > $maxIdMsg) { $maxIdMsg = $id['IdMessage']; }?>
                 <article>
@@ -74,7 +77,8 @@ class Discussion
             $nomDis = htmlspecialchars($_POST['nomDis']);
             $idUser = UsersMod::getIdByNick($_SESSION['nick']);
             DiscussionsMod::insertDiscussion($idUser, $nomDis);
-
+            $idNewDis = DiscussionsMod::selectNewDis();
+            header("location: /?ctrl=Discussion&action=show&id=$idNewDis");
         }
         $content = ob_get_clean();
         require 'Views/TemplateView.php';
