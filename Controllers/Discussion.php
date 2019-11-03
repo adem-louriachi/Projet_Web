@@ -94,11 +94,15 @@ class Discussion
         </form>
         <?php
         if (isset($_POST['nomDis']) AND !empty($_POST['nomDis']) AND User::isConnected()) {
-            $nomDis = htmlspecialchars($_POST['nomDis']);
-            $idUser = UsersMod::getIdByNick($_SESSION['nick']);
-            DiscussionsMod::insertDiscussion($idUser, $nomDis);
-            $idNewDis = DiscussionsMod::selectNewDis();
-            header("location: /?ctrl=Discussion&action=show&id=$idNewDis");
+            if (DiscussionsMod::getNbDiscussion() < 11) {
+                $nomDis = htmlspecialchars($_POST['nomDis']);
+                $idUser = UsersMod::getIdByNick($_SESSION['nick']);
+                DiscussionsMod::insertDiscussion($idUser, $nomDis);
+                $idNewDis = DiscussionsMod::selectNewDis();
+                header("location: /?ctrl=Discussion&action=show&id=$idNewDis");
+            } else {
+                echo "limite de discussion";
+            }
         }
         $content = ob_get_clean();
         require 'Views/TemplateView.php';
