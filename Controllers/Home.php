@@ -16,7 +16,7 @@
 </div>
 <div class="row">
     <div class="col s6 right-align">
-   <? echo '<form id="GameTestForm" method="post" action="">
+   <? echo '<form id="GameTestForm" method="post">
                 <button name = "LoadGameTest" class="waves-effect waves-light btn" type="submit">Charger GameTest</button>
             </form>';
 
@@ -68,11 +68,27 @@ foreach ($allDis as $dis) { ?>
             <p class="left-align"><? if($dis['EstOuvert'] == 0) { echo 'Fermé'; } else { echo 'Ouvert'; } ?></p>
         </a>
     </article>
-    <?php } ?>
+    <?php }
+
+    $nombreDePages = ceil(DiscussionsMod::nbElementPagination($limit,$page) / $limit);
+    if ($page > 1):
+        ?><a class="waves-effect waves-light btn" href="?page=<?php echo $page - 1; ?>"><i class="material-icons left"></i>Page précédente</a><?php
+    endif;
+
+    for ($i = 1; $i <= $nombreDePages; $i++):
+        ?><a class="waves-effect waves-light btn" href="?page=<?php echo $i; ?>"><i class="material-icons right"></i><?php echo $i; ?></a> <?php
+    endfor;
+    if ($page < $nombreDePages):
+        ?><a class="waves-effect waves-light btn" href="?page=<?php echo $page + 1; ?>"><i class="material-icons right"></i>Page suivante</a><?php
+    endif;
+    ?>
 
 
-    <a class="waves-effect waves-light btn" href="?page=<?php echo $page - 1; ?>"><i class="material-icons left"></i>Page précédente</a>
-    <a class="waves-effect waves-light btn" href="?page=<?php echo $page + 1; ?>"><i class="material-icons right"></i>Page suivante</a>
+
+
+
+
+
 </div>
 <?php
     $content = ob_get_clean();

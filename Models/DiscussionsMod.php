@@ -82,6 +82,21 @@ class DiscussionsMod extends Model {
         return $allDiscussion;
     }
 
+    public static function nbElementPagination($limit, $page){
+        $pdo = Model::connectBD();
+        // Partie "Requête"
+        $debut = ($page - 1) * $limit;
+        /* Ne pas oublier d'adapter notre requête */
+        $sql = 'SELECT SQL_CALC_FOUND_ROWS * FROM Discussion LIMIT '.$limit.' OFFSET '.$debut.'';
+        $query = $pdo->prepare($sql);
+        $query->execute();
+
+        $result = $pdo->query('SELECT found_rows()');
+        /* On doit extraire le nombre du jeu de résultat */
+        $nbElement = $result->fetchColumn();
+        return $nbElement;
+    }
+
     public static function getNbDiscussion() {
         $pdo = Model::connectBD();
         $sql = 'SELECT COUNT(IdDiscussion) AS total FROM Discussion';
