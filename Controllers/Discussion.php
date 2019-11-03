@@ -34,7 +34,7 @@ class Discussion
                 <input name="message" type="text" placeholder="Message...">
                 <button name = "msg" class="submit btn waves-effect waves-light" type="submit">Envoyer<i
                             class="material-icons right">send</i></button>
-                <button name="new" class="submit btn waves-effect waves-light" type="submit">Nouveau Message<i
+                <button name="new" class="submit btn waves-effect waves-light indigo" type="submit">Envoyer et clore le message<i
                             class="material-icons right">close</i><i class="material-icons right">send</i></button>
             </form>
             <?php
@@ -65,7 +65,7 @@ class Discussion
         if (User::isConnected() && $_SESSION['admin'] == 1) {
             ?>
             <form id="discussion" method="post" action="">
-                <button name="deleteMsg" class="submit btn waves-effect waves-light left" type="submit"><i
+                <button name="deleteMsg" class="submit btn-floating disabled waves-effect waves-light left" type="submit"><i
                             class="material-icons">close</i></button>
             </form>
             <?php
