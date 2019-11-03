@@ -91,7 +91,7 @@ class User
             $subject = 'Freenote - Mot de passe temporaire';
             $message_text = 'Votre mot de passe temporaire est le' . $newPwd . "\n" . 'Pour votre sécurité, veuillez changer votre mot de passe sur votre page Mon Compte dès que possible' . "\n";
             $message_text = 'Votre mot de passe temporaire est le' . $newPwd . "\n" . 'Pour votre sécurité, veuillez changer votre mot de passe sur votre page Mon Compte dès que possible' . "\n";
-            $message_html = '<html><body><p>Votre mot de passe temporaire est le ' . $newPwd . "\n\r" . 'Pour votre sécurité, veuillez changer votre mot de passe sur votre page <a href="https://freenote-4randoms.alwaysdata.net/?ctrl=User&action=view" target="_blank">Mon Compte</a> dès que possible' . "\n\r" . '<a href="https://freenote-4randoms.alwaysdata.net/?ctrl=User&action=signin" target="_blank">Se connecter</a></p></body></html>';
+            $message_html = '<html><body><p>Votre mot de passe temporaire est le ' . $newPwd . '<br>Pour votre sécurité, veuillez changer votre mot de passe sur votre page <a href="https://freenote-4randoms.alwaysdata.net/?ctrl=User&action=view" target="_blank">Mon Compte</a> dès que possible<br><a href="https://freenote-4randoms.alwaysdata.net/?ctrl=User&action=signin" target="_blank">Se connecter</a></p></body></html>';
             $message = '--' . $bndary . "\n";
             $message .= 'Content-Type: text/plain; charset=utf-8' . "\n\n";
             $message .= $message_text . "\n\n";
