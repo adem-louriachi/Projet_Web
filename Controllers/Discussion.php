@@ -61,16 +61,17 @@ class Discussion
     }
 
     public static function butDeleteMsg($idMsg){
-        echo 'voile '.$idMsg. ' ou pas';
         if (User::isConnected() && $_SESSION['admin'] == 1) {
             ?>
             <form id="discussion" method="post" action="">
-                <button name="deleteMsg" class="submit btn waves-effect waves-light left" type="submit"><?$idMsg?></button>
+                <button name="deleteMsg" class="submit btn waves-effect waves-light left" type="submit"><i
+                            class="material-icons right">close</i></button>
             </form>
             <?php
         }
         if (isset($_POST['deleteMsg'])) {
             MessagesMod::deleteMsg($idMsg);
+            header('refresh: 1');
 
         }
     }
