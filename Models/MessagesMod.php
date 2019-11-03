@@ -115,7 +115,7 @@ class MessagesMod extends Model{
 //        $this->addSectionMessage($this->authors, $this->idMsg,$this->textMsg);
 //    }
 
-    public function updateMsg($idMsg, $author, $textMsg, $stateMsg) {
+    public static function updateMsg($idMsg, $author, $textMsg) {
         try{
             $pdo = Model::connectBD();
             if(self::getIdAuthorsForMsg($author, $idMsg)){
@@ -123,8 +123,8 @@ class MessagesMod extends Model{
             } elseif (!self::getState($idMsg)){
                 throw new Exception('Impossible d\'ecrire dans un message cloturé');
             } else {
-                self::addSectionMessage($author, $idMsg,$textMsg);
-                $sql = 'UPDATE Message SET EstOuvert = \'' . $stateMsg . '\', Date = \'' . date('Y-m-d H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
+                self::insertSectionMsg($idMsg,$author,$textMsg);
+                $sql = 'UPDATE Message SET Date = \'' . date('Y-m-d H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
                 Model::executeQuery($pdo, $sql);
             }
         } catch (Exception $e){

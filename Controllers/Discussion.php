@@ -33,11 +33,12 @@ class Discussion
             if (MessagesMod::getState($maxIdMsg) == 1) { //vérifie si le msg est ouvert
 
                 if (isset($_POST['message']) && !empty($_POST['message'])) {
-                    MessagesMod::insertSectionMsg($maxIdMsg, $_SESSION['nick'], $_POST['message']);
-                    if (MessagesMod::countSection($maxIdMsg) == 3) { //nouveau message quand le dernier est plein
+                    if (MessagesMod::countSection($maxIdMsg) == 2) { //nouveau message quand le dernier est plein
+                        MessagesMod::insertSectionMsg($maxIdMsg, $_SESSION['nick'], $_POST['message']);
                         MessagesMod::closeMsg($maxIdMsg);
                         MessagesMod::insertMsg($idDis);
-                    }
+                    } else
+                        MessagesMod::updateMsg($maxIdMsg,$_SESSION['nick'], $_POST['message']);
                     header('refresh: 1');
                 }
             }
