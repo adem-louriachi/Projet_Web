@@ -14,7 +14,7 @@ class Discussion{
         $maxIdMsg = 0;
         foreach($allIdMsg as $idMsg['IdMessage'] => $id) { ?>
             <article>
-                <p><? echo $id['IdMessage']; ?></p>
+                <p><? echo MessagesMod::getTxt($id['IdMessage']); ?></p>
             </article>
         <?php   } ?>
 
