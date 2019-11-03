@@ -20,7 +20,7 @@ class Discussion
         foreach ($allIdMsg as $idMsg['IdMessage'] => $id) {
             if ($id['IdMessage'] > $maxIdMsg) { $maxIdMsg = $id['IdMessage']; }
 
-            if (User::isConnected() &&  $_SESSION('admin')) {
+            if (User::isConnected()) {
                 ?>
                 <form id="discussion" method="post" action="">
                     <button name="deleteMsg" class="submit btn waves-effect waves-light" type="submit"><i
