@@ -28,8 +28,8 @@ class Discussion
                 <input name="message" type="text" placeholder="Message...">
                 <button class="submit btn waves-effect waves-light" type="submit">Envoyer<i
                             class="material-icons right">send</i></button>
-                <button name="close"class="submit btn waves-effect waves-light" type="submit">Fermer<i
-                            class="material-icons right">Fermer</i></button>
+                <button name="new"class="submit btn waves-effect waves-light" type="submit">Nouveau Message<i
+                            class="material-icons right">close</i><i class="material-icons right">send</i></button>
             </form>
             <?php
             if (isset($_POST['message']) && !empty($_POST['message'])) {
@@ -41,8 +41,11 @@ class Discussion
                     MessagesMod::insertSectionMsg($maxIdMsg, $_SESSION['nick'], $_POST['message']);
                 }
                 header('refresh: 1');
-            } elseif (isset($_POST['close'])){
+            } elseif (isset($_POST['new'])){
                 MessagesMod::closeMsg($maxIdMsg);
+                MessagesMod::insertMsg($idDis);
+                $maxIdMsg = MessagesMod::getLastMessage($idDis);
+                MessagesMod::insertSectionMsg($maxIdMsg, $_SESSION['nick'], $_POST['message']);
             }
         }
         $content = ob_get_clean();
