@@ -1,7 +1,7 @@
 <?php
     if ($_GET['ctrl'] != 'User') require 'User.php';
     ob_start();
-    echo '<li><button name = "LoadGameTest" class="submit btn waves-effect waves-light" type="submit">Charger GameTest</button></li>';
+    echo '<li><button name = "LoadGameTest" class="waves-effect waves-light btn" type="submit">Charger GameTest</button></li>';
     if (User::isConnected()){
         echo '<li><a href="/?ctrl=User&action=view" class="waves-effect waves-light btn">Mon compte</a></li><li><a href="/?ctrl=User&action=signout">Se déconnecter</a></li>';
     }
