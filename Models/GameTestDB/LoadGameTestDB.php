@@ -1,7 +1,7 @@
 <?php
 
     class GameTest extends Model {
-        public function loadGameTest() {
+        public static function loadGameTest() {
             $pdo = Model::connectBD();
             $sql = 'DELETE FROM SectionMessage';
             Model::executeQuery($pdo,$sql);

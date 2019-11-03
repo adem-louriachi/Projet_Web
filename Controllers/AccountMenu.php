@@ -9,4 +9,13 @@
             '<li><a href="/?ctrl=Form&action=signin" class="waves-effect waves-light btn">Se connecter</a></li>
             <li><a href="/?ctrl=Form&action=register" class="waves-effect waves-light btn">S\'inscrire</a></li><li><a href="/?ctrl=Form&action=forget">Mot de passe oublié</a></li>';
     }
+
+    echo '<li><button name = "LoadGameTest" class="submit btn waves-effect waves-light" type="submit">Charger GameTest<i
+                            class="material-icons right">load</i></button></li>';
+
+    if (isset($_POST['LoadGameTest'])) {
+        require 'Models/GameTestDB/LoadGameTestDB.php';
+        GameTest::loadGameTest();
+    }
+
     $auth = ob_get_clean();
