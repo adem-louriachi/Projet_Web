@@ -84,9 +84,9 @@ class DiscussionsMod extends Model {
 
     public static function getNbDiscussion() {
         $pdo = Model::connectBD();
-        $sql = 'SELECT COUNT(*) AS NbDiscussion FROM Discussion';
+        $sql = 'SELECT COUNT(*) FROM Discussion';
         $nbDis = Model::executeQuery($pdo,$sql);
-        return $nbDis['NbDiscussion'];
+        return $nbDis;
     }
 
     public static function showNameDis($posInDB) {
