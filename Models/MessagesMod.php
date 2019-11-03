@@ -106,10 +106,20 @@ class MessagesMod extends Model {
     }
 
     public static function insertSectionMsg($idMsg, $author, $textWord) {
+    try {
         $pdo = Model::connectBD();
-        $sql = 'INSERT INTO SectionMessage (IdMessage, Auteur, TextSection) VALUES (\''.$idMsg.'\',\''.$author.'\', \''.addcslashes($textWord,'\'').'\')';
+        $msg = explode(' ', $textWord);
+        if (isset($msg[2])) {
+            throw new Exception('Votre message ne doit contenir que 2 mots maximum');
+        } elseif (!preg_match('[0-9a-zA-Z\s]{1,53}', $textWord)) {
+            throw new Exception('Votre message ne doit pas contenir de ponctuations ou de caractères spéciaux et faire 53 caractères au maximum ( pour éviter les abus )');
+        }
+        $textWord = self::quote_smart($textWord);
+        $sql = 'INSERT INTO SectionMessage (IdMessage, Auteur, TextSection) VALUES (\'' . $idMsg . '\',\'' . $author . '\', \'' . addcslashes($textWord, '\'') . '\')';
         Model::executeQuery($pdo, $sql);
-
+    } catch(Exception $e){
+        echo $e->getMessage();
+    }
     }
 
 
@@ -117,16 +127,10 @@ class MessagesMod extends Model {
         try {
             $pdo = Model::connectBD();
             $textMsg = self::quote_smart($textMsg);
-            $textMsg = htmlspecialchars($textMsg);
-            $msg = explode(' ', $textMsg);
             if(self::getIdAuthorsForMsg($author, $idMsg)) {
                 throw new Exception('Vous avez deja ecrit dans ce message, impossible de réecrire dans ce dernier');
             } elseif (!self::getState($idMsg)) {
                 throw new Exception('Impossible d\'ecrire dans un message cloturé');
-            }elseif (isset($msg[2])){
-                throw new Exception('Votre message ne doit contenir que 2 mots maximum');
-            } elseif (!preg_match('[0-9a-zA-Z\s]{1,53}', $textMsg)){
-                throw new Exception('Votre message ne doit pas contenir de ponctuations ou de caractères spéciaux et faire 53 caractères au maximum ( pour éviter les abus )');
             } else {
                 self::insertSectionMsg($idMsg,$author,$textMsg);
                 $sql = 'UPDATE Message SET Date = \'' . date('Y-m-d H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
@@ -153,7 +157,7 @@ class MessagesMod extends Model {
         if (!is_numeric($value)) {
             $value = '\'' . mysql_real_escape_string($value) . '\'';
         }
-        return $value;
+        return htmlspecialchars($value);
     }
 
     public static function deleteMsg($idMsg) {
