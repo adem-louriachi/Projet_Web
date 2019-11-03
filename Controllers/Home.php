@@ -40,25 +40,27 @@
 $allDis = DiscussionsMod::getAllDiscussion();
 foreach ($allDis as $dis) { ?>
     <article>
-
-        <?php
-        if (User::isConnected() && $_SESSION['admin'] == 1) {
-            ?>
-            <form id="deleteDiscussion" method="post" action="">
-                <button name="deleteDis" class="submit btn waves-effect waves-light right" type="submit"><i
-                            class="material-icons">close</i></button>
-            </form>
-            <?php
-            if (isset($_POST['deleteDis'])) {
-                DiscussionsMod::deleteDiscussion($dis['IdDiscussion']);
-                unset($_POST['deleteDis']);
-                header('refresh: 1');
-            }
-        }
-        ?>
-
-
         <a href="/?ctrl=Discussion&action=show&id=<?= $dis['IdDiscussion'] ?>" class="discussion collection-item active">
+
+            <?php
+            if (User::isConnected() && $_SESSION['admin'] == 1) {
+                ?>
+                <form id="deleteDiscussion" method="post" action="">
+                    <button name="deleteDis" class="submit btn waves-effect waves-light right" type="submit"><i
+                                class="material-icons">close</i></button>
+                </form>
+                <?php
+                if (isset($_POST['deleteDis'])) {
+                    DiscussionsMod::deleteDiscussion($dis['IdDiscussion']);
+                    unset($_POST['deleteDis']);
+                    header('refresh: 1');
+                }
+            }
+            ?>
+
+
+
+
             <h3 class="center-align"><?= $dis['NomDiscussion']; ?></h3>
             <p class="left-align"><? echo UsersMod::getNickById($dis['Createur']); ?></p>
             <p class="left-align"><? if($dis['EstOuvert'] == 0) { echo 'Fermé'; } else { echo 'Ouvert'; } ?></p>

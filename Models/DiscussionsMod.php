@@ -103,7 +103,6 @@ class DiscussionsMod extends Model {
     public static function deleteDiscussion($idDis) {
         $pdo = Model::connectBD();
         $sqlmsgBD = 'SELECT IdMessage FROM Message WHERE IdDisDuMsg = '.$idDis.' ORDER BY IdMessage DESC';
-        echo $sqlmsgBD .'<br/>';
         $resultat = $pdo->prepare($sqlmsgBD);
         $resultat->execute();
         while ($row = $resultat->fetch()) {
