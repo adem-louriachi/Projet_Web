@@ -21,7 +21,7 @@ class Discussion
             if ($id['IdMessage'] > $maxIdMsg) { $maxIdMsg = $id['IdMessage']; }
             ?>
             <article>
-                <p><? echo $id['IdMessage']; self::butDeleteMsg($id['IdMessage']); echo MessagesMod::getAuthorsForMsg($id['IdMessage'])?> : <? echo MessagesMod::getTxt($id['IdMessage']); ?></p>
+                <p><? $idM = $id['IdMessage']; self::butDeleteMsg($idM); echo MessagesMod::getAuthorsForMsg($id['IdMessage'])?> : <? echo MessagesMod::getTxt($id['IdMessage']); ?></p>
             </article>
         <?php }
 
