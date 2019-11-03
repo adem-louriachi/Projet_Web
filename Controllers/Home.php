@@ -18,6 +18,21 @@
 <?php
 require 'Models/DiscussionsMod.php';
 
+
+$allDis = DiscussionsMod::getAllDiscussion();
+foreach ($allDis as $dis) { ?>
+    <article>
+        <a href="/?ctrl=Discussion&action=show&id=<?= $dis['IdDiscussion'] ?>" class="discussion collection-item active">
+            <h3 class="center-align"><?= $dis['NomDiscussion']; ?></h3>
+            <p class="left-align"><?= $dis['Createur']; ?></p>
+            <p class="left-align"><? if($dis['EstOuvert'] == 0) { echo 'Fermé'; } else { echo 'Ouvert'; } ?></p>
+        </a>
+    </article>
+    <?php } ?>
+
+
+    <?php /*
+
 $allDis = DiscussionsMod::getAllDiscussion();
 while ($dis = $allDis->fetch()) { ?>
     <article>
@@ -28,6 +43,7 @@ while ($dis = $allDis->fetch()) { ?>
         </a>
     </article>
 <?php } ?>
+    */ ?>
 
 </div>
 <?php
