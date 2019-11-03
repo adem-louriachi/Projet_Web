@@ -19,24 +19,11 @@ class Discussion
 
         foreach ($allIdMsg as $idMsg['IdMessage'] => $id) {
             if ($id['IdMessage'] > $maxIdMsg) { $maxIdMsg = $id['IdMessage']; }
-
-            if (User::isConnected() && $_SESSION['admin'] == 1) {
-                ?>
-                <form id="discussion" method="post" action="">
-                    <button name="deleteMsg" class="submit btn waves-effect waves-light" type="submit"><i
-                                class="material-icons">close</i></button>
-                </form>
-                <?php
-            }
             ?>
             <article>
-                <p><? echo MessagesMod::getAuthorsForMsg($id['IdMessage'])?> : <? echo MessagesMod::getTxt($id['IdMessage']); ?></p>
+                <p><? self::butDeleteMsg($id['IdMessage']); echo MessagesMod::getAuthorsForMsg($id['IdMessage'])?> : <? echo MessagesMod::getTxt($id['IdMessage']); ?></p>
             </article>
         <?php }
-        
-        if (isset($_POST['deleteMsg'])) {
-            MessagesMod::deleteMsg($id['IdMessage']);
-        }
 
         ?>
 
@@ -70,6 +57,24 @@ class Discussion
         }
         $content = ob_get_clean();
         require 'Views/TemplateView.php';
+
+    }
+
+    public static function butDeleteMsg($idMsg){
+        if (User::isConnected() && $_SESSION['admin'] == 1) {
+            ?>
+            <form id="discussion" method="post" action="">
+                <button name="deleteMsg" class="submit btn waves-effect waves-light" type="submit"><i
+                            class="material-icons">close</i></button>
+            </form>
+            <?php
+        }
+
+        if (isset($_POST['deleteMsg'])) {
+            MessagesMod::deleteMsg($idMsg);
+        }
+
+
 
     }
 
