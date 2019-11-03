@@ -78,7 +78,8 @@ class MessagesMod extends Model{
         $resultat = $pdo->prepare($sql);
         $resultat->execute();
         while ($row = $resultat->fetch()) {
-            $authors = $authors . $row['Auteur'] . ' | ';
+            $nomUser = UsersMod::getNickById($row['Auteur']);
+            $authors = $authors . $nomUser['Nom'] . ' | ';
         }
         return $authors;
     }
