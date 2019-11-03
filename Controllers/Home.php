@@ -45,12 +45,13 @@ foreach ($allDis as $dis) { ?>
         if (User::isConnected() && $_SESSION['admin'] == 1) {
             ?>
             <form id="deleteDiscussion" method="post" action="">
-                <button name="deleteDis" class="submit btn waves-effect waves-light right" type="submit"><?php echo $dis['IdDiscussion']; ?><i
+                <button name="deleteDis" class="submit btn waves-effect waves-light right" type="submit"><i
                             class="material-icons">close</i></button>
             </form>
             <?php
             if (isset($_POST['deleteDis'])) {
-                DiscussionsMod::deleteDiscussion($dis['IdDiscussion']);
+
+                DiscussionsMod::deleteDiscussion($_POST [$dis['IdDiscussion']]);
                 unset($_POST['deleteDis']);
                 header('refresh: 1');
             }
