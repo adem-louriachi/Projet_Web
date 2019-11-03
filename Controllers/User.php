@@ -98,7 +98,7 @@ class User
             $message .= 'Content-Type: text/html; charset=utf-8' . "\n\n";
             $message .= $message_html . "\n\n";
             $headers = 'From:' . $from;
-            $_SESSION['test'] = 'Email généré';
+            $_SESSION['test'] .= 'Email généré';
             mail($to, $subject, $message, $headers);
             $_SESSION['test'] .= 'Email potentiellement envoyé';
             header('/?ctrl=User&action=signin');
