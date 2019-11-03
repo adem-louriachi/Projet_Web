@@ -48,7 +48,14 @@ foreach ($allDis as $dis) { ?>
                 <button name="deleteDis" class="submit btn waves-effect waves-light right" type="submit"><i
                             class="material-icons">close</i></button>
             </form>
-        <?php  } ?>
+            <?php
+            if (isset($_POST['deleteDis'])) {
+                DiscussionsMod::deleteDiscussion($dis['IdDiscussion']);
+                unset($_POST['deleteDis']);
+                header('refresh: 1');
+            }
+        }
+        ?>
 
 
         <a href="/?ctrl=Discussion&action=show&id=<?= $dis['IdDiscussion'] ?>" class="discussion collection-item active">
@@ -64,9 +71,3 @@ foreach ($allDis as $dis) { ?>
     $content = ob_get_clean();
     require 'Views/TemplateView.php';
     if (isset($_SESSION['success'])) unset($_SESSION['success']);
-
-    if (isset($_POST['deleteDis'])) {
-        DiscussionsMod::deleteDiscussion($dis['IdDiscussion']);
-        unset($_POST['deleteDis']);
-        header('refresh: 1');
-    }
