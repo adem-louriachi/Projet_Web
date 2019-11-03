@@ -20,6 +20,7 @@ class User
                 <hr>
                 <h1>Admin panel</h1>
                 <form method="post" action="/?ctrl=User&action=giveAdmin">
+                    '.$_SESSION['error']['giveAdmin'].'
                     <label>Donner les droits super utilisateur à ( email )
                         <input name="email" type="text" placeholder="Adresse email de l\'utilisateur">
                     </label>
@@ -139,10 +140,14 @@ class User
     }
 
     public static function giveAdmin(){
-        if(preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $_POST['email']))
-        UsersMod::setAdmin($_POST['email'],1);
-        $_SESSION['success'] = 'Si '.$_POST['email'].' existe, cet utilisateur a reçu les privilèges super utilisateur';
-        header('Location: /');
+        if(preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $_POST['email'])) {
+            UsersMod::setAdmin($_POST['email'], 1);
+            $_SESSION['success'] = 'Si ' . $_POST['email'] . ' existe, cet utilisateur a reçu les privilèges super utilisateur';
+            header('Location: /');
+        }
+        else{
+            $_SESSION['error']['giveAdmin'] = 'Email non conforme, veuillez réessayer';
+        }
     }
 
     public static function delete(){
