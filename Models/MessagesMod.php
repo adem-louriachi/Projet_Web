@@ -149,5 +149,6 @@ class MessagesMod extends Model{
         Model::executeQuery($pdo,$sqlAuthor);
         $sql = 'DELETE FROM Message WHERE IdMessage = \''.$idMsg.'\'';
         Model::executeQuery($pdo,$sql);
+        header('refresh: 1');
     }
 }
