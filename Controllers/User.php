@@ -17,21 +17,20 @@ class User
             else{
                 $_SESSION['isAdmin'] = 'Oui 👑';
                 $_SESSION['giveAdmin'] = '
-                <hr>
-                <h1>Admin panel</h1>
+                <h2 class="white-text center">Admin panel</h2>
                 <form method="post" action="/?ctrl=User&action=giveAdmin">
                     '.$_SESSION['error']['giveAdmin'].'
                     <label>Donner les droits super utilisateur à ( email )
                         <input name="email" type="text" placeholder="Adresse email de l\'utilisateur">
                     </label>
-                    <button class="submit btn waves-effect waves-light" type="submit" value="Envoyer">Envoyer<i class="material-icons right">send</i></button>
+                    <button class="submit btn waves-effect waves-light" type="submit" value="Envoyer">Promouvoir<i class="material-icons right">stars</i></button>
                 </form>';
                 $_SESSION['deleteSmn'] = '
                 <form method="post" action="/?ctrl=User&action=deleteSmn">
                     <label>Supprimer le compte d\'un utilisateur ( "supprimer [pseudo du compte à supprimer]" )
                         <input name="delete" type="text" placeholder="supprimer Toto">
                     </label>
-                    <button class="submit btn waves-effect waves-light left" type="submit" value="Supprimer le compte">Supprimer le compte<i class="material-icons right">close</i></button>
+                    <button class="submit btn waves-effect waves-light left red" type="submit" value="Supprimer le compte">Supprimer le compte<i class="material-icons right">close</i></button>
                 </form>
                 <br>';
             }
