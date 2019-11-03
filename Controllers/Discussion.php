@@ -19,7 +19,7 @@ class Discussion
 
         foreach ($allIdMsg as $idMsg['IdMessage'] => $id) {
             if ($id['IdMessage'] > $maxIdMsg) { $maxIdMsg = $id['IdMessage']; }
-
+/*
             if (User::isConnected() &&  $_SESSION('admin')) {
                 ?>
                 <form id="discussion" method="post" action="">
@@ -30,7 +30,7 @@ class Discussion
             }
             if (isset($_POST['deleteMsg'])) {
                 MessagesMod::deleteMsg($id['IdMessage']);
-            } ?>
+            } */?>
             <article>
                 <p><? echo MessagesMod::getAuthorsForMsg($id['IdMessage'])?> : <? echo MessagesMod::getTxt($id['IdMessage']); ?></p>
             </article>
