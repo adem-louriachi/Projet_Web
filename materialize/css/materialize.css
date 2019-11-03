@@ -6679,7 +6679,6 @@ textarea.materialize-textarea {
 
 [type="checkbox"].filled-in.tabbed:checked:focus + span:not(.lever):after {
   border-radius: 2px;
-  background-color: #26a69a;
   border-color: #26a69a;
 }
 
@@ -6698,7 +6697,6 @@ textarea.materialize-textarea {
 }
 
 [type="checkbox"].filled-in:disabled:checked + span:not(.lever):after {
-  background-color: #949494;
   border-color: #949494;
 }
 
