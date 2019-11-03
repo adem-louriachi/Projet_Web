@@ -39,14 +39,15 @@ class Discussion
                     MessagesMod::insertMsg($idDis);
                     $maxIdMsg = MessagesMod::getLastMessage($idDis);
                     MessagesMod::insertSectionMsg($maxIdMsg, $_SESSION['nick'], $_POST['message']);
+                    header('refresh: 1');
                 }
             } elseif (isset($_POST['new'])){
                 MessagesMod::closeMsg($maxIdMsg);
                 MessagesMod::insertMsg($idDis);
                 $maxIdMsg = MessagesMod::getLastMessage($idDis);
                 MessagesMod::insertSectionMsg($maxIdMsg, $_SESSION['nick'], $_POST['message']);
+                header('refresh: 1');
             }
-            header('refresh: 1');
         }
         $content = ob_get_clean();
         require 'Views/TemplateView.php';
