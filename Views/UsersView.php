@@ -32,7 +32,7 @@
         <form method="post" action="/?ctrl=User&action=delete">
             <?= $_SESSION['error']['delete'] ?>
             <label>Afin de confirmer votre volonté de supprimer votre compte, veuillez écrire "supprimer VOTREPSEUDO" en remplaçant VOTREPSEUDO par le pseudo de votre compte
-                <input name="delete" type="text" placeholder="Supprimez-moi">
+                <input name="delete" type="text" placeholder="supprimer <?= $_SESSION['nick'] ?>">
             </label>
             <button class="submit btn waves-effect waves-light red" type="submit" value="SUPPRIMER mon compte">SUPPRIMER mon compte<i class="material-icons right">close</i></button>
         </form>
