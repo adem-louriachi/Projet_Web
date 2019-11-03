@@ -81,12 +81,14 @@ class User
                 }
             }
         }
-        $_SESSION['test'] = 'Mot de passe généré';
+        // fin de génération de mdp aléatoire
         if(UsersMod::forgetPwd($_POST['email'], $newPwd)) {
             $from = ' Freenote-4randoms <freenote-4randoms@alwaysdata.net>';
+            $headers = 'From:' . $from;
+            $bndary = md5(uniqid(mt_rand()));
+            $headers .= 'Content-type: multipart/alternative; boundary="' . $bndary. '"';
             $to = $_POST['email'];
             $subject = 'Freenote - Mot de passe temporaire';
-            $bndary = md5(uniqid(mt_rand()));
             $message_text = 'Votre mot de passe temporaire est le' . $newPwd . "\n" . 'Pour votre sécurité, veuillez changer votre mot de passe sur votre page Mon Compte dès que possible' . "\n";
             $message_html = '<html><body><p>Votre mot de passe temporaire est le ' . $newPwd . "\n" . 'Pour votre sécurité, veuillez changer votre mot de passe sur votre page <a href="https://freenote-4randoms.alwaysdata.net/?ctrl=User&action=view" target="_blank">Mon Compte</a> dès que possible' . "\n" . '<a href="https://freenote-4randoms.alwaysdata.net/?ctrl=User&action=signin" target="_blank">Se connecter</a>' . '</p></body></html>';
             $message = '--' . $bndary . "\n";
@@ -95,7 +97,6 @@ class User
             $message .= '--' . $bndary . "\n";
             $message .= 'Content-Type: text/html; charset=utf-8' . "\n\n";
             $message .= $message_html . "\n\n";
-            $headers = 'From:' . $from;
             $_SESSION['test'] .= 'Email généré';
             if(mail($to, $subject, $message, $headers)) $_SESSION['test'] .= 'Email potentiellement envoyé';
             else $_SESSION['test'] .= 'Envoi échoué';
