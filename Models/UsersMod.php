@@ -129,4 +129,20 @@ class UsersMod extends Model {
             header('Location: /?ctrl=Form&action=forget');
         }
     }
+
+    public static function getNickById($id)
+    {
+        $pdo = Model::ConnectBD();
+        $sql = 'SELECT Nom FROM Utilisateurs WHERE IdUtilisateur = \'' . $id . '\'';
+        $resultat = Model::executeQuery($pdo, $sql);
+        return $resultat;
+    }
+
+    public static function getIdByNick($nick)
+    {
+        $pdo = Model::ConnectBD();
+        $sql = 'SELECT IdUtilisateur FROM Utilisateurs WHERE Nom = \'' . $nick . '\'';
+        $resultat = Model::executeQuery($pdo, $sql);
+        return $resultat;
+    }
 }

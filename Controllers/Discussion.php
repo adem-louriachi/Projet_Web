@@ -49,4 +49,31 @@ class Discussion
         require 'Views/TemplateView.php';
 
     }
+
+
+    public static function newDiscussion()
+    { //ajoute une discussion
+        require 'AccountMenu.php';
+        require 'Models/MessagesMod.php';
+        $style = 'Views/HomeView.css';
+        ob_start();
+        ?>
+        <h2>Ajout d'une discussion</h2>
+        <form id="discussion" method="post" action="">
+            <label>Nom de la discussion</label>
+            <input name="nomDis" type="text" placeholder="Nom">
+            <button class="submit btn waves-effect waves-light" type="submit">Ajouter<i
+                        class="material-icons right">send</i></button>
+        </form>
+        <?php
+        if (isset($_POST['nomDis']) AND !empty($_POST['message']) AND User::isConnected()) {
+            $nomDis = htmlspecialchars($_POST['nomDis']);
+            $idUser = UsersMod::getIdByNick($_SESSION['nick']);
+            DiscussionsMod::insertDiscussion($idUser, $nomDis);
+
+        }
+        $content = ob_get_clean();
+        require 'Views/TemplateView.php';
+    }
+
 }

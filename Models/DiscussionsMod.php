@@ -34,20 +34,12 @@ class DiscussionsMod extends Model {
         return $this->owner;
     }
 
-    function insertDiscussion() {
+    public static function insertDiscussion($createur, $nomDis) {
         $pdo = Model::connectBD();
-        $sql = 'INSERT INTO Discussion(EstOuvert,  Createur, NomDiscussion) 
-                    VALUES (1,\''.$this->owner.'\',\''.$this->name.'\')';
+        $sql = 'INSERT INTO Discussion(EstOuvert,  Createur, NomDiscussion) VALUES (1,\''.$createur.'\',\''.$nomDis.'\')';
         Model::executeQuery($pdo,$sql);
-
-        $sql = 'SELECT * FROM Discussion ORDER BY IdDiscussion DESC';
-        $dataUser = Model::executeQuery($pdo,$sql);
-
-        $this->id    = $dataUser['IdDiscussion'];
-        $this->status  = $dataUser['EstOuvert'];
-        $this->owner  = $dataUser['Createur'];
-        $this->name   = $dataUser['NomDiscussion'];
     }
+
 
     function selectDiscussion($idDis) {
         $pdo = Model::connectBD();
