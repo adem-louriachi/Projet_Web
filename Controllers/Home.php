@@ -50,8 +50,7 @@ foreach ($allDis as $dis) { ?>
             </form>
             <?php
             if (isset($_POST['deleteDis'])) {
-
-                DiscussionsMod::deleteDiscussion($_POST [$dis['IdDiscussion']]);
+                DiscussionsMod::deleteDiscussion($dis['IdDiscussion']);
                 unset($_POST['deleteDis']);
                 header('refresh: 1');
             }
