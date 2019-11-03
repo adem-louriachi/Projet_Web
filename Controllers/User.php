@@ -31,7 +31,8 @@ class User
                         <input name="delete" type="text" placeholder="supprimer Toto">
                     </label>
                     <button class="submit btn waves-effect waves-light left" type="submit" value="Supprimer le compte">Supprimer le compte<i class="material-icons right">close</i></button>
-                </form>';
+                </form>
+                <br>';
             }
             require 'Views/UsersView.php';
             $content = ob_get_clean();
