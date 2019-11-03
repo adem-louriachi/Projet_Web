@@ -18,15 +18,6 @@ class Discussion{
             </article>
         <?php   } ?>
 
-        <?php /*
-        while ( $idMsg = $allIdMsg->fetch()) {
-            if ($idMsg['IdMessage'] > $maxIdMsg) { $maxIdMsg = $idMsg['IdMessage']; } //obtenir le plus grand idMessage (le dernier) ?>
-            <article>
-                <p><? echo MessagesMod::getTxt($idMsg['IdMessage']); ?></p>
-            </article>
-        <?php } */ ?>
-
-
         <?php
             if(User::isConnected())
             {
