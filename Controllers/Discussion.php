@@ -54,7 +54,7 @@ class Discussion
     public static function newDiscussion()
     { //ajoute une discussion
         require 'AccountMenu.php';
-        require 'Models/MessagesMod.php';
+        require 'Models/DiscussionsMod.php';
         $style = 'Views/HomeView.css';
         ob_start();
         ?>
@@ -66,7 +66,7 @@ class Discussion
                         class="material-icons right">send</i></button>
         </form>
         <?php
-        if (isset($_POST['nomDis']) AND !empty($_POST['message']) AND User::isConnected()) {
+        if (isset($_POST['nomDis']) AND !empty($_POST['nomDis']) AND User::isConnected()) {
             $nomDis = htmlspecialchars($_POST['nomDis']);
             $idUser = UsersMod::getIdByNick($_SESSION['nick']);
             DiscussionsMod::insertDiscussion($idUser, $nomDis);
