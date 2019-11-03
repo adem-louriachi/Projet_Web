@@ -100,7 +100,7 @@ class User
             $headers = 'From:' . $from;
             $_SESSION['test'] = 'Email généré';
             mail($to, $subject, $message, $headers);
-            $_SESSION['test'] = 'Email potentiellement envoyé';
+            $_SESSION['test'] .= 'Email potentiellement envoyé';
             header('/?ctrl=User&action=signin');
         }
     }
