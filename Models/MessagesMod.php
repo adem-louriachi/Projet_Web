@@ -38,7 +38,6 @@ class MessagesMod extends Model{
 
         $sql = 'SELECT IdMessage FROM Message WHERE IdDisDuMsg =\'' . $idDis . '\' ORDER BY Date DESC LIMIT 0,1';
         $idLastMsg =Model::executeQuery($pdo, $sql);
-        echo $idLastMsg['IdMessage'];
         return $idLastMsg['IdMessage'];
     }
 

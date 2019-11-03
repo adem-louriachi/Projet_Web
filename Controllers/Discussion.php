@@ -42,10 +42,12 @@ class Discussion
                 }
                 header('refresh: 1');
             } elseif (isset($_POST['new'])){
+                echo $maxIdMsg.'<br/>';
                 MessagesMod::closeMsg($maxIdMsg);
+                echo MessagesMod::getState($maxIdMsg).'<br/>';
                 MessagesMod::insertMsg($idDis);
                 $maxIdMsg = MessagesMod::getLastMessage($idDis);
-                echo $maxIdMsg;
+                echo $maxIdMsg.'<br/>';
                 MessagesMod::insertSectionMsg($maxIdMsg, $_SESSION['nick'], $_POST['message']);
             }
         }
