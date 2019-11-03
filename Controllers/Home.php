@@ -14,6 +14,13 @@
         Choisissez vos mots avec soin...
         </p>
 </div>
+<div class="center">
+   <? echo '<li><button name = "LoadGameTest" class="waves-effect waves-light btn" type="submit">Charger GameTest</button></li>';
+   if (isset($_POST['LoadGameTest'])) {
+       require 'Models/GameTestDB/LoadGameTestDB.php';
+       GameTest::loadGameTest();
+   }?>
+</div>
 <div class="discussion collection container">
 <?php
 require 'Models/DiscussionsMod.php';
