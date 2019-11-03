@@ -26,8 +26,9 @@ class MessagesMod extends Model{
     public static function getAllMessage($idDis) {
         $pdo = Model::connectBD();
 
-        $sql = $pdo->query('SELECT IdMessage FROM Message WHERE IdDisDuMsg =\'' . $idDis . '\'');
-        return $sql;
+        $sql = 'SELECT IdMessage FROM Message WHERE IdDisDuMsg =\'' . $idDis . '\'';
+        $allID =Model::executeQuery($pdo, $sql);
+        return $allID;
     }
 
     public static function getTxt($idMsg) {

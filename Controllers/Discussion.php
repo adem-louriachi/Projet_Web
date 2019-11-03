@@ -12,12 +12,20 @@ class Discussion{
         $idDis = $_GET['id'];
         $allIdMsg = MessagesMod::getAllMessage($idDis);
         $maxIdMsg = 0;
+        foreach($allIdMsg as $idMsg['IdMessage'] => $id)
+            if ($id > $maxIdMsg) { $maxIdMsg = $id; } //obtenir le plus grand idMessage (le dernier) ?>
+        <article>
+            <p><? echo MessagesMod::getTxt($id); ?></p>
+        </article>
+
+        <?php /*
         while ( $idMsg = $allIdMsg->fetch()) {
             if ($idMsg['IdMessage'] > $maxIdMsg) { $maxIdMsg = $idMsg['IdMessage']; } //obtenir le plus grand idMessage (le dernier) ?>
             <article>
                 <p><? echo MessagesMod::getTxt($idMsg['IdMessage']); ?></p>
             </article>
-        <?php }
+        <?php } */ ?>
+        <?php
             if(User::isConnected())
             {
         ?>
