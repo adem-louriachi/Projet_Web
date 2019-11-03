@@ -94,7 +94,8 @@ class Discussion
         </form>
         <?php
         if (isset($_POST['nomDis']) AND !empty($_POST['nomDis']) AND User::isConnected()) {
-            if (DiscussionsMod::getNbDiscussion() < '11') {
+            $maxDis = DiscussionsMod::getNbDiscussion();
+            if ($maxDis < 11) {
                 $nomDis = htmlspecialchars($_POST['nomDis']);
                 $idUser = UsersMod::getIdByNick($_SESSION['nick']);
                 DiscussionsMod::insertDiscussion($idUser, $nomDis);
