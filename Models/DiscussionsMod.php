@@ -14,8 +14,18 @@ class DiscussionsMod extends Model {
         $pdo->query("INSERT INTO Discussion (NomDiscussion, Createur, EstOuvert) VALUES ($c_name, $c_owner, '1')");
     }
 
-    public function getName() {
-        return $this->name;
+    public static function getName($idDis) {
+        $pdo = Model::ConnectBD();
+        $sql = 'SELECT NomDiscussion FROM Discussion WHERE IdDiscussion = \'' . $idDis . '\'';
+        $name = Model::executeQuery($pdo, $sql);
+        return $name['NomDiscussion'];
+    }
+
+    public static function selectNewDis() {
+        $pdo = Model::ConnectBD();
+        $sql = 'SELECT MAX(IdDiscussion) AS MaxId FROM Discussion';
+        $id = Model::executeQuery($pdo, $sql);
+        return $id['MaxId'];
     }
 
     public function setStatus($status) {
