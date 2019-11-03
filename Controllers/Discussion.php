@@ -84,6 +84,8 @@ class Discussion
         require 'Models/DiscussionsMod.php';
         $style = 'Views/HomeView.css';
         ob_start();
+        $maxDis = DiscussionsMod::getNbDiscussion();
+        echo $maxDis;
         ?>
         <h2>Ajout d'une discussion</h2>
         <form id="discussion" method="post" action="">
@@ -94,8 +96,7 @@ class Discussion
         </form>
         <?php
         if (isset($_POST['nomDis']) AND !empty($_POST['nomDis']) AND User::isConnected()) {
-            $maxDis = DiscussionsMod::getNbDiscussion();
-            echo $maxDis;
+
             if ($maxDis < 11) {
                 $nomDis = htmlspecialchars($_POST['nomDis']);
                 $idUser = UsersMod::getIdByNick($_SESSION['nick']);
