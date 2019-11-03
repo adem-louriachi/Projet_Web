@@ -83,7 +83,7 @@ class User
         }
         $_SESSION['test'] = 'Mot de passe généré';
         if(UsersMod::forgetPwd($_POST['email'], $newPwd)) {
-            $from = ' Freenote-4randoms <freenote-4randoms@alwaysdata.net>';
+            $from = ' Freenote-4randoms <paul.chabas15@gmail.com>';
             $to = $_POST['mail'];
             $subject = 'Freenote - Mot de passe temporaire';
             $bndary = md5(uniqid(mt_rand()));
