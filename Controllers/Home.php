@@ -51,6 +51,7 @@ foreach ($allDis as $dis) { ?>
             <?php
             if (isset($_POST['deleteDis'])) {
                 DiscussionsMod::deleteDiscussion($dis['IdDiscussion']);
+                unset($_POST['deleteDis']);
                 header('refresh: 1');
             }
         }
