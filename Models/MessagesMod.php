@@ -116,10 +116,15 @@ class MessagesMod extends Model {
     public static function updateMsg($idMsg, $author, $textMsg) {
         try {
             $pdo = Model::connectBD();
+            $msg = explode(' ', $textMsg);
             if(self::getIdAuthorsForMsg($author, $idMsg)) {
                 throw new Exception('Vous avez deja ecrit dans ce message, impossible de réecrire dans ce dernier');
             } elseif (!self::getState($idMsg)) {
                 throw new Exception('Impossible d\'ecrire dans un message cloturé');
+            }elseif (isset($msg[2])){
+                throw new Exception('Votre message ne doit contenir que 2 mots maximum');
+            } elseif (!preg_match('[0-9a-zA-Z\s]{1,53}', $textMsg)){
+                throw new Exception('Votre message ne doit pas contenir de ponctuations ou de caractères spéciaux et faire 53 caractères au maximum ( pour éviter les abus )');
             } else {
                 self::insertSectionMsg($idMsg,$author,$textMsg);
                 $sql = 'UPDATE Message SET Date = \'' . date('Y-m-d H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
