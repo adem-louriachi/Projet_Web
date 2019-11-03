@@ -43,9 +43,17 @@ class DiscussionsMod extends Model {
     }
 
     public static function insertDiscussion($createur, $nomDis) {
-        $pdo = Model::connectBD();
-        $sql = 'INSERT INTO Discussion(EstOuvert,  Createur, NomDiscussion) VALUES (1,\''.$createur.'\',\''.$nomDis.'\')';
-        Model::executeQuery($pdo,$sql);
+        try {
+            if (self::getNbDiscussion() <= 10) {
+                $pdo = Model::connectBD();
+                $sql = 'INSERT INTO Discussion(EstOuvert,  Createur, NomDiscussion) VALUES (1,\'' . $createur . '\',\'' . $nomDis . '\')';
+                Model::executeQuery($pdo, $sql);
+            } else {
+                throw new Exception('Nombre de discussion maximum atteint');
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
 
@@ -75,9 +83,9 @@ class DiscussionsMod extends Model {
     public static function getNbDiscussion() {
         $pdo = Model::connectBD();
 
-        $sql = 'SELECT COUNT(*) AS NbDiscusion FROM Discussion';
+        $sql = 'SELECT COUNT(*) AS NbDiscussion FROM Discussion';
         $nbDis = Model::executeQuery($pdo,$sql);
-        return $nbDis['NbDiscusion'];
+        return $nbDis['NbDiscussion'];
     }
 
     public static function showNameDis($posInDB) {
