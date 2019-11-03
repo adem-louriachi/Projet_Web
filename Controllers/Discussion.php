@@ -15,13 +15,13 @@ class Discussion
         $allIdMsg = MessagesMod::getAllMessage($idDis);
         $maxIdMsg = 0;
 
-        echo '<h2>' . DiscussionsMod::getName($idDis) .'</h2>';
+        echo '<h2 class="white-text">' . DiscussionsMod::getName($idDis) .'</h2>';
 
         foreach ($allIdMsg as $idMsg['IdMessage'] => $id) {
             if ($id['IdMessage'] > $maxIdMsg) { $maxIdMsg = $id['IdMessage']; }
             ?>
-            <article>
-                <p><? self::butDeleteMsg($id['IdMessage']); echo MessagesMod::getAuthorsForMsg($id['IdMessage'])?> : <? echo MessagesMod::getTxt($id['IdMessage']); ?></p>
+            <article class="row">
+                <p class="white-text"><? self::butDeleteMsg($id['IdMessage']); echo MessagesMod::getAuthorsForMsg($id['IdMessage'])?> : <? echo MessagesMod::getTxt($id['IdMessage']); ?></p>
             </article>
         <?php }
 
