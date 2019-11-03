@@ -33,6 +33,15 @@ class MessagesMod extends Model{
         return $allID;
     }
 
+    public static function getLastMessage($idDis) {
+        $pdo = Model::connectBD();
+
+        $sql = 'SELECT IdMessage FROM Message WHERE IdDisDuMsg =\'' . $idDis . '\' ORDER BY Date DESC ';
+        $idLastMsg =Model::executeQuery($pdo, $sql);
+        return $idLastMsg['IdMessage'];
+    }
+
+
     public static function getTxt($idMsg) {
         $pdo = Model::ConnectBD();
         $message = '';

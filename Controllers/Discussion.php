@@ -28,19 +28,21 @@ class Discussion
                 <input name="message" type="text" placeholder="Message...">
                 <button class="submit btn waves-effect waves-light" type="submit">Envoyer<i
                             class="material-icons right">send</i></button>
+                <button name="close"class="submit btn waves-effect waves-light" type="submit">Fermer<i
+                            class="material-icons right">Fermer</i></button>
             </form>
             <?php
-            if (MessagesMod::getState($maxIdMsg) == 1) { //vérifie si le msg est ouvert
-
-                if (isset($_POST['message']) && !empty($_POST['message'])) {
-                    if (MessagesMod::countSection($maxIdMsg) == 2) { //nouveau message quand le dernier est plein
-                        MessagesMod::insertSectionMsg($maxIdMsg, $_SESSION['nick'], $_POST['message']);
-                        MessagesMod::closeMsg($maxIdMsg);
-                        MessagesMod::insertMsg($idDis);
-                    } else
-                        MessagesMod::updateMsg($maxIdMsg,$_SESSION['nick'], $_POST['message']);
-                    header('refresh: 1');
+            if (isset($_POST['message']) && !empty($_POST['message'])) {
+                if (MessagesMod::getState($maxIdMsg) == 1) { //vérifie si le msg est ouvert
+                    MessagesMod::updateMsg($maxIdMsg, $_SESSION['nick'], $_POST['message']);
+                } else {
+                    MessagesMod::insertMsg($idDis);
+                    $maxIdMsg = MessagesMod::getLastMessage($idDis);
+                    MessagesMod::insertSectionMsg($maxIdMsg, $_SESSION['nick'], $_POST['message']);
                 }
+                header('refresh: 1');
+            } elseif (isset($_POST['close'])){
+                MessagesMod::closeMsg($maxIdMsg);
             }
         }
         $content = ob_get_clean();
