@@ -45,6 +45,7 @@ class Discussion
                 MessagesMod::closeMsg($maxIdMsg);
                 MessagesMod::insertMsg($idDis);
                 $maxIdMsg = MessagesMod::getLastMessage($idDis);
+                echo $maxIdMsg;
                 MessagesMod::insertSectionMsg($maxIdMsg, $_SESSION['nick'], $_POST['message']);
             }
         }
