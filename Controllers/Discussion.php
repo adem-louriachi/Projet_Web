@@ -64,8 +64,7 @@ class Discussion
         if (User::isConnected() && $_SESSION['admin'] == 1) {
             ?>
             <form id="discussion" method="post" action="">
-                <button name="deleteMsg" class="submit btn waves-effect waves-light left" type="submit"><?$idMsg?><i
-                            class="material-icons right">close</i></button>
+                <button name="deleteMsg" class="submit btn waves-effect waves-light left" type="submit"><?$idMsg?></button>
             </form>
             <?php
         }
