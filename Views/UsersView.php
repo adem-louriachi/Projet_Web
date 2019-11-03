@@ -1,5 +1,5 @@
 <div class="row white-text">
-    <div class="col s6">
+    <div class="col s12 m6 14">
         <p>Nom d'utilisateur : <?=$_SESSION['nick']?></p>
         <p>Email : <?=$_SESSION['email']?></p>
         <p>Date d'inscription : <?=$_SESSION['date']?></p>
@@ -7,7 +7,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col s6">
+    <div class="col s12 m6 14">
         <form id="newMail" method="post" action="/?ctrl=User&action=changeMail">
             <?= $_SESSION['error']['changeEmail'] ?>
             <label>Changer d'adresse e-mail
@@ -16,7 +16,7 @@
             <button class="submit btn waves-effect waves-light" type="submit" value="Modifier l'adresse email">Modifier l'adresse email<i class="material-icons right">mail</i></button>
         </form>
     </div>
-    <div class="col s6">
+    <div class="col s12 m6 14">
         <form id="newPwd" method="post" action="/?ctrl=User&action=changePwd">
             <?= $_SESSION['error']['changePwd'] ?>
             <label>Changer de mot de passe
@@ -28,7 +28,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col s6">
+    <div class="col s12 m6 14">
         <form method="post" action="/?ctrl=User&action=delete">
             <?= $_SESSION['error']['delete'] ?>
             <label>Afin de confirmer votre volonté de supprimer votre compte, veuillez écrire "supprimer VOTREPSEUDO" en remplaçant VOTREPSEUDO par le pseudo de votre compte
