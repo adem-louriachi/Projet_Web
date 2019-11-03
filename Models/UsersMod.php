@@ -26,17 +26,17 @@ class UsersMod extends Model {
     }
 
     public static function insertUser($c_nick, $c_mail, $c_pwd) {
-        try{
+        try {
             if (!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $c_mail)) {
                 throw new Exception('Format de l\'email entré invalide');
             } else {
                 $pdo = Model::connectBD();
                 $sql = 'SELECT Nom FROM Utilisateurs WHERE Nom = \'' . $c_nick . '\' ';
-                if (Model::executeQuery($pdo, $sql)['Nom'] == $c_nick){
+                if (Model::executeQuery($pdo, $sql)['Nom'] == $c_nick) {
                     throw new Exception('Pseudo déjà utilisé');
                 } else {
                     $sql = 'SELECT Mail FROM Utilisateurs WHERE Mail = \'' . $c_mail . '\' ';
-                    if (Model::executeQuery($pdo, $sql)['Mail'] == $c_mail){
+                    if (Model::executeQuery($pdo, $sql)['Mail'] == $c_mail) {
                         throw new Exception('Email déjà utilisé');
                     } else {
                         $sql = 'INSERT INTO Utilisateurs(Nom, Mail, MotDePasse, SuperUtilisateur) 
@@ -51,7 +51,7 @@ class UsersMod extends Model {
                 }
             }
         }
-        catch (Exception $e){
+        catch (Exception $e) {
             $_SESSION['error'] = $e->getMessage();
             header('Location: /?ctrl=Form&action=register');
         }
@@ -103,7 +103,7 @@ class UsersMod extends Model {
         Model::executeQuery($pdo, $sql);
     }
 
-    public function getDate($c_nick){
+    public function getDate($c_nick) {
         $pdo = Model::connectBD();
         $sql = 'SELECT DateInscription FROM Utilisateurs WHERE Nom = \'' . $c_nick . '\' ';
         $dataUser = Model::executeQuery($pdo, $sql);
@@ -130,16 +130,14 @@ class UsersMod extends Model {
         }
     }
 
-    public static function getNickById($id)
-    {
+    public static function getNickById($id) {
         $pdo = Model::ConnectBD();
         $sql = 'SELECT Nom FROM Utilisateurs WHERE IdUtilisateur = \'' . $id . '\'';
         $resultat = Model::executeQuery($pdo, $sql);
         return $resultat['Nom'];
     }
 
-    public static function getIdByNick($nick)
-    {
+    public static function getIdByNick($nick) {
         $pdo = Model::ConnectBD();
         $sql = 'SELECT IdUtilisateur FROM Utilisateurs WHERE Nom = \'' . $nick . '\'';
         $resultat = Model::executeQuery($pdo, $sql);
