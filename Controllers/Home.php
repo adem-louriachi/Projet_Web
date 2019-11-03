@@ -20,16 +20,16 @@
        require 'Models/GameTestDB/LoadGameTestDB.php';
        GameTest::loadGameTest();
    }?>
+    <div class="discussion collection container">
+        <?php
+        require 'Models/DiscussionsMod.php';
+
+        if (User::isConnected()) { ?>
+        <a href="/?ctrl=Discussion&action=newDiscussion">Ajouter une nouvelle discussion</a>
+        <?php } ?>
 </div>
 <div class="discussion collection container">
 <?php
-require 'Models/DiscussionsMod.php';
-
-if (User::isConnected()) { ?>
-    <a href="/?ctrl=Discussion&action=newDiscussion">Ajouter une nouvelle discussion</a>
-<?php }
-
-
 $allDis = DiscussionsMod::getAllDiscussion();
 foreach ($allDis as $dis) { ?>
     <article>
