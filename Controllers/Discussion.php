@@ -71,8 +71,8 @@ class Discussion
         }
         if (isset($_POST['deleteMsg'])) {
             MessagesMod::deleteMsg($idMsg);
+            unset($_POST['deleteMsg']);
             header('refresh: 1');
-
         }
     }
 
