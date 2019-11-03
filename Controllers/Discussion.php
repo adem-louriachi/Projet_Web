@@ -44,14 +44,14 @@ class Discussion
                 } else {
                     MessagesMod::insertMsg($idDis);
                     $maxIdMsg = MessagesMod::getLastMessage($idDis);
-                    MessagesMod::insertSectionMsg($maxIdMsg, $_SESSION['nick'], $_POST['message']);
+                    MessagesMod::insertSectionMsg($maxIdMsg, UsersMod::getIdByNick($_SESSION['nick']), $_POST['message']);
                     header('refresh: 1');
                 }
             } elseif (isset($_POST['new']) && isset($_POST['message']) && !empty($_POST['message'])){
                 MessagesMod::closeMsg($maxIdMsg);
                 MessagesMod::insertMsg($idDis);
                 $maxIdMsg = MessagesMod::getLastMessage($idDis);
-                MessagesMod::insertSectionMsg($maxIdMsg, $_SESSION['nick'], $_POST['message']);
+                MessagesMod::insertSectionMsg($maxIdMsg, UsersMod::getIdByNick($_SESSION['nick']), $_POST['message']);
                 header('refresh: 1');
             }
         }

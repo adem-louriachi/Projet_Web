@@ -1,5 +1,5 @@
 <?php
-class MessagesMod extends Model{
+class MessagesMod extends Model {
     private $idMsg;
     private $idDis;
     private $dateMsg;
@@ -78,7 +78,8 @@ class MessagesMod extends Model{
         $resultat = $pdo->prepare($sql);
         $resultat->execute();
         while ($row = $resultat->fetch()) {
-            $authors = $authors . $row['Auteur'] . ' | ';
+            $nomUser = UsersMod::getNickById($row['Auteur']);
+            $authors = $authors . $nomUser . ' | ';
         }
         return $authors;
     }
@@ -112,31 +113,19 @@ class MessagesMod extends Model{
     }
 
 
-//    public function insertMsg() {
-//        $pdo = Model::connectBD();
-//        $sql = 'INSERT INTO Message (IdDisDuMsg, EstOuvert, TextMessage) VALUES ('.$this->idDis.', 1, \'Text mis dans SectionMessage\')';
-//        Model::executeQuery($pdo,$sql);
-//        $sqlRecupIdMessage = 'SELECT IdMessage FROM Message ORDER BY IdMessage DESC';
-//        $idMsgBD = Model::executeQuery($pdo,$sqlRecupIdMessage);
-//        $this->idMsg = $idMsgBD['IdMessage'];
-//        $this->dateMsg = $this->getDateMsg();
-//        $this->stateMsg = true;
-//        $this->addSectionMessage($this->authors, $this->idMsg,$this->textMsg);
-//    }
-
     public static function updateMsg($idMsg, $author, $textMsg) {
-        try{
+        try {
             $pdo = Model::connectBD();
-            if(self::getIdAuthorsForMsg($author, $idMsg)){
+            if(self::getIdAuthorsForMsg($author, $idMsg)) {
                 throw new Exception('Vous avez deja ecrit dans ce message, impossible de réecrire dans ce dernier');
-            } elseif (!self::getState($idMsg)){
+            } elseif (!self::getState($idMsg)) {
                 throw new Exception('Impossible d\'ecrire dans un message cloturé');
             } else {
                 self::insertSectionMsg($idMsg,$author,$textMsg);
                 $sql = 'UPDATE Message SET Date = \'' . date('Y-m-d H:i:s') . '\' WHERE IdMessage = \'' . $idMsg. '\'';
                 Model::executeQuery($pdo, $sql);
             }
-        } catch (Exception $e){
+        } catch (Exception $e) {
             echo $e->getMessage();
         }
     }

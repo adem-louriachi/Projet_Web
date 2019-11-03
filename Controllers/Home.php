@@ -16,7 +16,11 @@
 </div>
 <div class="row">
     <div class="col s6 right-align">
-   <? echo '<li><button name = "LoadGameTest" class="waves-effect waves-light btn" type="submit">Charger GameTest</button></li>';
+   <? echo '<form id="GameTestForm" method="post" action="">
+                <button name = "LoadGameTest" class="waves-effect waves-light btn" type="submit">Charger GameTest</button>
+            </form>';
+
+
    if (isset($_POST['LoadGameTest'])) {
        require 'Models/GameTestDB/LoadGameTestDB.php';
        GameTest::loadGameTest();
@@ -36,6 +40,25 @@
 $allDis = DiscussionsMod::getAllDiscussion();
 foreach ($allDis as $dis) { ?>
     <article>
+
+        <?php
+        if (User::isConnected() && $_SESSION['admin'] == 1) {
+            ?>
+            <form id="deleteDiscussion" method="post" action="">
+                <button name="deleteDis" class="submit btn waves-effect waves-light right" type="submit"><i
+                            class="material-icons">close</i></button>
+            </form>
+            <?php
+            if (isset($_POST['deleteDis'])) {
+
+                DiscussionsMod::deleteDiscussion($_POST [$dis['IdDiscussion']]);
+                unset($_POST['deleteDis']);
+                header('refresh: 1');
+            }
+        }
+        ?>
+
+
         <a href="/?ctrl=Discussion&action=show&id=<?= $dis['IdDiscussion'] ?>" class="discussion collection-item active">
             <h3 class="center-align"><?= $dis['NomDiscussion']; ?></h3>
             <p class="left-align"><? echo UsersMod::getNickById($dis['Createur']); ?></p>
@@ -44,24 +67,8 @@ foreach ($allDis as $dis) { ?>
     </article>
     <?php } ?>
 
-
-    <?php /*
-
-$allDis = DiscussionsMod::getAllDiscussion();
-while ($dis = $allDis->fetch()) { ?>
-    <article>
-        <a href="/?ctrl=Discussion&action=show&id=<?= $dis['IdDiscussion'] ?>" class="discussion collection-item active">
-            <h3 class="center-align"><?= $dis['NomDiscussion']; ?></h3>
-            <p class="left-align"><?= $dis['Createur']; ?></p>
-            <p class="left-align"><? if($dis['EstOuvert'] == 0) { echo 'Fermé'; } else { echo 'Ouvert'; } ?></p>
-        </a>
-    </article>
-<?php } ?>
-    */ ?>
-
 </div>
 <?php
     $content = ob_get_clean();
     require 'Views/TemplateView.php';
     if (isset($_SESSION['success'])) unset($_SESSION['success']);
-?>
