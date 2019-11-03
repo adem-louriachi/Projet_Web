@@ -100,15 +100,15 @@ class DiscussionsMod extends Model {
         Model::executeQuery($pdo,$sql);
     }
 
-    public function deleteDiscussion() {
+    public static function deleteDiscussion($idDis) {
         $pdo = Model::connectBD();
-        $sqlmsgBD = 'SELECT IdMessage FROM Message WHERE IdDisDuMsg = '.$this->id.' ORDER BY IdMessage DESC';
+        $sqlmsgBD = 'SELECT IdMessage FROM Message WHERE IdDisDuMsg = '.$idDis.' ORDER BY IdMessage DESC';
         $resultat = $pdo->prepare($sqlmsgBD);
         $resultat->execute();
         while ($row = $resultat->fetch()) {
             MessagesMod::deleteMsg($row['IdMessage']);
         }
-        $sql = 'DELETE FROM Discussion WHERE IdDiscussion = \''.$this->id.'\'';
+        $sql = 'DELETE FROM Discussion WHERE IdDiscussion = \''.$idDis.'\'';
         Model::executeQuery($pdo,$sql);
     }
 
