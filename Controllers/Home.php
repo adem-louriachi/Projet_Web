@@ -45,19 +45,10 @@ foreach ($allDis as $dis) { ?>
         if (User::isConnected() && $_SESSION['admin'] == 1) {
             ?>
             <form id="deleteDiscussion" method="post" action="">
-                <button name="deleteDis" class="submit btn waves-effect waves-light left" type="submit"><i
-                            class="material-icons right">close</i></button>
+                <button name="deleteDis" class="submit btn waves-effect waves-light right" type="submit"><i
+                            class="material-icons">close</i></button>
             </form>
-            <?php
-            if (isset($_POST['deleteDis'])) {
-                DiscussionsMod::deleteDiscussion($dis['IdDiscussion']);
-                unset($_POST['deleteDis']);
-                header('refresh: 1');
-            }
-        }
-
-
-        ?>
+        <?php  } ?>
 
 
         <a href="/?ctrl=Discussion&action=show&id=<?= $dis['IdDiscussion'] ?>" class="discussion collection-item active">
@@ -73,3 +64,9 @@ foreach ($allDis as $dis) { ?>
     $content = ob_get_clean();
     require 'Views/TemplateView.php';
     if (isset($_SESSION['success'])) unset($_SESSION['success']);
+
+    if (isset($_POST['deleteDis'])) {
+        DiscussionsMod::deleteDiscussion($dis['IdDiscussion']);
+        unset($_POST['deleteDis']);
+        header('refresh: 1');
+    }
