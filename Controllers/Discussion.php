@@ -71,7 +71,6 @@ class Discussion
         }
         if (isset($_POST['deleteMsg'])) {
             MessagesMod::deleteMsg($idMsg);
-            self::show();
         }
     }
 
