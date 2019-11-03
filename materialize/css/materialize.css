@@ -2535,9 +2535,7 @@ button,
 input,
 optgroup,
 select,
-textarea {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-}
+
 
 ul:not(.browser-default) {
   padding-left: 0;
@@ -4351,7 +4349,6 @@ a {
 
 html {
   line-height: 1.5;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   font-weight: normal;
   color: rgba(0, 0, 0, 0.87);
 }
@@ -6978,7 +6975,6 @@ body.keyboard-focused .select-dropdown.dropdown-content li:focus {
   font-size: 20px;
   cursor: pointer;
   opacity: 0;
-  filter: alpha(opacity=0);
 }
 
 /* Range
