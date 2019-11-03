@@ -61,10 +61,11 @@ class Discussion
     }
 
     public static function butDeleteMsg($idMsg){
+        echo $idMsg;
         if (User::isConnected() && $_SESSION['admin'] == 1) {
             ?>
             <form id="discussion" method="post" action="">
-                <button name="deleteMsg" class="submit btn waves-effect waves-light" type="submit"><i
+                <button name="deleteMsg" class="submit btn waves-effect waves-light left" type="submit"><i
                             class="material-icons">close</i></button>
             </form>
             <?php
