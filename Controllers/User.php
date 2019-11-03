@@ -30,7 +30,7 @@ class User
                     <label>Supprimer le compte d\'un utilisateur ( "supprimer [pseudo du compte à supprimer]" )
                         <input name="delete" type="text" placeholder="supprimer Toto">
                     </label>
-                    <button class="submit btn waves-effect waves-light left" type="submit"><i class="material-icons right">close</i></button>
+                    <button class="submit btn waves-effect waves-light left" type="submit" value="Supprimer le compte"><i class="material-icons right">close</i></button>
                 </form>';
             }
             require 'Views/UsersView.php';
