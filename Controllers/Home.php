@@ -22,7 +22,7 @@
 
 
    echo '<form id="NbDis" method="post">
-              <input type="number" name="howmuch" width="5px">
+              <input class="waves-effect waves-light btn" type="number" name="howmuch" >
          </form>';
 
    if (isset($_POST['LoadGameTest'])) {
