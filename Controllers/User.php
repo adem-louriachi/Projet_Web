@@ -17,6 +17,8 @@ class User
             else{
                 $_SESSION['isAdmin'] = 'Oui 👑';
                 $_SESSION['giveAdmin'] = '
+                <hr>
+                <h1>Admin panel</h1>
                 <form method="post" action="/?ctrl=User&action=giveAdmin">
                     <label>Donner les droits super utilisateur à ( email )
                         <input name="email" type="text" placeholder="Adresse email de l\'utilisateur">
