@@ -72,6 +72,16 @@ class DiscussionsMod extends Model {
         return $allDiscussion;
     }
 
+    public static function getAllDiscussionLimit($limit, $page) {
+        $pdo = Model::connectBD();
+        $debut = ($page - 1) * $limit;
+        $sql = 'SELECT * FROM Discussion LIMIT '.$limit.' OFFSET '.$debut.'';
+        $resultat = $pdo->prepare($sql);
+        $resultat->execute();
+        $allDiscussion = $resultat->fetchAll();
+        return $allDiscussion;
+    }
+
     public static function getNbDiscussion() {
         $pdo = Model::connectBD();
         $sql = 'SELECT COUNT(*) AS NbDiscussion FROM Discussion';
