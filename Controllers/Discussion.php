@@ -30,7 +30,7 @@ class Discussion{
                 if (MessagesMod::getState($maxIdMsg) == 1) { //vérifie si le msg est ouvert
 
                     if (isset($_POST['message']) AND !empty($_POST['message'])) {
-                        MessagesMod::insertSectionMsg($idDis, $maxIdMsg, $_SESSION['nick'], $_POST['message']);
+                        MessagesMod::insertSectionMsg($maxIdMsg, $_SESSION['nick'], $_POST['message']);
                         if (MessagesMod::countSection($maxIdMsg) == 3 ) { //nouveau message quand le dernier est plein
                             MessagesMod::closeMsg($maxIdMsg);
                             MessagesMod::insertMsg($idDis);

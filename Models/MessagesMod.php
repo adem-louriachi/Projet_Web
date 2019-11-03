@@ -23,8 +23,7 @@ class MessagesMod extends Model{
         return $msgBD['EstOuvert'];
     }
 
-    public static function getAllMessage($idDis)
-    {
+    public static function getAllMessage($idDis) {
         $pdo = Model::connectBD();
 
         $sql = $pdo->query('SELECT IdMessage FROM Message WHERE IdDisDuMsg =\'' . $idDis . '\'');
@@ -59,35 +58,28 @@ class MessagesMod extends Model{
         return $authors['Auteur'];
     }
 
-    public function addSectionMessage($idAuthor, $idMsg, $txtSection) {
-        $pdo = Model::connectBD();
-        $sql = 'INSERT INTO SectionMessage (IdMessage, Auteur, TextSection) VALUES (\''.$idMsg.'\', \''.$idAuthor.'\', \''.addcslashes($txtSection,'\'').'\')';
-        Model::executeQuery($pdo,$sql);
-    }
-
     public static function closeMsg($idMsg) {
         $pdo = Model::connectBD();
         $sql = 'UPDATE Message SET EstOuvert = 0 WHERE IdMessage = \''.$idMsg.'\'';
         Model::executeQuery($pdo,$sql);
     }
 
-    public static function countSection($idMsg){
+    public static function countSection($idMsg) {
         $pdo = Model::connectBD();
-        $sql = "SELECT count(*) AS NbSection FROM SectionMessage WHERE IdMessage ='$idMsg'";
+        $sql = 'SELECT count(*) AS NbSection FROM SectionMessage WHERE IdMessage =\''.$idMsg.'\'';
         $nbSection = Model::executeQuery($pdo,$sql);
         return $nbSection['NbSection'];
     }
 
-    public static function insertMsg($idDis)
-    {
+    public static function insertMsg($idDis) {
         $pdo = Model::connectBD();
-        $sql = "INSERT INTO Message (IdDisDuMsg, EstOuvert) VALUES ('$idDis' , 1) ";
+        $sql = 'INSERT INTO Message (IdDisDuMsg, EstOuvert) VALUES (\''.$idDis.'\' , 1)';
         Model::executeQuery($pdo, $sql);
     }
 
-    public static function insertSectionMsg($idDis, $idMsg, $author, $textWord) {
+    public static function insertSectionMsg($idMsg, $author, $textWord) {
         $pdo = Model::connectBD();
-        $sql = "INSERT INTO SectionMessage (IdMessage, Auteur, TextSection) VALUES ('$idMsg','$author', '$textWord')";
+        $sql = 'INSERT INTO SectionMessage (IdMessage, Auteur, TextSection) VALUES (\''.$idMsg.'\',\''.$author.'\', \''.addcslashes($textWord,'\'').'\')';
         Model::executeQuery($pdo, $sql);
 
     }
