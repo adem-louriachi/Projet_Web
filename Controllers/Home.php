@@ -15,14 +15,14 @@
         </p>
 </div>
 <div class="row">
-    <div class="col s6">
+    <div class="col s6 right-align">
    <? echo '<li><button name = "LoadGameTest" class="waves-effect waves-light btn" type="submit">Charger GameTest</button></li>';
    if (isset($_POST['LoadGameTest'])) {
        require 'Models/GameTestDB/LoadGameTestDB.php';
        GameTest::loadGameTest();
    } ?>
    </div>
-    <div class="col s6 offset-s6">
+    <div class="col s6">
     <?php
         require 'Models/DiscussionsMod.php';
 
