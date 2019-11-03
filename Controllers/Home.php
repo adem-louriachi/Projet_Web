@@ -14,17 +14,22 @@
         Choisissez vos mots avec soin...
         </p>
 </div>
-<div class="center">
+<div class="row">
+    <div class="col s6">
    <? echo '<li><button name = "LoadGameTest" class="waves-effect waves-light btn" type="submit">Charger GameTest</button></li>';
    if (isset($_POST['LoadGameTest'])) {
        require 'Models/GameTestDB/LoadGameTestDB.php';
        GameTest::loadGameTest();
-   }
+   } ?>
+   </div>
+    <div class="col s6 offset-s6">
+    <?php
         require 'Models/DiscussionsMod.php';
 
         if (User::isConnected()) { ?>
         <a class="waves-effect waves-light btn" href="/?ctrl=Discussion&action=newDiscussion"><i class="material-icons right">add</i>Ajouter une nouvelle discussion</a>
         <?php } ?>
+    </div>
 </div>
 <div class="discussion collection container">
 <?php
