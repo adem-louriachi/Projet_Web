@@ -98,6 +98,7 @@ class Discussion
             if ($maxDis < 10) {
                 $nomDis = htmlspecialchars($_POST['nomDis']);
                 $idUser = UsersMod::getIdByNick($_SESSION['nick']);
+                $nomDis = MessagesMod::quote_smart($nomDis);
                 DiscussionsMod::insertDiscussion($idUser, $nomDis);
                 $idNewDis = DiscussionsMod::selectNewDis();
                 header("location: /?ctrl=Discussion&action=show&id=$idNewDis");
