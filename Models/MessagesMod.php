@@ -79,7 +79,7 @@ class MessagesMod extends Model{
         $resultat->execute();
         while ($row = $resultat->fetch()) {
             $nomUser = UsersMod::getNickById($row['Auteur']);
-            $authors = $authors . $nomUser['Nom'] . ' | ';
+            $authors = $authors . $nomUser . ' | ';
         }
         return $authors;
     }
