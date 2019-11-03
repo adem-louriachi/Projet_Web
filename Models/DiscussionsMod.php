@@ -44,7 +44,7 @@ class DiscussionsMod extends Model {
 
     public static function insertDiscussion($createur, $nomDis) {
         try {
-            if (self::getNbDiscussion() <= 10) {
+            if (self::getNbDiscussion() < 11) {
                 $pdo = Model::connectBD();
                 $sql = 'INSERT INTO Discussion(EstOuvert,  Createur, NomDiscussion) VALUES (1,\'' . $createur . '\',\'' . $nomDis . '\')';
                 Model::executeQuery($pdo, $sql);
