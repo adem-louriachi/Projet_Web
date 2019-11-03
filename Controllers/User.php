@@ -66,6 +66,7 @@ class User
     }
 
     public static function forget(){
+        ob_start();
         //generation mot de passe aléatoire
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $newPwd = '';
@@ -101,6 +102,7 @@ class User
             $_SESSION['test'] .= 'Email généré';
             if(mail($to, $subject, $message, $headers)) $_SESSION['test'] .= 'Email potentiellement envoyé';
             else $_SESSION['test'] .= 'Envoi échoué';
+            $_SESSION['clear'] = ob_get_clean();
             header('/?ctrl=Form&action=signin');
         }
     }
