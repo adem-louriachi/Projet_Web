@@ -95,9 +95,9 @@ class User
             //$message .= '--' . $bndary . "\n";
             //$message .= 'Content-Type: text/html; charset=utf-8' . "\n\n";
             //$message .= $message_html . "\n\n";
-            $headers[] = 'From:' . $from;
+            $headers = 'From:' . $from;
             $_SESSION['test'] .= 'Email généré';
-            if(mail($to, $subject, $message, implode("\r\n",$headers))) $_SESSION['test'] .= 'Email potentiellement envoyé';
+            if(mail($to, $subject, $message, $headers)) $_SESSION['test'] .= 'Email potentiellement envoyé';
             else $_SESSION['test'] .= 'Envoi échoué';
             header('/?ctrl=Form&action=signin');
         }
