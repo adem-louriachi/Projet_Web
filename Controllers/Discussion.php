@@ -13,7 +13,7 @@ class Discussion{
         $allIdMsg = MessagesMod::getAllMessage($idDis);
         $maxIdMsg = 0;
         foreach($allIdMsg as $idMsg['IdMessage'] => $id) {
-            if ($id > $maxIdMsg) { $maxIdMsg = $id; } //obtenir le plus grand idMessage (le dernier) ?>
+            //if ($id > $maxIdMsg) { $maxIdMsg = $id; } //obtenir le plus grand idMessage (le dernier) ?>
         <article>
             <p><? echo $id; ?></p>
         </article>
@@ -27,7 +27,7 @@ class Discussion{
             </article>
         <?php } */ ?>
 
-        
+
         <?php
             if(User::isConnected())
             {
