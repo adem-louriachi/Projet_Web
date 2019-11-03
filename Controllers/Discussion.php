@@ -59,21 +59,26 @@ class Discussion
         require 'Views/TemplateView.php';
 
     }
-
-    public static function butDeleteMsg($idMsg){
-        if (User::isConnected() && $_SESSION['admin'] == 1) {
-            ?>
-            <form id="discussion" method="post" action="">
-                <button name="deleteMsg" class="submit btn waves-effect waves-light left" type="submit"><i
-                            class="material-icons">close</i></button>
-            </form>
-            <?php
-        }
+    public static function deleteMsg($idMsg){
         if (isset($_POST['deleteMsg'])) {
             MessagesMod::deleteMsg($idMsg);
             header('refresh: 1');
         }
     }
+
+
+    public static function butDeleteMsg($idMsg){
+        if (User::isConnected() && $_SESSION['admin'] == 1) {
+            ?>
+            <form id="discussion" method="post" action="">
+                <button name="deleteMsgButName" class="submit btn waves-effect waves-light left" onclick="<? self::deleteMsg( $idMsg )?>"><i
+                            class="material-icons">close</i></button>
+            </form>
+            <?php
+        }
+    }
+
+
 
 
     public static function newDiscussion()
