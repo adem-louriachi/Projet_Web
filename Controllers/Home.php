@@ -21,6 +21,10 @@
             </form>';
 
 
+   echo '<form id="NbDis" method="post">
+              <input type="number" name="howmuch" width="5px">
+         </form>';
+
    if (isset($_POST['LoadGameTest'])) {
        require 'Models/GameTestDB/LoadGameTestDB.php';
        GameTest::loadGameTest();
@@ -37,7 +41,7 @@
 </div>
 <div class="discussion collection container">
 <?php
-$limit = 2;
+$limit = (!empty($_POST['howmuch']) ? $_POST['howmuch'] : 2);
 $page = (!empty($_GET['page']) ? $_GET['page'] : 1);
 $allDis = DiscussionsMod::getAllDiscussionLimit($limit, $page);
 foreach ($allDis as $dis) { ?>
