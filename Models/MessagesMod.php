@@ -29,9 +29,7 @@ class MessagesMod extends Model{
         $sql = 'SELECT IdMessage FROM Message WHERE IdDisDuMsg =\'' . $idDis . '\'';
         $resultat = $pdo->prepare($sql);
         $resultat->execute();
-        while ($row = $resultat->fetch()) {
-            $allID [] = $row['TextSection'];
-        }
+        $allID = $resultat->fetchAll();
         return $allID;
     }
 
