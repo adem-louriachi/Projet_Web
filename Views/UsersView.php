@@ -13,7 +13,7 @@
             <label>Changer d'adresse e-mail
                 <input name="email" type="email" placeholder="Nouvelle adresse e-mail">
             </label>
-            <button class="submit btn waves-effect waves-light" type="submit" value="Modifier l'adresse email">Modifier l'adresse email<i class="material-icons right">send</i></button>
+            <button class="submit btn waves-effect waves-light" type="submit" value="Modifier l'adresse email">Modifier l'adresse email<i class="material-icons right">mail</i></button>
         </form>
     </div>
     <div class="col s6">
@@ -23,7 +23,7 @@
                 <input name="pwd" type="password" placeholder="Nouveau mot de passe">
                 <input name="pwdconf" type="password" placeholder="Confirmation du nouveau mot de passe">
             </label>
-            <button class="submit btn waves-effect waves-light" type="submit" value="Modifier le mot de passe">Modifier le mot de passe<i class="material-icons right">send</i></button>
+            <button class="submit btn waves-effect waves-light" type="submit" value="Modifier le mot de passe">Modifier le mot de passe<i class="material-icons right">lock_outline</i></button>
         </form>
     </div>
 </div>
@@ -32,9 +32,9 @@
         <form method="post" action="/?ctrl=User&action=delete">
             <?= $_SESSION['error']['delete'] ?>
             <label>Afin de confirmer votre volonté de supprimer votre compte, veuillez écrire "supprimer VOTREPSEUDO" en remplaçant VOTREPSEUDO par le pseudo de votre compte
-                <input name="delete" type="text" placeholder="supprimer moi">
+                <input name="delete" type="text" placeholder="Supprimez-moi">
             </label>
-            <button class="submit btn waves-effect waves-light" type="submit" value="SUPPRIMER mon compte">SUPPRIMER mon compte<i class="material-icons right">send</i></button>
+            <button class="submit btn waves-effect waves-light red" type="submit" value="SUPPRIMER mon compte">SUPPRIMER mon compte<i class="material-icons right">close</i></button>
         </form>
         <?= $_SESSION['giveAdmin'] ?>
         <?= $_SESSION['deleteSmn'] ?>
