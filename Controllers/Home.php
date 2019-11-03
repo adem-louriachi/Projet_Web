@@ -19,13 +19,11 @@
    if (isset($_POST['LoadGameTest'])) {
        require 'Models/GameTestDB/LoadGameTestDB.php';
        GameTest::loadGameTest();
-   }?>
-    <div class="discussion collection container">
-        <?php
+   }
         require 'Models/DiscussionsMod.php';
 
         if (User::isConnected()) { ?>
-        <a href="/?ctrl=Discussion&action=newDiscussion">Ajouter une nouvelle discussion</a>
+        <a class="waves-effect waves-light btn" href="/?ctrl=Discussion&action=newDiscussion"><i class="material-icons right">add</i>Ajouter une nouvelle discussion</a>
         <?php } ?>
 </div>
 <div class="discussion collection container">
