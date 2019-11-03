@@ -27,7 +27,11 @@ class MessagesMod extends Model{
         $pdo = Model::connectBD();
 
         $sql = 'SELECT IdMessage FROM Message WHERE IdDisDuMsg =\'' . $idDis . '\'';
-        $allID =Model::executeQuery($pdo, $sql);
+        $resultat = $pdo->prepare($sql);
+        $resultat->execute();
+        while ($row = $resultat->fetch()) {
+            $allID [] = $row['TextSection'];
+        }
         return $allID;
     }
 
