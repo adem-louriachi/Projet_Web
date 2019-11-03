@@ -37,7 +37,9 @@
 </div>
 <div class="discussion collection container">
 <?php
-$allDis = DiscussionsMod::getAllDiscussion();
+$limit = 2;
+$page = (!empty($_GET['page']) ? $_GET['page'] : 1);
+$allDis = DiscussionsMod::getAllDiscussionLimit($limit, $page);
 foreach ($allDis as $dis) { ?>
     <article>
         <a href="/?ctrl=Discussion&action=show&id=<?= $dis['IdDiscussion'] ?>" class="discussion collection-item active">
@@ -68,8 +70,16 @@ foreach ($allDis as $dis) { ?>
     </article>
     <?php } ?>
 
+
+    <a class="waves-effect waves-light btn" href="?page=<?php echo $page - 1; ?>"><i class="material-icons left"></i>Page précédente</a>
+    <a class="waves-effect waves-light btn" href="?page=<?php echo $page + 1; ?>"><i class="material-icons right"></i>Page suivante</a>
 </div>
 <?php
     $content = ob_get_clean();
     require 'Views/TemplateView.php';
     if (isset($_SESSION['success'])) unset($_SESSION['success']);
+
+
+
+
+    
