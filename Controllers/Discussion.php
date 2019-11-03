@@ -69,13 +69,10 @@ class Discussion
             </form>
             <?php
         }
-
         if (isset($_POST['deleteMsg'])) {
             MessagesMod::deleteMsg($idMsg);
+            header('refresh: 1');
         }
-
-
-
     }
 
 
