@@ -36,7 +36,7 @@ class MessagesMod extends Model{
     public static function getLastMessage($idDis) {
         $pdo = Model::connectBD();
 
-        $sql = 'SELECT IdMessage FROM Message WHERE IdDisDuMsg =\'' . $idDis . '\' ORDER BY Date DESC ';
+        $sql = 'SELECT IdMessage FROM Message WHERE IdDisDuMsg =\'' . $idDis . '\' ORDER BY Date DESC LIMIT 0,1';
         $idLastMsg =Model::executeQuery($pdo, $sql);
         return $idLastMsg['IdMessage'];
     }
