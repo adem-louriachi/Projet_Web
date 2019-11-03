@@ -69,7 +69,7 @@ Mot de Passe :   les3randoms
 
 **Alwaysdata-ssh depuis compte alwaysdata**  
 Login :  	freenote-4randoms  
-Mot de Passe :   les4randoms  
+Mot de Passe :   les3randoms  
 
 **PHPMyAdmin depuis compte alwaysdata**  
 Login :  	191395  
