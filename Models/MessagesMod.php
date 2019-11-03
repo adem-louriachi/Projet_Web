@@ -117,6 +117,7 @@ class MessagesMod extends Model {
         try {
             $pdo = Model::connectBD();
             $textMsg = self::quote_smart($textMsg);
+            $textMsg = htmlspecialchars($textMsg);
             $msg = explode(' ', $textMsg);
             if(self::getIdAuthorsForMsg($author, $idMsg)) {
                 throw new Exception('Vous avez deja ecrit dans ce message, impossible de réecrire dans ce dernier');
