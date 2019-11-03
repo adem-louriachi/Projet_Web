@@ -153,10 +153,6 @@ class MessagesMod extends Model {
         if (get_magic_quotes_gpc()) {
             $value = stripslashes($value);
         }
-        // Protection si ce n'est pas une valeur numérique ou une chaîne numérique
-        if (!is_numeric($value)) {
-            $value = '\'' . mysql_real_escape_string($value) . '\'';
-        }
         return htmlspecialchars($value);
     }
 
