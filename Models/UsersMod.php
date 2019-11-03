@@ -97,9 +97,9 @@ class UsersMod extends Model {
         Model::executeQuery($pdo, $sql);
     }
 
-    public static function setAdmin($nick, $admin) {
+    public static function setAdmin($email, $admin) {
         $pdo = Model::ConnectBD();
-        $sql = 'UPDATE Utilisateurs SET SuperUtilisateur = \''.$admin.'\' WHERE Nom = \''.$nick.'\'';
+        $sql = 'UPDATE Utilisateurs SET SuperUtilisateur = \''.$admin.'\' WHERE Mail = \''.$email.'\'';
         Model::executeQuery($pdo, $sql);
     }
 

@@ -16,8 +16,13 @@ class User
             if($_SESSION['admin'] == 0) $_SESSION['isAdmin'] = 'Non';
             else{
                 $_SESSION['isAdmin'] = 'Oui 👑';
-                $_SESSION['giveAdmin'] = '<form method="post" action="/?ctrl=User&action=giveAdmin"><label>Donner les droits super utilisateur à ( pseudo ) <input name="nick" type="text" placeholder="Pseudo choisi"></label><button class="submit btn waves-effect waves-light" type="submit" value="Envoyer">Envoyer<i
-                class="material-icons right">send</i></button></form>';
+                $_SESSION['giveAdmin'] = '
+                <form method="post" action="/?ctrl=User&action=giveAdmin">
+                    <label>Donner les droits super utilisateur à ( email )
+                        <input name="email" type="text" placeholder="Adresse email de l\'utilisateur">
+                    </label>
+                    <button class="submit btn waves-effect waves-light" type="submit" value="Envoyer">Envoyer<i class="material-icons right">send</i></button>
+                </form>';
             }
             require 'Views/UsersView.php';
             $content = ob_get_clean();
@@ -124,8 +129,22 @@ class User
     }
 
     public static function giveAdmin(){
-        UsersMod::setAdmin($_POST['nick'],1);
-        $_SESSION['success'] = 'Privilèges Super Utilisateur donnés à '.$_POST['nick'];
+        if(preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $_POST['email']))
+        UsersMod::setAdmin($_POST['email'],1);
+        $_SESSION['success'] = 'Si '.$_POST['email'].' existe, cet utilisateur a reçu les privilèges super utilisateur';
         header('Location: /');
+    }
+
+    public static function delete(){
+        if ($_POST['delete'] == 'supprimer '.$_SESSION['nick']){
+            UsersMod::deleteUser($_SESSION['nick']);
+            session_destroy();
+            session_start();
+            $_SESSION['success'] = 'Votre compte a bien été supprimé';
+            header('Location: /');
+        } else{
+            $_SESSION['error']['delete'] = 'Texte erroné';
+            header('/?ctrl=User&action=view');
+        }
     }
 }

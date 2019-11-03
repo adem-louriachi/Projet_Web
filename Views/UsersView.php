@@ -19,3 +19,10 @@
     </label>
     <button class="submit btn waves-effect waves-light" type="submit" value="Modifier le mot de passe">Modifier le mot de passe<i class="material-icons right">send</i></button>
 </form>
+<form method="post" action="/?ctrl=User&action=delete">
+    <?= $_SESSION['error']['delete'] ?>
+    <label>Afin de confirmer votre volonté de supprimer votre compte, veuillez écrire "supprimer VOTREPSEUDO" en remplaçant VOTREPSEUDO par le pseudo de votre compte
+        <input name="delete" type="text">
+    </label>
+    <button class="submit btn waves-effect waves-light" type="submit" value="SUPPRIMER mon compte">SUPPRIMER mon compte<i class="material-icons right">send</i></button>
+</form>
