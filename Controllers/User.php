@@ -84,7 +84,7 @@ class User
         // fin de génération de mdp aléatoire
         if(UsersMod::forgetPwd($_POST['email'], $newPwd)) {
             $from = ' Freenote-4randoms <freenote-4randoms@alwaysdata.net>';
-            $headers = 'From:' . $from;
+            $headers = 'From:' . $from . "\n";
             $bndary = md5(uniqid(mt_rand()));
             $headers .= 'Content-type: multipart/alternative; boundary="' . $bndary. '"';
             $to = $_POST['email'];
