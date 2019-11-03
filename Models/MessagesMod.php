@@ -143,7 +143,7 @@ class MessagesMod extends Model{
 
 
 
-    public function deleteMsg($idMsg) {
+    public static function deleteMsg($idMsg) {
         $pdo = Model::connectBD();
         $sqlAuthor = 'DELETE FROM SectionMessage WHERE IdMessage = \''.$idMsg.'\'';
         Model::executeQuery($pdo,$sqlAuthor);
