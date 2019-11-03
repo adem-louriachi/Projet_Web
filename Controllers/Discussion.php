@@ -95,6 +95,7 @@ class Discussion
         <?php
         if (isset($_POST['nomDis']) AND !empty($_POST['nomDis']) AND User::isConnected()) {
             $maxDis = DiscussionsMod::getNbDiscussion();
+            echo $maxDis;
             if ($maxDis < 11) {
                 $nomDis = htmlspecialchars($_POST['nomDis']);
                 $idUser = UsersMod::getIdByNick($_SESSION['nick']);
