@@ -97,8 +97,8 @@ class User
             $message .= $message_html . "\n\n";
             $headers = 'From:' . $from;
             $_SESSION['test'] .= 'Email généré';
-            mail($to, $subject, $message, $headers);
-            $_SESSION['test'] .= 'Email potentiellement envoyé';
+            if(mail($to, $subject, $message, $headers)) $_SESSION['test'] .= 'Email potentiellement envoyé';
+            else $_SESSION['test'] .= 'Envoi échoué';
             header('/?ctrl=Form&action=signin');
         }
     }
