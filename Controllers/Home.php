@@ -46,7 +46,7 @@ foreach ($allDis as $dis) { ?>
             if (User::isConnected() && $_SESSION['admin'] == 1) {
                 ?>
                 <form id="deleteDiscussion" method="post" action="">
-                    <button name="<?= 'del'.$dis['IdDiscussion'] ?>>" class="submit btn waves-effect waves-light right" type="submit"><i
+                    <button name="<?= 'del'.$dis['IdDiscussion'] ?>" class="submit btn waves-effect waves-light right" type="submit"><i
                                 class="material-icons">close</i></button>
                 </form>
                 <?php
