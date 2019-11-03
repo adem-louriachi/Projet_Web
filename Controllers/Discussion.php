@@ -27,15 +27,18 @@ class Discussion
                                 class="material-icons">close</i></button>
                 </form>
                 <?php
-                if (isset($_POST['deleteMsg'])) {
-                    MessagesMod::deleteMsg($id['IdMessage']);
-                }
             }
             ?>
             <article>
                 <p><? echo MessagesMod::getAuthorsForMsg($id['IdMessage'])?> : <? echo MessagesMod::getTxt($id['IdMessage']); ?></p>
             </article>
-        <?php } ?>
+        <?php }
+        
+        if (isset($_POST['deleteMsg'])) {
+            MessagesMod::deleteMsg($id['IdMessage']);
+        }
+
+        ?>
 
         <?php
         if (User::isConnected()) {
