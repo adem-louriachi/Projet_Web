@@ -12,7 +12,7 @@ class Discussion{
         $idDis = $_GET['id'];
         $allIdMsg = MessagesMod::getAllMessage($idDis);
         $maxIdMsg = 0;
-        foreach($allIdMsg as $id) {
+        foreach($allIdMsg as $idMsg['IdMessage'] => $id) {
             //if ($id > $maxIdMsg) { $maxIdMsg = $id; } //obtenir le plus grand idMessage (le dernier) ?>
         <article>
             <p><? echo MessagesMod::getTxt($id); ?></p>
