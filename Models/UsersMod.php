@@ -115,11 +115,9 @@ class UsersMod extends Model {
             if (!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/', $email)) {
                 throw new Exception('Format de l\'email entré invalide');
             }
-
             $pdo = Model::ConnectBD();
             $sql = 'SELECT * FROM Utilisateurs WHERE Mail = \'' . $email . '\'';
             $data = Model::executeQuery($pdo, $sql);
-
             if (empty($data)) {
                 throw new Exception('Mail inexistant');
             }

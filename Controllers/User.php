@@ -69,12 +69,10 @@ class User
         //generation mot de passe aléatoire
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $newPwd = '';
-
         for ($i = 0; $i < 24; $i++) {
             $index = rand(0, strlen($characters) - 1);
             $newPwd .= $characters[$index];
         }
-
         for ($i = 0; $i < 5; $i++) {
             for ($i = 0; $i < strlen($newPwd)-1; $i++) {
                 if ( (is_int($newPwd[$i])&& is_int($newPwd[$i+1]))) {
