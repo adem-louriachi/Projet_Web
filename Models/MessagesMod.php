@@ -111,7 +111,7 @@ class MessagesMod extends Model {
         $msg = explode(' ', $textWord);
         if (isset($msg[2])) {
             throw new Exception('Votre message ne doit contenir que 2 mots maximum');
-        } elseif (!preg_match('[0-9a-zA-Z\s]{1,53}', $textWord)) {
+        } elseif (!preg_match('[0-9a-zA-Z\S]{1,53}', $textWord)) {
             throw new Exception('Votre message ne doit pas contenir de ponctuations ou de caractères spéciaux et faire 53 caractères au maximum ( pour éviter les abus )');
         }
         $textWord = self::quote_smart($textWord);
