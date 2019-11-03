@@ -1,9 +1,15 @@
-
+<div class="row white-text">
+    <div class="col s6">
 <p>Nom d'utilisateur : <?=$_SESSION['nick']?></p>
 <p>Email : <?=$_SESSION['email']?></p>
 <p>Date d'inscription : <?=$_SESSION['date']?></p>
 <p>Super administrateur : <?=$_SESSION['isAdmin']?></p>
 <?= $_SESSION['giveAdmin'] ?>
+    </div>
+    <div class="col right-align s6">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSc-cK1ui78ki3ur0b4h_OvNdBIhqLGMaRrpV1Dbu-dyTNmyqdMaA&amp;s" class="circle responsive-img">
+    </div>
+</div>
 <form id="newMail" method="post" action="/?ctrl=User&action=changeMail">
     <?= $_SESSION['error']['changeEmail'] ?>
     <label>Changer d'adresse e-mail
